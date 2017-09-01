@@ -48,11 +48,10 @@
     <link href="http://y-hkl.top/2017/08/31/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%B8%B8%E7%94%A8%E8%84%91%E5%9B%BE/"/>
     <id>http://y-hkl.top/2017/08/31/渗透测试常用脑图/</id>
     <published>2017-09-01T03:00:44.000Z</published>
-    <updated>2017-09-01T09:34:04.558Z</updated>
+    <updated>2017-09-01T09:37:27.418Z</updated>
     
     <content type="html"><![CDATA[<h2 id="渗透测试脑图"><a href="#渗透测试脑图" class="headerlink" title="渗透测试脑图"></a>渗透测试脑图</h2><p><img src="/upload_img/penetration_test.png" alt=""></p>
-<p>##漏洞脑图</p>
-<h3 id="web常见漏洞脑图"><a href="#web常见漏洞脑图" class="headerlink" title="web常见漏洞脑图"></a>web常见漏洞脑图</h3><p><img src="/upload_img/web_mind_map.png" alt=""></p>
+<h2 id="漏洞脑图"><a href="#漏洞脑图" class="headerlink" title="漏洞脑图"></a>漏洞脑图</h2><h3 id="web常见漏洞脑图"><a href="#web常见漏洞脑图" class="headerlink" title="web常见漏洞脑图"></a>web常见漏洞脑图</h3><p><img src="/upload_img/web_mind_map.png" alt=""></p>
 <h3 id="xss攻击点汇总脑图"><a href="#xss攻击点汇总脑图" class="headerlink" title="xss攻击点汇总脑图"></a>xss攻击点汇总脑图</h3><p><img src="/upload_img/xss_attacks.png" alt=""></p>
 <h3 id="密码找回逻辑漏洞脑图"><a href="#密码找回逻辑漏洞脑图" class="headerlink" title="密码找回逻辑漏洞脑图"></a>密码找回逻辑漏洞脑图</h3><p><img src="/upload_img/password_recovery_logic_vulnerability.png" alt=""></p>
 <h3 id="越权脑图"><a href="#越权脑图" class="headerlink" title="越权脑图"></a>越权脑图</h3><p><img src="/upload_img/unauthorized.png" alt=""></p>
