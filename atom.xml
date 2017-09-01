@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://y-hkl.top/"/>
-  <updated>2017-09-01T06:51:44.324Z</updated>
+  <updated>2017-09-01T06:59:40.459Z</updated>
   <id>http://y-hkl.top/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://y-hkl.top/2017/09/01/%E7%88%AC%E5%8F%96%E7%99%BE%E5%BA%A6%E6%90%9C%E7%B4%A2/"/>
     <id>http://y-hkl.top/2017/09/01/爬取百度搜索/</id>
     <published>2017-09-01T06:31:09.000Z</published>
-    <updated>2017-09-01T06:51:44.324Z</updated>
+    <updated>2017-09-01T06:59:40.459Z</updated>
     
     <content type="html"><![CDATA[<p>在用谷歌语法搜索有某些特征的链接时，如果想把这些链接全部保存起来，这个时候就可以使用爬虫技术，爬取这些链接保存下来。下面就来分析并写出这个爬虫程序。<br><a id="more"></a></p>
 <h2 id="网页分析"><a href="#网页分析" class="headerlink" title="网页分析"></a>网页分析</h2><h3 id="分析搜索链接"><a href="#分析搜索链接" class="headerlink" title="分析搜索链接"></a>分析搜索链接</h3><p>每页的网页链接格式，一般都有固定的链接格式，如百度的每页搜索结果链接是只取两个个参数的结果是这样，每页10条<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://www.baidu.com/s?wd=ctf&amp;pn=10</div></pre></td></tr></table></figure></p>
