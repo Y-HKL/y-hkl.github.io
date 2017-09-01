@@ -44,18 +44,26 @@
   </entry>
   
   <entry>
-    <title>web常见漏洞脑图</title>
-    <link href="http://y-hkl.top/2017/08/31/web%E5%B8%B8%E8%A7%81%E6%BC%8F%E6%B4%9E%E8%84%91%E5%9B%BE/"/>
-    <id>http://y-hkl.top/2017/08/31/web常见漏洞脑图/</id>
+    <title>渗透测试常用脑图</title>
+    <link href="http://y-hkl.top/2017/08/31/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E5%B8%B8%E7%94%A8%E8%84%91%E5%9B%BE/"/>
+    <id>http://y-hkl.top/2017/08/31/渗透测试常用脑图/</id>
     <published>2017-09-01T03:00:44.000Z</published>
-    <updated>2017-09-01T03:36:48.140Z</updated>
+    <updated>2017-09-01T09:34:04.558Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="web常见漏洞脑图"><a href="#web常见漏洞脑图" class="headerlink" title="web常见漏洞脑图"></a>web常见漏洞脑图</h2><p><img src="/upload_img/web_mind_map.png" alt=""></p>
+    <content type="html"><![CDATA[<h2 id="渗透测试脑图"><a href="#渗透测试脑图" class="headerlink" title="渗透测试脑图"></a>渗透测试脑图</h2><p><img src="/upload_img/penetration_test.png" alt=""></p>
+<p>##漏洞脑图</p>
+<h3 id="web常见漏洞脑图"><a href="#web常见漏洞脑图" class="headerlink" title="web常见漏洞脑图"></a>web常见漏洞脑图</h3><p><img src="/upload_img/web_mind_map.png" alt=""></p>
+<h3 id="xss攻击点汇总脑图"><a href="#xss攻击点汇总脑图" class="headerlink" title="xss攻击点汇总脑图"></a>xss攻击点汇总脑图</h3><p><img src="/upload_img/xss_attacks.png" alt=""></p>
+<h3 id="密码找回逻辑漏洞脑图"><a href="#密码找回逻辑漏洞脑图" class="headerlink" title="密码找回逻辑漏洞脑图"></a>密码找回逻辑漏洞脑图</h3><p><img src="/upload_img/password_recovery_logic_vulnerability.png" alt=""></p>
+<h3 id="越权脑图"><a href="#越权脑图" class="headerlink" title="越权脑图"></a>越权脑图</h3><p><img src="/upload_img/unauthorized.png" alt=""></p>
+<h2 id="工具脑图"><a href="#工具脑图" class="headerlink" title="工具脑图"></a>工具脑图</h2><h3 id="sqlmap脑图"><a href="#sqlmap脑图" class="headerlink" title="sqlmap脑图"></a>sqlmap脑图</h3><p><img src="/upload_img/sqlmap.png" alt=""></p>
+<h3 id="nmap脑图"><a href="#nmap脑图" class="headerlink" title="nmap脑图"></a>nmap脑图</h3><p><img src="/upload_img/nmap.png" alt=""></p>
+<h2 id="提权脑图"><a href="#提权脑图" class="headerlink" title="提权脑图"></a>提权脑图</h2><p><img src="/upload_img/privilge_escalation.png" alt=""></p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;web常见漏洞脑图&quot;&gt;&lt;a href=&quot;#web常见漏洞脑图&quot; class=&quot;headerlink&quot; title=&quot;web常见漏洞脑图&quot;&gt;&lt;/a&gt;web常见漏洞脑图&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;/upload_img/web_mind_map.png&quot; al
+      &lt;h2 id=&quot;渗透测试脑图&quot;&gt;&lt;a href=&quot;#渗透测试脑图&quot; class=&quot;headerlink&quot; title=&quot;渗透测试脑图&quot;&gt;&lt;/a&gt;渗透测试脑图&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;/upload_img/penetration_test.png&quot; alt=&quot;&quot;&gt;&lt;/p
     
     </summary>
     
