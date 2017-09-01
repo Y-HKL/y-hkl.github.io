@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://y-hkl.top/"/>
-  <updated>2017-09-01T03:36:48.140Z</updated>
+  <updated>2017-09-01T06:44:19.196Z</updated>
   <id>http://y-hkl.top/</id>
   
   <author>
@@ -14,6 +14,109 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>爬取百度搜索</title>
+    <link href="http://y-hkl.top/2017/09/01/%E7%88%AC%E5%8F%96%E7%99%BE%E5%BA%A6%E6%90%9C%E7%B4%A2/"/>
+    <id>http://y-hkl.top/2017/09/01/爬取百度搜索/</id>
+    <published>2017-09-01T06:31:09.000Z</published>
+    <updated>2017-09-01T06:44:19.196Z</updated>
+    
+    <content type="html"><![CDATA[<pre><code>在用谷歌语法搜索有某些特征的链接时，如果想把这些链接全部保存起来，这个时候就可以使用爬虫技术，爬取这些链接保存下来。下面就来分析并写出这个爬虫程序。
+</code></pre><h2 id="网页分析"><a href="#网页分析" class="headerlink" title="网页分析"></a>网页分析</h2><h3 id="分析搜索链接"><a href="#分析搜索链接" class="headerlink" title="分析搜索链接"></a>分析搜索链接</h3><p>每页的网页链接格式，一般都有固定的链接格式，如百度的每页搜索结果链接是只取两个个参数的结果是这样，每页10条<br>···<br><a href="https://www.baidu.com/s?wd=ctf&amp;pn=10" target="_blank" rel="external">https://www.baidu.com/s?wd=ctf&amp;pn=10</a><br>···</p>
+<h3 id="分析搜索页面中的链接"><a href="#分析搜索页面中的链接" class="headerlink" title="分析搜索页面中的链接"></a>分析搜索页面中的链接</h3><p>F12对当前页面分析每个链接的特点，百度搜索有点坑，你会发现百度都是通过一个长长的链接302跳转来访问的，随便选取一个链接都是这种<br>···<br>a target=”_blank” href=”你搜索的URL” class=”c-showurl” style=”text-decoration:none;”&gt;www.php.net/downloa…php<br>···<br>特征就是class=”c-showurl” 属性值，用bs库去获取所有有这个属性的tagres = soup.find_all(name=”a”, attrs={‘class’:’c-showurl’})</p>
+<h3 id="访问链接"><a href="#访问链接" class="headerlink" title="访问链接"></a>访问链接</h3><p>访问跳转链接获取实际网站url,title之类的信息</p>
+<h2 id="爬虫实现"><a href="#爬虫实现" class="headerlink" title="爬虫实现"></a>爬虫实现</h2><p>···python</p>
+<p>#!/usr/bin/env python</p>
+<p>#coding=utf-8</p>
+<p>#输入格式  python 脚本 -s 内容 -f 要保存的文件名</p>
+<p>#每页的网页链接格式，一般都有固定的链接格式，如百度的每页搜索结果链接是只取两个个参数的结果是这样，每页10条</p>
+<p>#<a href="https://www.baidu.com/s?wd=ctf&amp;pn=10" target="_blank" rel="external">https://www.baidu.com/s?wd=ctf&amp;pn=10</a></p>
+<p>#F12对当前页面分析每个链接的特点，百度搜索有点坑，你会发现百度都是通过一个长长的链接302跳转来访问的，随便选取一个链接都是这种</p>
+<p>#<a target="_blank" href="http://www.baidu.com/link?url=GI9K125i3rnLbxL2-kKs-2g2OZt-oDTJZZIFjndQHxGiDubfIEpvNxnnCc1h5ags" class="c-showurl" style="text-decoration:none;">www.secbox.cn/tag/<b>ctf</b>&nbsp;</a></p>
+<p>import requests<br>from bs4 import BeautifulSoup as bs<br>import threading    #多线程<br>import re  #正则<br>from Queue import Queue  #线程优先级队列（ Queue）<br>from prettytable import PrettyTable  #将输出内容如表格方式整齐<br>import argparse  #命令行解析<br>import time<br>import sys</p>
+<p>thread_count = 3 #进程数<br>page = 5 #可以修改抓取页数<br>urls = []</p>
+<p>table =  PrettyTable([‘page’,’url’,’title’]) #prettyx模块将输出内容如表格方式整齐<br>table.align[‘title’] = ‘1’ #title左对齐<br>table.padding_width = 1  #列边和内容之间的一个空格</p>
+<p>page = (page+1) * 10</p>
+<p>class mythread(threading.Thread):  #继承父类threading.Thread<br>    def <strong>init</strong>(self,queue):<br>        threading.Thread.<strong>init</strong>(self)<br>        self.Q = queue<br>        self.headers = {‘User-Agent’: ‘Mozilla/5.0 (Windows NT 10.0; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0’}  #设置请求头</p>
+<pre><code>def run(self):   ##把要执行的代码写到run函数里面 线程在创建后会直接运行run函数 
+    while 1:
+        try:
+            t = self.Q.get(True,1)
+            #print t
+            self.spider(t)
+        except Exception,e:  #调试最好打印出错信息，否则，spider函数出错也无法定位错误，多次遇到这个问题了,靠打印才解决
+            print e
+            break
+
+
+def spider(self,target):  #爬取网页链接和标题
+    #print type(target)
+    pn =int(target.split(&apos;=&apos;)[-1])/10 + 1  #对https://www.baidu.com/s?wd=ctf&amp;pn=10分割去最后的数字
+    #print pn
+    #print target
+    html = requests.get(target,headers=self.headers)
+    #print html
+    soup = bs(html.text,&apos;lxml&apos;)
+    res = soup.find_all(name=&apos;a&apos;, attrs={&apos;class&apos;:&apos;c-showurl&apos;})
+    #print res
+
+    for r in res:
+        try:
+            #因为百度搜索是302跳转，所以我们需要再次请求
+            h = requests.get(r[&apos;href&apos;],headers=self.headers,timeout=3)
+            if h.status_code == 200:
+                url = h.url
+                title =re.findall(r&apos;&lt;title&gt;(.*?)&lt;/title&gt;&apos;,h.content)[0]
+                title = title.decode(&apos;utf-8&apos;)  #解码成unicode,否则add_row会转换出错
+                urls.append((pn,url,title))
+            else:
+                continue
+        except:
+            continue
+</code></pre><p>def Load_Thread(queue):   #生成线程数<br>    return [mythread(queue) for i in range(thread_count)]</p>
+<p>def Start_Thread(threads):<br>    print ‘thread is start…’<br>    for t in threads:<br>        t.setDaemon(True)<br>        t.start()<br>    for t in threads:<br>        t.join()<br>    print ‘thread is end…’</p>
+<p>def main():<br>    start = time.time()<br>    parser = argparse.ArgumentParser()<br>    parser.add_argument(‘-s’)<br>    parser.add_argument(‘-f’)<br>    arg = parser.parse_args()</p>
+<pre><code>#print arg
+
+word = arg.s
+output = arg.f
+# word = &apos;inurl:login.action&apos;
+# output = &apos;test.txt&apos;
+queue = Queue()
+for i in range(0,page,10):
+    target = &apos;https://www.baidu.com/s?wd=%s&amp;pn=%s&apos;%(word,i)
+    queue.put(target)
+thread_list = Load_Thread(queue)
+Start_Thread(thread_list)
+
+#把数据写到文件中
+if output:
+    with open(output,&apos;a&apos;) as f:
+        for record in urls:
+            f.write(record[1]+&apos;\n&apos;)
+#print urls,len(urls)
+for record in urls:
+    table.add_row(list(record))  #在表单中添加数据
+print table
+print &apos;共爬取数据%s条&apos;%len(urls)
+print time.time()-start
+</code></pre><p>if <strong>name</strong> == ‘<strong>main</strong>‘:<br>    main()<br>···</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;pre&gt;&lt;code&gt;在用谷歌语法搜索有某些特征的链接时，如果想把这些链接全部保存起来，这个时候就可以使用爬虫技术，爬取这些链接保存下来。下面就来分析并写出这个爬虫程序。
+&lt;/code&gt;&lt;/pre&gt;&lt;h2 id=&quot;网页分析&quot;&gt;&lt;a href=&quot;#网页分析&quot; class=&quot;head
+    
+    </summary>
+    
+      <category term="爬虫技术" scheme="http://y-hkl.top/categories/%E7%88%AC%E8%99%AB%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="python爬虫" scheme="http://y-hkl.top/tags/python%E7%88%AC%E8%99%AB/"/>
+    
+  </entry>
   
   <entry>
     <title>web常见漏洞脑图</title>
