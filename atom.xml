@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://y-hkl.top/"/>
-  <updated>2017-09-02T06:50:04.094Z</updated>
+  <updated>2017-09-02T06:55:55.285Z</updated>
   <id>http://y-hkl.top/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="http://y-hkl.top/2017/09/02/%E6%90%AD%E5%BB%BAshadowsocks%E6%9C%8D%E5%8A%A1/"/>
     <id>http://y-hkl.top/2017/09/02/搭建shadowsocks服务/</id>
     <published>2017-09-02T06:15:21.000Z</published>
-    <updated>2017-09-02T06:50:04.094Z</updated>
+    <updated>2017-09-02T06:55:55.285Z</updated>
     
-    <content type="html"><![CDATA[<p>搭建ss服务器可以登录外网查询资料，访问谷歌，方便自己的使用。在服务器上搭建shadowsocks服务端，本地服务器上搭建客户端用来连接使用。</p>
+    <content type="html"><![CDATA[<p>搭建ss服务器可以登录外网查询资料，访问谷歌，方便自己的使用。在服务器上搭建shadowsocks服务端，本地服务器上搭建客户端用来连接使用。<br><a id="more"></a></p>
 <h2 id="安装前的准备"><a href="#安装前的准备" class="headerlink" title="安装前的准备"></a>安装前的准备</h2><h3 id="安装pip"><a href="#安装pip" class="headerlink" title="安装pip"></a>安装pip</h3><p>从pip官网 <a href="https://pypi.python.org/pypi/pip" target="_blank" rel="external">https://pypi.python.org/pypi/pip</a> 下载pip的源代码</p>
 <p>#解压<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zxvf pip-1.5.5.tar.gz</div></pre></td></tr></table></figure></p>
 <p>这个时候会报错说少了setuptools<br>从setuptools官网 <a href="https://pypi.python.org/pypi/setuptools" target="_blank" rel="external">https://pypi.python.org/pypi/setuptools</a> 下载setuptools原来</p>
@@ -46,8 +46,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;搭建ss服务器可以登录外网查询资料，访问谷歌，方便自己的使用。在服务器上搭建shadowsocks服务端，本地服务器上搭建客户端用来连接使用。&lt;/p&gt;
-&lt;h2 id=&quot;安装前的准备&quot;&gt;&lt;a href=&quot;#安装前的准备&quot; class=&quot;headerlink&quot; title=&quot;安
+      &lt;p&gt;搭建ss服务器可以登录外网查询资料，访问谷歌，方便自己的使用。在服务器上搭建shadowsocks服务端，本地服务器上搭建客户端用来连接使用。&lt;br&gt;
     
     </summary>
     
