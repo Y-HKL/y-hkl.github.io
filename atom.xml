@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://y-hkl.top/"/>
-  <updated>2017-09-01T06:59:40.459Z</updated>
+  <updated>2017-09-02T02:04:13.270Z</updated>
   <id>http://y-hkl.top/</id>
   
   <author>
@@ -14,6 +14,46 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>服务器解析漏洞</title>
+    <link href="http://y-hkl.top/2017/09/01/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E/"/>
+    <id>http://y-hkl.top/2017/09/01/服务器解析漏洞/</id>
+    <published>2017-09-02T01:49:39.000Z</published>
+    <updated>2017-09-02T02:04:13.270Z</updated>
+    
+    <content type="html"><![CDATA[<p>服务器解析漏洞已经是一个老生常谈问题了，但是有些服务器依然存在，这里复习记录一下常见服务器解析漏洞，比如IIS6.0，IIS7.5，acache，nginx解析漏洞。<br><a id="more"></a></p>
+<h2 id="一-IIS5-x-6-x解析漏洞"><a href="#一-IIS5-x-6-x解析漏洞" class="headerlink" title="一.IIS5.x-6.x解析漏洞"></a>一.IIS5.x-6.x解析漏洞</h2><p>使用iis5.x-6.x版本的服务器，大多为windows server 2003，网站比较古老，开发语句一般为asp；该解析漏洞也只能解析asp文件，而不能解析aspx文件</p>
+<h3 id="目录解析-6-0"><a href="#目录解析-6-0" class="headerlink" title="目录解析(6.0)"></a>目录解析(6.0)</h3><p>形式：www.xxx.com/xx.asp/xx.jpg<br>原理: 服务器默认会把.asp，.asa目录下的文件都解析成asp文件。</p>
+<h3 id="文件解析"><a href="#文件解析" class="headerlink" title="文件解析"></a>文件解析</h3><p>形式：www.xxx.com/xx.asp;.jpg<br>原理：服务器默认不解析;号后面的内容，因此xx.asp;.jpg便被解析成asp文件了。</p>
+<h3 id="解析文件类型"><a href="#解析文件类型" class="headerlink" title="解析文件类型"></a>解析文件类型</h3><p>IIS6.0 默认的可执行文件除了asp还包含这三种 :<br>/test.asa<br>/test.cer<br>/test.cdx</p>
+<h3 id="修复方案"><a href="#修复方案" class="headerlink" title="修复方案"></a>修复方案</h3><p>1.禁止用户控制文件上传目录，新建目录等权限<br>2.上传目录与用户新建的目录禁止执行<br>3.上传的文件重命名，不保留用户上传文件的后缀<br>4.禁止asa、asp、cer、cdx等后缀的文件上传</p>
+<h2 id="二-apache解析漏洞"><a href="#二-apache解析漏洞" class="headerlink" title="二.apache解析漏洞"></a>二.apache解析漏洞</h2><h3 id="漏洞原理"><a href="#漏洞原理" class="headerlink" title="漏洞原理　"></a>漏洞原理　</h3><p>Apache 解析文件的规则是从右到左开始判断解析,如果后缀名为不可识别文件解析,就再往左判断。比如 test.php.owf.rar “.owf”和”.rar” 这两种后缀是apache不可识别解析,apache就会把wooyun.php.owf.rar解析成php。</p>
+<h3 id="漏洞形式"><a href="#漏洞形式" class="headerlink" title="漏洞形式"></a>漏洞形式</h3><p>www.xxxx.xxx.com/test.php.php123</p>
+<h3 id="其余配置问题导致漏洞"><a href="#其余配置问题导致漏洞" class="headerlink" title="其余配置问题导致漏洞"></a>其余配置问题导致漏洞</h3><p>（1）如果在 Apache 的 conf 里有这样一行配置 AddHandler php5-script .php 这时只要文件名里包含.php 即使文件名是 test2.php.jpg 也会以 php 来执行。<br>（2）如果在 Apache 的 conf 里有这样一行配置 AddType application/x-httpd-php .jpg 即使扩展名是 jpg，一样能以 php 方式执行</p>
+<h3 id="修复方案-1"><a href="#修复方案-1" class="headerlink" title="修复方案"></a>修复方案</h3><p>1.apache配置文件，禁止.php.这样的文件执行，配置文件里面加入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;Files ~ “.(php.|php3.)”&gt;</div><div class="line">Order Allow,Deny</div><div class="line">Deny from all</div><div class="line">&lt;/Files&gt;</div></pre></td></tr></table></figure></p>
+<p>2.用伪静态能解决这个问题，重写类似.php.*这类文件，打开apache的httpd.conf找到LoadModule rewrite_module modules/mod_rewrite.so<br>把#号去掉，重启apache,在网站根目录下建立.htaccess文件,代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">&lt;IfModule mod_rewrite.c&gt;</div><div class="line">RewriteEngine On</div><div class="line">RewriteRule .(php.|php3.) /index.php</div><div class="line">RewriteRule .(pHp.|pHp3.) /index.php</div><div class="line">RewriteRule .(phP.|phP3.) /index.php</div><div class="line">RewriteRule .(Php.|Php3.) /index.php</div><div class="line">RewriteRule .(PHp.|PHp3.) /index.php</div><div class="line">RewriteRule .(PhP.|PhP3.) /index.php</div><div class="line">RewriteRule .(pHP.|pHP3.) /index.php</div><div class="line">RewriteRule .(PHP.|PHP3.) /index.php</div><div class="line">&lt;/IfModule&gt;</div></pre></td></tr></table></figure></p>
+<h2 id="三-Nginx-lt-8-03畸形解析漏洞"><a href="#三-Nginx-lt-8-03畸形解析漏洞" class="headerlink" title="三.Nginx &lt; 8.03畸形解析漏洞"></a>三.Nginx &lt; 8.03畸形解析漏洞</h2><h3 id="漏洞原理-1"><a href="#漏洞原理-1" class="headerlink" title="漏洞原理"></a>漏洞原理</h3><p>Nginx默认是以CGI的方式支持PHP解析的，普遍的做法是在Nginx配置文件中通过正则匹配设置SCRIPT_FILENAME。当访问www.xx.com/phpinfo.jpg/1.php这个URL时，$fastcgi_script_name会被设置为“phpinfo.jpg/1.php”，然后构造成SCRIPT_FILENAME传递给PHP CGI，但是PHP为什么会接受这样的参数，并将phpinfo.jpg作为PHP文件解析呢?这就要说到fix_pathinfo这个选项了。 如果开启了这个选项，那么就会触发在PHP中的如下逻辑：<br>PHP会认为SCRIPT_FILENAME是phpinfo.jpg，而1.php是PATH_INFO，所以就会将phpinfo.jpg作为PHP文件来解析了</p>
+<h3 id="漏洞形式-1"><a href="#漏洞形式-1" class="headerlink" title="漏洞形式"></a>漏洞形式</h3><p>www.xxxx.com/UploadFiles/image/1.jpg/1.php<br>www.xxxx.com/UploadFiles/image/1.jpg%00.php<br>www.xxxx.com/UploadFiles/image/1.jpg/%20\0.php</p>
+<p>另外一种手法：上传一个名字为test.jpg，以下内容的文件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;?PHP fputs(fopen(&apos;shell.php&apos;,&apos;w&apos;),&apos;&lt;?php eval($_POST[cmd])?&gt;</div></pre></td></tr></table></figure></p>
+<p>然后访问test.jpg/.php,在这个目录下就会生成一句话木马shell.php。</p>
+<h3 id="修复方案-2"><a href="#修复方案-2" class="headerlink" title="修复方案"></a>修复方案</h3><p>1.修改php.ini文件，将cgi.fix_pathinfo的值设置为0;<br>2.在Nginx配置文件中添加以下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">if ( $fastcgi_script_name ~ ..*/.*php ) &#123;</div><div class="line"></div><div class="line">　　 return 403;</div><div class="line">　　 &#125;</div></pre></td></tr></table></figure></p>
+<p>这行代码的意思是当匹配到类似test.jpg/a.php的URL时，将返回403错误代码。<br>3.升级Nignx到最新版</p>
+<h2 id="四-IIS7-5解析漏洞"><a href="#四-IIS7-5解析漏洞" class="headerlink" title="四.IIS7.5解析漏洞"></a>四.IIS7.5解析漏洞</h2><p>IIS7.5的漏洞与nginx的类似，都是由于php配置文件中，开启了cgi.fix_pathinfo，而这并不是nginx或者iis7.5本身的漏洞。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;服务器解析漏洞已经是一个老生常谈问题了，但是有些服务器依然存在，这里复习记录一下常见服务器解析漏洞，比如IIS6.0，IIS7.5，acache，nginx解析漏洞。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="web安全" scheme="http://y-hkl.top/categories/web%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="服务器解析漏洞" scheme="http://y-hkl.top/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E/"/>
+    
+  </entry>
   
   <entry>
     <title>爬取百度搜索</title>
