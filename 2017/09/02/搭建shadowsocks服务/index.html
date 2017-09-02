@@ -73,7 +73,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://y-hkl.top/upload_img/shadowsocks_1.png">
 <meta property="og:image" content="http://y-hkl.top/upload_img/shadowsocks_2.png">
-<meta property="og:updated_time" content="2017-09-02T06:47:18.730Z">
+<meta property="og:updated_time" content="2017-09-02T06:50:04.094Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搭建shadowsocks服务">
 <meta name="twitter:description" content="搭建ss服务器可以登录外网查询资料，访问谷歌，方便自己的使用。在服务器上搭建shadowsocks服务端，本地服务器上搭建客户端用来连接使用。 安装前的准备安装pip从pip官网 https://pypi.python.org/pypi/pip 下载pip的源代码 #解压1tar -zxvf pip-1.5.5.tar.gz 这个时候会报错说少了setuptools从setuptools官网 ht">
@@ -392,9 +392,10 @@
         <p>搭建ss服务器可以登录外网查询资料，访问谷歌，方便自己的使用。在服务器上搭建shadowsocks服务端，本地服务器上搭建客户端用来连接使用。</p>
 <h2 id="安装前的准备"><a href="#安装前的准备" class="headerlink" title="安装前的准备"></a>安装前的准备</h2><h3 id="安装pip"><a href="#安装pip" class="headerlink" title="安装pip"></a>安装pip</h3><p>从pip官网 <a href="https://pypi.python.org/pypi/pip" target="_blank" rel="external">https://pypi.python.org/pypi/pip</a> 下载pip的源代码</p>
 <p>#解压<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zxvf pip-1.5.5.tar.gz</div></pre></td></tr></table></figure></p>
-<p>这个时候会报错说少了setuptools<br>从setuptools官网 <a href="https://pypi.python.org/pypi/setuptools下载setuptools原来" target="_blank" rel="external">https://pypi.python.org/pypi/setuptools下载setuptools原来</a></p>
+<p>这个时候会报错说少了setuptools<br>从setuptools官网 <a href="https://pypi.python.org/pypi/setuptools" target="_blank" rel="external">https://pypi.python.org/pypi/setuptools</a> 下载setuptools原来</p>
 <p>#解压<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tar -zxvf setuptools-3.6.tar.gz </div><div class="line">cd setuptools-3.6</div></pre></td></tr></table></figure></p>
-<p>#安装<br>python setup.py install<br>再次安装pip就OK了</p>
+<p>#安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python setup.py install</div></pre></td></tr></table></figure></p>
+<p>再次安装pip就OK了</p>
 <h3 id="安装M2Crypto"><a href="#安装M2Crypto" class="headerlink" title="安装M2Crypto"></a>安装M2Crypto</h3><p>先安装依赖包：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install -y openssl-devel gcc swig python-devel autoconf libtool</div></pre></td></tr></table></figure></p>
 <p>再通过pip安装M2Crypto：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install M2Crypto</div></pre></td></tr></table></figure></p>
 <h2 id="安装shadowsocks"><a href="#安装shadowsocks" class="headerlink" title="安装shadowsocks"></a>安装shadowsocks</h2><p>使用pip安装shadowsocks<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install shadowsocks</div></pre></td></tr></table></figure></p>
@@ -896,17 +897,6 @@
 
 
 
-  
-    <script type="text/javascript">
-      (function(d, s) {
-        var j, e = d.getElementsByTagName(s)[0];
-        if (typeof LivereTower === 'function') { return; }
-        j = d.createElement(s);
-        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-        j.async = true;
-        e.parentNode.insertBefore(j, e);
-      })(document, 'script');
-    </script>
   
 
 
