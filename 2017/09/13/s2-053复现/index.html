@@ -76,7 +76,7 @@
 <meta property="og:image" content="http://y-hkl.top/upload_img/s2_053_3.png">
 <meta property="og:image" content="http://y-hkl.top/upload_img/s2_053_4.png">
 <meta property="og:image" content="http://y-hkl.top/upload_img/s2_053_5.png">
-<meta property="og:updated_time" content="2017-09-13T07:35:37.213Z">
+<meta property="og:updated_time" content="2017-09-13T07:41:07.389Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="s2-053漏洞复现">
 <meta name="twitter:description" content="2017年9月7日，Struts官方发布一个中危的安全漏洞，该漏洞编号为:S2-053,在一定条件下，当开发人员在Freemarker标签中使用错误的构造时，可能会导致远程代码执行漏洞">
@@ -407,7 +407,7 @@
 <h3 id="来个调用计算器（calc）"><a href="#来个调用计算器（calc）" class="headerlink" title="来个调用计算器（calc）"></a>来个调用计算器（calc）</h3><p>把(#cmd=’whoami’)里面的whoami缓存calc<br><img src="/upload_img/s2_053_5.png" alt=""></p>
 <h2 id="漏洞分析"><a href="#漏洞分析" class="headerlink" title="漏洞分析"></a>漏洞分析</h2><p>当在Freemarker标签中使用表达式文本或强制表达式时，使用以下请求值可能会导致远程代码执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;@s.hidden </div><div class="line">name=&quot;strutsS&quot; value=strutsS/&gt; </div><div class="line">&lt;@s.hidden name=&quot;strutsS&quot; </div><div class="line">value=&quot;$&#123;strutsS&#125;&quot; /&gt;</div></pre></td></tr></table></figure></p>
 <p>这两种情况下，值属性都使用可写属性，都会受到Freemarker表达式影响</p>
-<h2 id="修复方案"><a href="#修复方案" class="headerlink" title="修复方案"></a>修复方案</h2><p>1.升级到Apache Struts5.12或2.3.34<br>2.Freemarker标签内容不要通过Request方式获取<br>3.使用只读属性来初始化value属性（仅限getter属性）<br>4.不要使用如下结构<br>&lt;@s.hidden name=”redirectUri” value=redirectUri /&gt;<br>&lt;@s.hidden name=”redirectUri” value=”${redirectUri}” /&gt;</p>
+<h2 id="修复方案"><a href="#修复方案" class="headerlink" title="修复方案"></a>修复方案</h2><p>1.升级到Apache Struts 2.5.13或2.3.34<br>2.Freemarker标签内容不要通过Request方式获取<br>3.使用只读属性来初始化value属性（仅限getter属性）<br>4.不要使用如下结构<br>&lt;@s.hidden name=”redirectUri” value=redirectUri /&gt;<br>&lt;@s.hidden name=”redirectUri” value=”${redirectUri}” /&gt;</p>
 
       
     </div>
