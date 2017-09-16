@@ -71,7 +71,7 @@
 <meta property="og:site_name" content="Y-HKL&#39;s Blog">
 <meta property="og:description" content="DNS查询在渗透或者运维工作经常遇到，尤其是内部有DNS服务器的公司，需要定时监测DNS解析的是否正常，有无被DNS劫持的情况。下面介绍几个常见的DNS查询工具。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-14T06:59:18.100Z">
+<meta property="og:updated_time" content="2017-09-14T07:03:38.193Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DNS信息查询">
 <meta name="twitter:description" content="DNS查询在渗透或者运维工作经常遇到，尤其是内部有DNS服务器的公司，需要定时监测DNS解析的是否正常，有无被DNS劫持的情况。下面介绍几个常见的DNS查询工具。">
@@ -396,7 +396,7 @@
 <h2 id="host"><a href="#host" class="headerlink" title="host"></a>host</h2><h3 id="用法-1"><a href="#用法-1" class="headerlink" title="用法"></a>用法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">host -t A thief.one</div></pre></td></tr></table></figure>
 <h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">-a：显示详细的DNS信息；</div><div class="line">-c&lt;类型&gt;：指定查询类型，默认值为“IN“；</div><div class="line">-C：查询指定主机的完整的SOA记录；</div><div class="line">-r：在查询域名时，不使用递归的查询方式；</div><div class="line">-t&lt;类型&gt;：指定查询的域名信息类型；</div><div class="line">-v：显示指令执行的详细信息；</div><div class="line">-w：如果域名服务器没有给出应答信息，则总是等待，直到域名服务器给出应答；</div><div class="line">-W&lt;时间&gt;：指定域名查询的最长时间，如果在指定时间内域名服务器没有给出应答信息，则退出指令；</div><div class="line">-4：使用IPv4； host</div><div class="line">-6：使用IPv6.</div></pre></td></tr></table></figure>
 <h2 id="dig"><a href="#dig" class="headerlink" title="dig"></a>dig</h2><h3 id="用法-2"><a href="#用法-2" class="headerlink" title="用法"></a>用法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">dig thief.one mx</div><div class="line">dig thief.one ns</div><div class="line">dig @202.106.0.20 thief.one a  指定dns服务器</div><div class="line">dig thief.one a +tcp  设置为tcp协议，默认为udp</div><div class="line">dig thief.one a +trace 这个参数之后将显示从根域逐级查询的过程</div></pre></td></tr></table></figure>
-<p>若<a href="http://y-hkl的DNS服务器为10.0.0.1，且存在域传送漏洞，则使用dig" target="_blank" rel="external">http://y-hkl的DNS服务器为10.0.0.1，且存在域传送漏洞，则使用dig</a> @10.0.0.1 <a href="http://y-hkl" target="_blank" rel="external">http://y-hkl</a> axfr即可查看所有域名了。</p>
+<p>若<a href="http://y-hkl.top">http://y-hkl.top</a> 的DNS服务器为10.0.0.1，且存在域传送漏洞，则使用dig @10.0.0.1 <a href="http://y-hkl" target="_blank" rel="external">http://y-hkl</a> axfr即可查看所有域名了。</p>
 <h3 id="参数-1"><a href="#参数-1" class="headerlink" title="参数"></a>参数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">@&lt;服务器地址&gt;：指定进行域名解析的域名服务器；</div><div class="line">-b：当主机具有多个IP地址，指定使用本机的哪个IP地址向域名服务器发送域名查询请求；</div><div class="line">-f&lt;文件名称&gt;：指定dig以批处理的方式运行，指定的文件中保存着需要批处理查询的DNS任务信息；</div><div class="line">-P：指定域名服务器所使用端口号；</div><div class="line">-t&lt;类型&gt;：指定要查询的DNS数据类型；</div><div class="line">-x：执行逆向域名查询；</div><div class="line">-4：使用IPv4；</div><div class="line">-6：使用IPv6；</div><div class="line">-h：显示指令帮助信息。</div></pre></td></tr></table></figure>
 <h2 id="whois"><a href="#whois" class="headerlink" title="whois"></a>whois</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">whois thief.one</div></pre></td></tr></table></figure>
 
@@ -426,7 +426,7 @@
   <p><span>本文标题:</span><a href="/2017/09/14/DNS信息查询/">DNS信息查询</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Y-HKL 的个人博客">Y-HKL</a></p>
   <p><span>发布时间:</span>2017年09月14日 - 02:09</p>
-  <p><span>最后更新:</span>2017年09月14日 - 02:09</p>
+  <p><span>最后更新:</span>2017年09月14日 - 03:09</p>
   <p><span>原始链接:</span><a href="/2017/09/14/DNS信息查询/" title="DNS信息查询">http://y-hkl.top/2017/09/14/DNS信息查询/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://y-hkl.top/2017/09/14/DNS信息查询/"  aria-label="复制成功！"></i></span>
   </p>
@@ -497,6 +497,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/16/逻辑漏洞之密码重置/" rel="prev" title="逻辑漏洞之密码重置">
+                逻辑漏洞之密码重置 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -575,7 +579,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -597,7 +601,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -746,7 +750,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共5.0k字</span>
+  <span class="post-count">博客全站共5.5k字</span>
 </div>
 
 
