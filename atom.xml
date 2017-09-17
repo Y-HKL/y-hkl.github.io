@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://y-hkl.top/"/>
-  <updated>2017-09-16T15:21:15.857Z</updated>
+  <updated>2017-09-17T02:21:50.197Z</updated>
   <id>http://y-hkl.top/</id>
   
   <author>
@@ -14,6 +14,20 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>文件上传漏洞解析及绕过姿势</title>
+    <link href="http://y-hkl.top/2017/09/16/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E8%A7%A3%E6%9E%90%E5%8F%8A%E7%BB%95%E8%BF%87%E5%A7%BF%E5%8A%BF/"/>
+    <id>http://y-hkl.top/2017/09/16/文件上传漏洞解析及绕过姿势/</id>
+    <published>2017-09-17T02:21:01.000Z</published>
+    <updated>2017-09-17T02:21:50.197Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>逻辑漏洞之密码重置</title>

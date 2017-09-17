@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[文件上传漏洞解析及绕过姿势]]></title>
+    <url>%2F2017%2F09%2F16%2F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E8%A7%A3%E6%9E%90%E5%8F%8A%E7%BB%95%E8%BF%87%E5%A7%BF%E5%8A%BF%2F</url>
+    <content type="text"></content>
+  </entry>
+  <entry>
     <title><![CDATA[逻辑漏洞之密码重置]]></title>
     <url>%2F2017%2F09%2F16%2F%E9%80%BB%E8%BE%91%E6%BC%8F%E6%B4%9E%E4%B9%8B%E5%AF%86%E7%A0%81%E9%87%8D%E7%BD%AE%2F</url>
     <content type="text"><![CDATA[逻辑错误漏洞是指由于程序逻辑不严或逻辑太复杂，导致一些逻辑分支不能够正常处理或处理错误，一般出现在任意密码修改（没有旧密码验证）、越权访问、密码找回、交易支付金额。下面介绍一下密码重置漏洞。 密码找回验证条件可社工1 只验证帐号是否存在即可修改密码2 只验证帐号与邮箱地址是否匹配即可修改密码3 只验证帐号与手机号是否匹配即可修改密码 密码修改页面可预测案例：http://wooyun.jozxing.cc/static/bugs/wooyun-2012-04190.html 验证码可爆破案例：http://wooyun.jozxing.cc/static/bugs/wooyun-2012-07386.html 修改密码未校验用户案例：http://wooyun.jozxing.cc/static/bugs/wooyun-2012-07888.html 密码重置验证码接收帐号由客户端决定案例：http://wooyun.jozxing.cc/static/bugs/wooyun-2015-0153395.html 修改返回包绕过验证码找回密码案例：http://wooyun.jozxing.cc/static/bugs/wooyun-2015-0128703.html 重置密码新密码出现在返回的数据包中案例：http://wooyun.jozxing.cc/static/bugs/wooyun-2015-0131428.html 密码重置验证码出现在返回数据包中案例：http://wooyun.jozxing.cc/static/bugs/wooyun-2015-0133855.html 密码重置验证码多人公用案例：http://wooyun.jozxing.cc/static/bugs/wooyun-2015-091414.html 修复方案1 减少验证码有效时间2 使用后即销毁3 增加验证码复杂程序，整个md5 不困难吧，4 限制该功能单个ip提交频率5 对重要参数加入验证码同步信息或时间戳；6 重置密码后，新密码不应返回在数据包中。7 接收验证码的帐号由服务端提供，不能信任客户端提交的数据]]></content>
