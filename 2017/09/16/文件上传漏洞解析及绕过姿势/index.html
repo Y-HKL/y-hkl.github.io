@@ -45,7 +45,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="文件上传漏洞," />
 
 
 
@@ -63,14 +63,18 @@
 
 
 
+<meta name="description" content="文件上传漏洞在渗透测试中是一个非常重要的漏洞，因为这个漏洞可以很快的拿到服务器的权限，下面介绍一下文件上传漏洞的效验方法，绕过方式，和一些修复建议。">
+<meta name="keywords" content="文件上传漏洞">
 <meta property="og:type" content="article">
 <meta property="og:title" content="文件上传漏洞解析及绕过姿势">
 <meta property="og:url" content="http://y-hkl.top/2017/09/16/文件上传漏洞解析及绕过姿势/index.html">
 <meta property="og:site_name" content="Y-HKL&#39;s Blog">
+<meta property="og:description" content="文件上传漏洞在渗透测试中是一个非常重要的漏洞，因为这个漏洞可以很快的拿到服务器的权限，下面介绍一下文件上传漏洞的效验方法，绕过方式，和一些修复建议。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-17T02:21:50.197Z">
+<meta property="og:updated_time" content="2017-09-17T02:38:40.780Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="文件上传漏洞解析及绕过姿势">
+<meta name="twitter:description" content="文件上传漏洞在渗透测试中是一个非常重要的漏洞，因为这个漏洞可以很快的拿到服务器的权限，下面介绍一下文件上传漏洞的效验方法，绕过方式，和一些修复建议。">
 
 
 
@@ -324,6 +328,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web安全/" itemprop="url" rel="index">
+                    <span itemprop="name">web安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -360,7 +386,20 @@
       
 
       
-        
+        <p>文件上传漏洞在渗透测试中是一个非常重要的漏洞，因为这个漏洞可以很快的拿到服务器的权限，下面介绍一下文件上传漏洞的效验方法，绕过方式，和一些修复建议。<br><a id="more"></a></p>
+<h2 id="文件上传校验姿势"><a href="#文件上传校验姿势" class="headerlink" title="文件上传校验姿势"></a>文件上传校验姿势</h2><ul>
+<li>客户端javascript校验（一般只校验后缀名）</li>
+<li>服务端校验<ul>
+<li>文件头content-type字段校验（image/gif）</li>
+<li>文件内容头校验（GIF89a）</li>
+<li>后缀名黑名单校验</li>
+<li>后缀名白名单校验</li>
+<li>自定义正则校验</li>
+</ul>
+</li>
+<li>WAF设备校验（根据不同的WAF产品而定）</li>
+</ul>
+
       
     </div>
 	
@@ -377,6 +416,37 @@
 	<div>
       
         ﻿
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+  <p><span>本文标题:</span><a href="/2017/09/16/文件上传漏洞解析及绕过姿势/">文件上传漏洞解析及绕过姿势</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 Y-HKL 的个人博客">Y-HKL</a></p>
+  <p><span>发布时间:</span>2017年09月16日 - 22:09</p>
+  <p><span>最后更新:</span>2017年09月16日 - 22:09</p>
+  <p><span>原始链接:</span><a href="/2017/09/16/文件上传漏洞解析及绕过姿势/" title="文件上传漏洞解析及绕过姿势">http://y-hkl.top/2017/09/16/文件上传漏洞解析及绕过姿势/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://y-hkl.top/2017/09/16/文件上传漏洞解析及绕过姿势/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    clipboard.on('success', $(function(){
+      $(".fa-clipboard").click(function(){
+        swal({   
+          title: "",   
+          text: '复制成功',   
+          html: false,
+          timer: 500,   
+          showConfirmButton: false
+        });
+      });
+    }));  
+</script>
+
       
 	</div>
 
@@ -402,6 +472,12 @@
     </div>
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/文件上传漏洞/" rel="tag"><i class="fa fa-tag"></i> 文件上传漏洞</a>
+          
+        </div>
       
 
       
@@ -474,8 +550,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/tt.png"
@@ -512,7 +597,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">11</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -599,6 +684,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#文件上传校验姿势"><span class="nav-number">1.</span> <span class="nav-text">文件上传校验姿势</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -645,7 +746,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共5.5k字</span>
+  <span class="post-count">博客全站共5.7k字</span>
 </div>
 
 

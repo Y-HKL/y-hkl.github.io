@@ -3,7 +3,13 @@
   <entry>
     <title><![CDATA[文件上传漏洞解析及绕过姿势]]></title>
     <url>%2F2017%2F09%2F16%2F%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E8%A7%A3%E6%9E%90%E5%8F%8A%E7%BB%95%E8%BF%87%E5%A7%BF%E5%8A%BF%2F</url>
-    <content type="text"></content>
+    <content type="text"><![CDATA[文件上传漏洞在渗透测试中是一个非常重要的漏洞，因为这个漏洞可以很快的拿到服务器的权限，下面介绍一下文件上传漏洞的效验方法，绕过方式，和一些修复建议。 文件上传校验姿势 客户端javascript校验（一般只校验后缀名） 服务端校验 文件头content-type字段校验（image/gif） 文件内容头校验（GIF89a） 后缀名黑名单校验 后缀名白名单校验 自定义正则校验 WAF设备校验（根据不同的WAF产品而定）]]></content>
+      <categories>
+        <category>web安全</category>
+      </categories>
+      <tags>
+        <tag>文件上传漏洞</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[逻辑漏洞之密码重置]]></title>
