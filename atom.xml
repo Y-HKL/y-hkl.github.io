@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://y-hkl.top/"/>
-  <updated>2017-09-17T02:58:34.222Z</updated>
+  <updated>2017-09-17T03:03:42.179Z</updated>
   <id>http://y-hkl.top/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://y-hkl.top/2017/09/16/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E6%BC%8F%E6%B4%9E%E8%A7%A3%E6%9E%90%E5%8F%8A%E7%BB%95%E8%BF%87%E5%A7%BF%E5%8A%BF/"/>
     <id>http://y-hkl.top/2017/09/16/文件上传漏洞解析及绕过姿势/</id>
     <published>2017-09-17T02:21:01.000Z</published>
-    <updated>2017-09-17T02:58:34.222Z</updated>
+    <updated>2017-09-17T03:03:42.179Z</updated>
     
     <content type="html"><![CDATA[<p>文件上传漏洞在渗透测试中是一个非常重要的漏洞，因为这个漏洞可以很快的拿到服务器的权限，下面介绍一下文件上传漏洞的效验方法，绕过方式，和一些修复建议。<br><a id="more"></a></p>
 <h2 id="文件上传校验姿势"><a href="#文件上传校验姿势" class="headerlink" title="文件上传校验姿势"></a>文件上传校验姿势</h2><ul>
