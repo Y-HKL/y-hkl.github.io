@@ -259,9 +259,9 @@
       <category term="漏洞复现" scheme="http://y-hkl.top/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
     
     
-      <category term="漏洞" scheme="http://y-hkl.top/tags/%E6%BC%8F%E6%B4%9E/"/>
-    
       <category term="s2-053" scheme="http://y-hkl.top/tags/s2-053/"/>
+    
+      <category term="漏洞" scheme="http://y-hkl.top/tags/%E6%BC%8F%E6%B4%9E/"/>
     
   </entry>
   
@@ -298,9 +298,9 @@
       <category term="漏洞复现" scheme="http://y-hkl.top/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
     
     
-      <category term="s2-052" scheme="http://y-hkl.top/tags/s2-052/"/>
-    
       <category term="漏洞" scheme="http://y-hkl.top/tags/%E6%BC%8F%E6%B4%9E/"/>
+    
+      <category term="s2-052" scheme="http://y-hkl.top/tags/s2-052/"/>
     
   </entry>
   
