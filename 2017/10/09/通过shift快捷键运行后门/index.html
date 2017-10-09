@@ -74,7 +74,13 @@
 <meta property="og:image" content="http://y-hkl.top/upload_img/后门-1.png">
 <meta property="og:image" content="http://y-hkl.top/upload_img/后门-2.png">
 <meta property="og:image" content="http://y-hkl.top/upload_img/后门-3.png">
-<meta property="og:updated_time" content="2017-10-09T08:42:33.414Z">
+<meta property="og:image" content="http://y-hkl.top/upload_img/后门-4.png">
+<meta property="og:image" content="http://y-hkl.top/upload_img/后门-5.png">
+<meta property="og:image" content="http://y-hkl.top/upload_img/后门-6.png">
+<meta property="og:image" content="http://y-hkl.top/upload_img/后门-7.png">
+<meta property="og:image" content="http://y-hkl.top/upload_img/后门-8.png">
+<meta property="og:image" content="http://y-hkl.top/upload_img/后门-9.png">
+<meta property="og:updated_time" content="2017-10-09T08:50:12.228Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="通过shift快捷键运行后门">
 <meta name="twitter:description" content="我们都知道，windows系统按5下shift后，windows就执行了system32下的sethc.exe，也就是启用了粘滞键。虽然快捷方便，但却存在安全隐患。">
@@ -395,6 +401,7 @@
 <h2 id="测试是否成功"><a href="#测试是否成功" class="headerlink" title="测试是否成功"></a>测试是否成功</h2><p>使用远程连接，按5下shift键可以调出cmd命令窗口，还可以添加账户：<br><img src="/upload_img/后门-1.png" alt=""><br>使用net user可以查看是否添加成功。<br><img src="/upload_img/后门-2.png" alt=""><br>使用命令添加到管理员组<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">net localgroup administrators test /add</div></pre></td></tr></table></figure></p>
 <p>然后就可以使用创建的用户登录了</p>
 <h2 id="远程桌面会话劫持登录主机"><a href="#远程桌面会话劫持登录主机" class="headerlink" title="远程桌面会话劫持登录主机"></a>远程桌面会话劫持登录主机</h2><p>结合query和tscon命令达到会话劫持目的<br>query user查询所有已登录的用户会话信息<br>tscon 会话ID切换到目标会话状态<br><img src="/upload_img/后门-3.png" alt=""><br>回车之后可直接切换成目标用户登录系统。</p>
+<h2 id="修复方案"><a href="#修复方案" class="headerlink" title="修复方案"></a>修复方案</h2><p>方案一：删除sethc.exe程序所有用户运行权限<br><img src="/upload_img/后门-4.png" alt=""><br><img src="/upload_img/后门-5.png" alt=""><br><img src="/upload_img/后门-6.png" alt=""><br>接下来就无法使用粘滞键快捷键了，另外提醒一下，直接删除sethc.exe是没用的，系统还会自动找回。<br>方法二：添加一个everyone用户组，然后权限选择拒绝所有<br><img src="/upload_img/后门-7.png" alt=""><br>方案三：禁用shift快捷键<br><img src="/upload_img/后门-8.png" alt=""><br><img src="/upload_img/后门-9.png" alt=""></p>
 
       
     </div>
@@ -689,7 +696,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建shift快捷键后门"><span class="nav-number">1.</span> <span class="nav-text">创建shift快捷键后门</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试是否成功"><span class="nav-number">2.</span> <span class="nav-text">测试是否成功</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#远程桌面会话劫持登录主机"><span class="nav-number">3.</span> <span class="nav-text">远程桌面会话劫持登录主机</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建shift快捷键后门"><span class="nav-number">1.</span> <span class="nav-text">创建shift快捷键后门</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试是否成功"><span class="nav-number">2.</span> <span class="nav-text">测试是否成功</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#远程桌面会话劫持登录主机"><span class="nav-number">3.</span> <span class="nav-text">远程桌面会话劫持登录主机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修复方案"><span class="nav-number">4.</span> <span class="nav-text">修复方案</span></a></li></ol></div>
             
 
           </div>
