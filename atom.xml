@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://y-hkl.top/"/>
-  <updated>2017-09-17T03:32:36.400Z</updated>
+  <updated>2017-10-09T08:42:33.414Z</updated>
   <id>http://y-hkl.top/</id>
   
   <author>
@@ -14,6 +14,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>通过shift快捷键运行后门</title>
+    <link href="http://y-hkl.top/2017/10/09/%E9%80%9A%E8%BF%87shift%E5%BF%AB%E6%8D%B7%E9%94%AE%E8%BF%90%E8%A1%8C%E5%90%8E%E9%97%A8/"/>
+    <id>http://y-hkl.top/2017/10/09/通过shift快捷键运行后门/</id>
+    <published>2017-10-09T08:12:40.000Z</published>
+    <updated>2017-10-09T08:42:33.414Z</updated>
+    
+    <content type="html"><![CDATA[<p>我们都知道，windows系统按5下shift后，windows就执行了system32下的sethc.exe，也就是启用了粘滞键。虽然快捷方便，但却存在安全隐患。<br><a id="more"></a></p>
+<h2 id="创建shift快捷键后门"><a href="#创建shift快捷键后门" class="headerlink" title="创建shift快捷键后门"></a>创建shift快捷键后门</h2><p>将我们的cmd.exe或者木马后门名字改成sethc.exe，然后替换C:windows\system32\sethc.exe程序<br>命令：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">copy C:\WINDOWS\system32\cmd.exe C:\WINDOWS\system32\sethc.exe /Y</div></pre></td></tr></table></figure></p>
+<h2 id="测试是否成功"><a href="#测试是否成功" class="headerlink" title="测试是否成功"></a>测试是否成功</h2><p>使用远程连接，按5下shift键可以调出cmd命令窗口，还可以添加账户：<br><img src="/upload_img/后门-1.png" alt=""><br>使用net user可以查看是否添加成功。<br><img src="/upload_img/后门-2.png" alt=""><br>使用命令添加到管理员组<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">net localgroup administrators test /add</div></pre></td></tr></table></figure></p>
+<p>然后就可以使用创建的用户登录了</p>
+<h2 id="远程桌面会话劫持登录主机"><a href="#远程桌面会话劫持登录主机" class="headerlink" title="远程桌面会话劫持登录主机"></a>远程桌面会话劫持登录主机</h2><p>结合query和tscon命令达到会话劫持目的<br>query user查询所有已登录的用户会话信息<br>tscon 会话ID切换到目标会话状态<br><img src="/upload_img/后门-3.png" alt=""><br>回车之后可直接切换成目标用户登录系统。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;我们都知道，windows系统按5下shift后，windows就执行了system32下的sethc.exe，也就是启用了粘滞键。虽然快捷方便，但却存在安全隐患。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="web安全" scheme="http://y-hkl.top/categories/web%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="后门" scheme="http://y-hkl.top/tags/%E5%90%8E%E9%97%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>基于报错布尔时间的SQL注入POC编写</title>

