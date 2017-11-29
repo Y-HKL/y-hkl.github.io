@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://y-hkl.top/"/>
-  <updated>2017-11-29T03:10:27.596Z</updated>
+  <updated>2017-11-29T04:46:42.812Z</updated>
   <id>http://y-hkl.top/</id>
   
   <author>
@@ -14,6 +14,42 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Web安全工具——w3af教程</title>
+    <link href="http://y-hkl.top/2017/11/28/Web%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E2%80%94%E2%80%94w3af%E6%95%99%E7%A8%8B/"/>
+    <id>http://y-hkl.top/2017/11/28/Web安全工具——w3af教程/</id>
+    <published>2017-11-29T03:28:24.000Z</published>
+    <updated>2017-11-29T04:46:42.812Z</updated>
+    
+    <content type="html"><![CDATA[<p>W3af是一个基于Python的Web应用扫描器,在之前的版本中有windows的版本，但是在最新的版本中windows不再更新，如果想要安装windows版本，下面有链接：<br><a id="more"></a></p>
+<h2 id="windows安装W3af"><a href="#windows安装W3af" class="headerlink" title="windows安装W3af"></a>windows安装W3af</h2><p>百度云地址如下：<br>链接：<a href="https://pan.baidu.com/s/1pKTmllx" target="_blank" rel="external">https://pan.baidu.com/s/1pKTmllx</a><br>密码：owf4<br>下载成功后，直接运行exe进行安装即可<br>安装完成后，桌面上多了两个图标w3af Console和w3af GUI<br><img src="/upload_img/W3af_1.png" alt=""><br>打开w3af GUI，会同时打开命令行界面和图形界面<br><img src="/upload_img/W3af_2.png" alt=""></p>
+<h2 id="Linux安装W3af"><a href="#Linux安装W3af" class="headerlink" title="Linux安装W3af"></a>Linux安装W3af</h2><p>这次安装是在ubuntu系统，ubuntu下不建议使用apt-get安装，在安装包的依赖关系上可能会存在一些问题。</p>
+<h3 id="确保安装环境"><a href="#确保安装环境" class="headerlink" title="确保安装环境"></a>确保安装环境</h3><p>安装Git 客户端:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install git</div></pre></td></tr></table></figure></p>
+<p>python需要2.7的环境<br>安装pip<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install python-pip</div></pre></td></tr></table></figure></p>
+<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><p>下载W3af<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git clone https://github.com/andresriancho/w3af.git</div></pre></td></tr></table></figure></p>
+<p>进入目录执行w3af_console文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd w3af</div><div class="line">./w3af_console</div></pre></td></tr></table></figure></p>
+<p>会提示系统未安装很多依赖环境：<br><img src="/upload_img/W3af_3.png" alt=""><br>需要安装的环境，已经写在了/tmp目录下的w3af_dependency_install.sh文件里面，执行它即会自动下载安装所需的所有文件<br><img src="/upload_img/W3af_4.png" alt=""><br>如果环境安装没有问题的话，这时候就可以运行w3af了，但是偏偏又出错了<br><img src="/upload_img/W3af_5.png" alt=""><br>报错提示我的OpenSSL模块出了问题<br>报错的原因是说module对象的几个属性不存在，于是小编注释掉了SSL.py的4个属性<br><img src="/upload_img/W3af_6.png" alt=""><br>进一步安装了一个库：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install crypto</div></pre></td></tr></table></figure></p>
+<p>最终成功运行，但是！！！运行控制台的时候，还是需要安装2个依赖包<br><img src="/upload_img/W3af_7.png" alt=""><br>按照提示安装好了后，就可以运行gui了。<br><img src="/upload_img/W3af_8.png" alt=""></p>
+<h2 id="W3af的基础教程"><a href="#W3af的基础教程" class="headerlink" title="W3af的基础教程"></a>W3af的基础教程</h2><h3 id="插件介绍"><a href="#插件介绍" class="headerlink" title="插件介绍"></a>插件介绍</h3><p>主要插件：<br>1.Crawl（爬取）类<br>职责：通过爬取网站站点来获得新的URL地址。<br>如果用户启用了Crawl类型的多个插件，此时将产生一个循环： A插件在第一次运行时发现了一个新的url，w3af会将其发送到插件B。如果插件B发现一个新的url则会发送到插件A。这个过程持续进行直到所有插件都已运行且无法找到更多的新信息。<br>2.Audit（审计）类<br>该类插件会向Crawl插件爬取出的注入点发送特制的POC数据以确认漏洞是否存在。<br>3.Attack（攻击）类<br>如果Audit插件发现了漏洞，Attack将会进行攻击和利用，通常会在远程服务器上返回一个shell或者比如SQL注入则会获取数据库的数据。<br>其他插件：<br>1.Infrastructure（基础）插件<br>这类插件用来标识有关目标系统的信息，如安装的WAF，操作系统和HTTP守护进程等。<br>2.Grep（检索）插件<br>这类插件会分析其他插件发送的HTTP请求和相应并识别漏洞。<br>3.Output（输出）插件<br>这类插件会将插件的数据保存到文本，xml或者是html文件中。调试的信息也会发送到输出Output插件并可保存和分析。<br>如果启用了text_file和xml_file这两个Output插件，则这两个都会记录有Audit插件发现的任何漏洞。<br>4.Mangle插件<br>允许修改基于正则表达式的请求和响应。<br>5.Broutforce插件<br>在爬去阶段进行暴力登陆。<br>6.Evasion（绕过）插件<br>通过修改由其他插件生成的HTTP请求来绕过简单的入侵检测规则。</p>
+<h3 id="运行W3af"><a href="#运行W3af" class="headerlink" title="运行W3af"></a>运行W3af</h3><p>$ ./w3af_console<br>w3af&gt;&gt;&gt;<br>通过”help“命令查看帮助信息，“help”命令可以带一个参数，如果参数有效，则会显示该参数命令的详细帮助信息<br><img src="/upload_img/W3af_9.png" alt=""><br>所有的插件配置菜单都提供了以下命令：<br>help：获得每个配置参数的详细帮助<br>view：列出所有可配置参数及其值和说明<br>set：用于更改值<br>back：返回上一个菜单，也可以使用Ctrl+C</p>
+<h3 id="插件配置"><a href="#插件配置" class="headerlink" title="插件配置"></a>插件配置</h3><p>除了攻击插件之外，所有插件都可以使用plugins这个配置菜单进行配置。<br>下面是列出Audit（审计）类型的所有插件<br><img src="/upload_img/W3af_10.png" alt=""><br>假设要启用xss和sqli插件，需要用到以下命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">audit xss,sqli</div></pre></td></tr></table></figure></p>
+<p>audit<br>可以在audit中看到Status为Enabled<br><img src="/upload_img/W3af_11.png" alt=""><br>如果带上desc命令，还会显示这个插件的详细信息<br><img src="/upload_img/W3af_12.png" alt=""><br>保存配置：<br>配置好了插件和框架配置就可以将配置保存在配置文件中<br><img src="/upload_img/W3af_13.png" alt=""></p>
+<h3 id="开始扫描"><a href="#开始扫描" class="headerlink" title="开始扫描"></a>开始扫描</h3><p>配置插件——常规扫描的话，我们建议使用以下的配置运行w3af：<br>crawl类插件使用web_spider插件<br>audit 类插件设置成Enable all<br>grep类插件设置成Enable all<br>配置命令如下：<br><img src="/upload_img/W3af_14.png" alt=""><br>输出扫描报告——output<br>不设置默认只会在console上输出扫描信息。<br>一般我们再加上输出csv_file（表格）和html_fiel（网页）两种格式的扫描报告<br><img src="/upload_img/W3af_15.png" alt=""><br>扫描报告默认会保存在/root目录下，你可以使用out config命令去设置。<br>保存配置——profiles<br><img src="/upload_img/W3af_16.png" alt=""><br>设置目标，开始扫描——target，start<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">w3af&gt;&gt;&gt; target</div><div class="line">w3af/config:target&gt;&gt;&gt; set target http://ip/</div><div class="line">w3af/config:target&gt;&gt;&gt; back</div><div class="line">w3af&gt;&gt;&gt; start</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;W3af是一个基于Python的Web应用扫描器,在之前的版本中有windows的版本，但是在最新的版本中windows不再更新，如果想要安装windows版本，下面有链接：&lt;br&gt;
+    
+    </summary>
+    
+      <category term="web安全" scheme="http://y-hkl.top/categories/web%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="工具" scheme="http://y-hkl.top/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
   
   <entry>
     <title>Xhydra使用教程</title>

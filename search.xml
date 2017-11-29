@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Web安全工具——w3af教程]]></title>
+    <url>%2F2017%2F11%2F28%2FWeb%E5%AE%89%E5%85%A8%E5%B7%A5%E5%85%B7%E2%80%94%E2%80%94w3af%E6%95%99%E7%A8%8B%2F</url>
+    <content type="text"><![CDATA[W3af是一个基于Python的Web应用扫描器,在之前的版本中有windows的版本，但是在最新的版本中windows不再更新，如果想要安装windows版本，下面有链接： windows安装W3af百度云地址如下：链接：https://pan.baidu.com/s/1pKTmllx密码：owf4下载成功后，直接运行exe进行安装即可安装完成后，桌面上多了两个图标w3af Console和w3af GUI打开w3af GUI，会同时打开命令行界面和图形界面 Linux安装W3af这次安装是在ubuntu系统，ubuntu下不建议使用apt-get安装，在安装包的依赖关系上可能会存在一些问题。 确保安装环境安装Git 客户端:1sudo apt-get install git python需要2.7的环境安装pip1sudo apt-get install python-pip 安装步骤下载W3af1git clone https://github.com/andresriancho/w3af.git 进入目录执行w3af_console文件12cd w3af./w3af_console 会提示系统未安装很多依赖环境：需要安装的环境，已经写在了/tmp目录下的w3af_dependency_install.sh文件里面，执行它即会自动下载安装所需的所有文件如果环境安装没有问题的话，这时候就可以运行w3af了，但是偏偏又出错了报错提示我的OpenSSL模块出了问题报错的原因是说module对象的几个属性不存在，于是小编注释掉了SSL.py的4个属性进一步安装了一个库：1pip install crypto 最终成功运行，但是！！！运行控制台的时候，还是需要安装2个依赖包按照提示安装好了后，就可以运行gui了。 W3af的基础教程插件介绍主要插件：1.Crawl（爬取）类职责：通过爬取网站站点来获得新的URL地址。如果用户启用了Crawl类型的多个插件，此时将产生一个循环： A插件在第一次运行时发现了一个新的url，w3af会将其发送到插件B。如果插件B发现一个新的url则会发送到插件A。这个过程持续进行直到所有插件都已运行且无法找到更多的新信息。2.Audit（审计）类该类插件会向Crawl插件爬取出的注入点发送特制的POC数据以确认漏洞是否存在。3.Attack（攻击）类如果Audit插件发现了漏洞，Attack将会进行攻击和利用，通常会在远程服务器上返回一个shell或者比如SQL注入则会获取数据库的数据。其他插件：1.Infrastructure（基础）插件这类插件用来标识有关目标系统的信息，如安装的WAF，操作系统和HTTP守护进程等。2.Grep（检索）插件这类插件会分析其他插件发送的HTTP请求和相应并识别漏洞。3.Output（输出）插件这类插件会将插件的数据保存到文本，xml或者是html文件中。调试的信息也会发送到输出Output插件并可保存和分析。如果启用了text_file和xml_file这两个Output插件，则这两个都会记录有Audit插件发现的任何漏洞。4.Mangle插件允许修改基于正则表达式的请求和响应。5.Broutforce插件在爬去阶段进行暴力登陆。6.Evasion（绕过）插件通过修改由其他插件生成的HTTP请求来绕过简单的入侵检测规则。 运行W3af$ ./w3af_consolew3af&gt;&gt;&gt;通过”help“命令查看帮助信息，“help”命令可以带一个参数，如果参数有效，则会显示该参数命令的详细帮助信息所有的插件配置菜单都提供了以下命令：help：获得每个配置参数的详细帮助view：列出所有可配置参数及其值和说明set：用于更改值back：返回上一个菜单，也可以使用Ctrl+C 插件配置除了攻击插件之外，所有插件都可以使用plugins这个配置菜单进行配置。下面是列出Audit（审计）类型的所有插件假设要启用xss和sqli插件，需要用到以下命令1audit xss,sqli audit可以在audit中看到Status为Enabled如果带上desc命令，还会显示这个插件的详细信息保存配置：配置好了插件和框架配置就可以将配置保存在配置文件中 开始扫描配置插件——常规扫描的话，我们建议使用以下的配置运行w3af：crawl类插件使用web_spider插件audit 类插件设置成Enable allgrep类插件设置成Enable all配置命令如下：输出扫描报告——output不设置默认只会在console上输出扫描信息。一般我们再加上输出csv_file（表格）和html_fiel（网页）两种格式的扫描报告扫描报告默认会保存在/root目录下，你可以使用out config命令去设置。保存配置——profiles设置目标，开始扫描——target，start1234w3af&gt;&gt;&gt; targetw3af/config:target&gt;&gt;&gt; set target http://ip/w3af/config:target&gt;&gt;&gt; backw3af&gt;&gt;&gt; start]]></content>
+      <categories>
+        <category>web安全</category>
+      </categories>
+      <tags>
+        <tag>工具</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Xhydra使用教程]]></title>
     <url>%2F2017%2F11%2F28%2FXhydra%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B%2F</url>
     <content type="text"><![CDATA[THC-HYDRA是一个支持多种网络服务的非常快速的网络登陆破解工具。这个工具是一个验证性质的工具，它被设计的主要目的是为研究人员和安全从业人员展示远程获取一个系统的认证权限是比较容易的！并且支持多种协议和服务：asterisk cisco cisco-enable cvs firebird ftp ftps http[s]-{head|get} http[s]-{get|post}-form http-proxy http-proxy-urlenum icq imap[s] irc ldap2[s] ldap3[-{cram|digest}md5][s] mssql mysql nntp oracle-listener oracle-sid pcanywhere pcnfs pop3[s] postgres rdp redis rexec rlogin rsh s7-300 sip smb smtp[s] smtp-enum snmp socks5 ssh sshkey teamspeak telnet[s] vmauthd vnc xmpp而新的版本中出现了图形化的界面Xydra，下面介绍的就是它的图形化界面的使用 使用说明 小技巧1 当kali-linux 主机被防火墙挡住了，可以考虑断网重新获取IP2 将“ Tunning “ 中的 ” Number of Task “ 的数目设置成小数目，例如2或者33 主界面底栏有具体的命令，当我们设置完具体参数后，底栏将会显示具体的执行命令。这时，在终端中输入 该命令，以命令行的形式执行。]]></content>
