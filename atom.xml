@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://y-hkl.top/"/>
-  <updated>2017-10-09T08:50:12.228Z</updated>
+  <updated>2017-11-29T03:10:27.596Z</updated>
   <id>http://y-hkl.top/</id>
   
   <author>
@@ -14,6 +14,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Xhydra使用教程</title>
+    <link href="http://y-hkl.top/2017/11/28/Xhydra%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/"/>
+    <id>http://y-hkl.top/2017/11/28/Xhydra使用教程/</id>
+    <published>2017-11-29T02:55:07.000Z</published>
+    <updated>2017-11-29T03:10:27.596Z</updated>
+    
+    <content type="html"><![CDATA[<p>THC-HYDRA是一个支持多种网络服务的非常快速的网络登陆破解工具。这个工具是一个验证性质的工具，它被设计的主要目的是为研究人员和安全从业人员展示远程获取一个系统的认证权限是比较容易的！并且支持多种协议和服务：<br>asterisk cisco cisco-enable cvs firebird ftp ftps http[s]-{head|get} http[s]-{get|post}-form http-proxy http-proxy-urlenum icq imap[s] irc ldap2[s] ldap3[-{cram|digest}md5][s] mssql mysql nntp oracle-listener oracle-sid pcanywhere pcnfs pop3[s] postgres rdp redis rexec rlogin rsh s7-300 sip smb smtp[s] smtp-enum snmp socks5 ssh sshkey teamspeak telnet[s] vmauthd vnc xmpp<br>而新的版本中出现了图形化的界面Xydra，下面介绍的就是它的图形化界面的使用<br><a id="more"></a></p>
+<h2 id="使用说明"><a href="#使用说明" class="headerlink" title="使用说明"></a>使用说明</h2><p><img src="/upload_img/Xhydra_1.png" alt=""><br><img src="/upload_img/Xhydra_2.png" alt=""><br><img src="/upload_img/Xhydra_3.png" alt=""><br><img src="/upload_img/Xhydra_4.png" alt=""><br><img src="/upload_img/Xhydra_5.png" alt=""></p>
+<h2 id="小技巧"><a href="#小技巧" class="headerlink" title="小技巧"></a>小技巧</h2><p>1 当kali-linux 主机被防火墙挡住了，可以考虑断网重新获取IP<br>2 将“ Tunning “ 中的 ” Number of  Task “ 的数目设置成小数目，例如2或者3<br>3 主界面底栏有具体的命令，当我们设置完具体参数后，底栏将会显示具体的执行命令。这时，在终端中输入 该命令，以命令行的形式执行。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;THC-HYDRA是一个支持多种网络服务的非常快速的网络登陆破解工具。这个工具是一个验证性质的工具，它被设计的主要目的是为研究人员和安全从业人员展示远程获取一个系统的认证权限是比较容易的！并且支持多种协议和服务：&lt;br&gt;asterisk cisco cisco-enable cvs firebird ftp ftps http[s]-{head|get} http[s]-{get|post}-form http-proxy http-proxy-urlenum icq imap[s] irc ldap2[s] ldap3[-{cram|digest}md5][s] mssql mysql nntp oracle-listener oracle-sid pcanywhere pcnfs pop3[s] postgres rdp redis rexec rlogin rsh s7-300 sip smb smtp[s] smtp-enum snmp socks5 ssh sshkey teamspeak telnet[s] vmauthd vnc xmpp&lt;br&gt;而新的版本中出现了图形化的界面Xydra，下面介绍的就是它的图形化界面的使用&lt;br&gt;
+    
+    </summary>
+    
+      <category term="web安全" scheme="http://y-hkl.top/categories/web%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="工具" scheme="http://y-hkl.top/tags/%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
   
   <entry>
     <title>通过shift快捷键运行后门</title>

@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Xhydra使用教程]]></title>
+    <url>%2F2017%2F11%2F28%2FXhydra%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B%2F</url>
+    <content type="text"><![CDATA[THC-HYDRA是一个支持多种网络服务的非常快速的网络登陆破解工具。这个工具是一个验证性质的工具，它被设计的主要目的是为研究人员和安全从业人员展示远程获取一个系统的认证权限是比较容易的！并且支持多种协议和服务：asterisk cisco cisco-enable cvs firebird ftp ftps http[s]-{head|get} http[s]-{get|post}-form http-proxy http-proxy-urlenum icq imap[s] irc ldap2[s] ldap3[-{cram|digest}md5][s] mssql mysql nntp oracle-listener oracle-sid pcanywhere pcnfs pop3[s] postgres rdp redis rexec rlogin rsh s7-300 sip smb smtp[s] smtp-enum snmp socks5 ssh sshkey teamspeak telnet[s] vmauthd vnc xmpp而新的版本中出现了图形化的界面Xydra，下面介绍的就是它的图形化界面的使用 使用说明 小技巧1 当kali-linux 主机被防火墙挡住了，可以考虑断网重新获取IP2 将“ Tunning “ 中的 ” Number of Task “ 的数目设置成小数目，例如2或者33 主界面底栏有具体的命令，当我们设置完具体参数后，底栏将会显示具体的执行命令。这时，在终端中输入 该命令，以命令行的形式执行。]]></content>
+      <categories>
+        <category>web安全</category>
+      </categories>
+      <tags>
+        <tag>工具</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[通过shift快捷键运行后门]]></title>
     <url>%2F2017%2F10%2F09%2F%E9%80%9A%E8%BF%87shift%E5%BF%AB%E6%8D%B7%E9%94%AE%E8%BF%90%E8%A1%8C%E5%90%8E%E9%97%A8%2F</url>
     <content type="text"><![CDATA[我们都知道，windows系统按5下shift后，windows就执行了system32下的sethc.exe，也就是启用了粘滞键。虽然快捷方便，但却存在安全隐患。 创建shift快捷键后门将我们的cmd.exe或者木马后门名字改成sethc.exe，然后替换C:windows\system32\sethc.exe程序命令：1copy C:\WINDOWS\system32\cmd.exe C:\WINDOWS\system32\sethc.exe /Y 测试是否成功使用远程连接，按5下shift键可以调出cmd命令窗口，还可以添加账户：使用net user可以查看是否添加成功。使用命令添加到管理员组1net localgroup administrators test /add 然后就可以使用创建的用户登录了 远程桌面会话劫持登录主机结合query和tscon命令达到会话劫持目的query user查询所有已登录的用户会话信息tscon 会话ID切换到目标会话状态回车之后可直接切换成目标用户登录系统。 修复方案方案一：删除sethc.exe程序所有用户运行权限接下来就无法使用粘滞键快捷键了，另外提醒一下，直接删除sethc.exe是没用的，系统还会自动找回。方法二：添加一个everyone用户组，然后权限选择拒绝所有方案三：禁用shift快捷键]]></content>
