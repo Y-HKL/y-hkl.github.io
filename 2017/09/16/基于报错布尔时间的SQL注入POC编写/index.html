@@ -62,6 +62,16 @@
 
 
 
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
 
 <meta name="description" content="下面的文章写出了SQL注入的报错，布尔，时间注入的POC，通过这三个POC的编写来进入编写POC的入门。">
 <meta name="keywords" content="POC,编程">

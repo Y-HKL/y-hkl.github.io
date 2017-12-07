@@ -62,6 +62,16 @@
 
 
 
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
 
 <meta name="description" content="2017年9月7日，Struts官方发布一个中危的安全漏洞，该漏洞编号为:S2-053,在一定条件下，当开发人员在Freemarker标签中使用错误的构造时，可能会导致远程代码执行漏洞">
 <meta name="keywords" content="漏洞,s2-053">

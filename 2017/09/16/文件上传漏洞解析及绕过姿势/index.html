@@ -62,6 +62,16 @@
 
 
 
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
 
 <meta name="description" content="文件上传漏洞在渗透测试中是一个非常重要的漏洞，因为这个漏洞可以很快的拿到服务器的权限，下面介绍一下文件上传漏洞的效验方法，绕过方式，和一些修复建议。">
 <meta name="keywords" content="文件上传漏洞">

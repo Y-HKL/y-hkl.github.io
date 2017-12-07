@@ -62,6 +62,16 @@
 
 
 
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
 
 <meta name="description" content="struts2这两天又出新漏洞了，漏洞为s2-052，这里是对漏洞的复现。只用于个人研究 s2-052漏洞介绍问题出现在struts2-rest-plugin插件XStreamHandler处理器中的toObject()方法，其中未对传入的值进行任何限制，在使用XStream反漏洞编号：CVE-2017-9805(S2-052)影响版本：Struts 2.5 - Struts 2.5.12">
 <meta name="keywords" content="s2-052,漏洞">

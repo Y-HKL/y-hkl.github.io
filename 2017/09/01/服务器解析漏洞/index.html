@@ -62,6 +62,16 @@
 
 
 
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
 
 <meta name="description" content="服务器解析漏洞已经是一个老生常谈问题了，但是有些服务器依然存在，这里复习记录一下常见服务器解析漏洞，比如IIS6.0，IIS7.5，acache，nginx解析漏洞。">
 <meta name="keywords" content="服务器解析漏洞">

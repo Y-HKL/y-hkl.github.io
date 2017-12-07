@@ -62,6 +62,16 @@
 
 
 
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
 
 <meta name="description" content="在用谷歌语法搜索有某些特征的链接时，如果想把这些链接全部保存起来，这个时候就可以使用爬虫技术，爬取这些链接保存下来。下面就来分析并写出这个爬虫程序。">
 <meta name="keywords" content="python爬虫">

@@ -62,6 +62,16 @@
 
 
 
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
 
 <meta name="description" content="DNS查询在渗透或者运维工作经常遇到，尤其是内部有DNS服务器的公司，需要定时监测DNS解析的是否正常，有无被DNS劫持的情况。下面介绍几个常见的DNS查询工具。">
 <meta name="keywords" content="DNS">

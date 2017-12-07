@@ -62,6 +62,16 @@
 
 
 
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
 
 <meta name="description" content="搭建ss服务器可以登录外网查询资料，访问谷歌，方便自己的使用。在服务器上搭建shadowsocks服务端，本地服务器上搭建客户端用来连接使用。">
 <meta name="keywords" content="shadowsocks">

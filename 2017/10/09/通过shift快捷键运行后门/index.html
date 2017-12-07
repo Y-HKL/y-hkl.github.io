@@ -62,6 +62,16 @@
 
 
 
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
 
 <meta name="description" content="我们都知道，windows系统按5下shift后，windows就执行了system32下的sethc.exe，也就是启用了粘滞键。虽然快捷方便，但却存在安全隐患。">
 <meta name="keywords" content="后门">
