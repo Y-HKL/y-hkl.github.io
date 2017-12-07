@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://y-hkl.top/"/>
-  <updated>2017-12-07T03:30:59.873Z</updated>
+  <updated>2017-12-07T03:52:42.426Z</updated>
   <id>http://y-hkl.top/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://y-hkl.top/2017/12/06/Linux%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4/"/>
     <id>http://y-hkl.top/2017/12/06/Linux基础命令/</id>
     <published>2017-12-07T02:35:40.000Z</published>
-    <updated>2017-12-07T03:30:59.873Z</updated>
+    <updated>2017-12-07T03:52:42.426Z</updated>
     
     <content type="html"><![CDATA[<p>在安全方面，掌握Linux系统对安全研究是非常重要的。首先我们就需要对一些常用的命令和参数熟连掌握，然后一步一步的进行深入的学习。这篇文章，主要分享一些我常用的Linux命令，也是做一个笔记，为以后复习做准备。<br><a id="more"></a></p>
 <h2 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h2><h3 id="解析命令的意思（whatis、info）"><a href="#解析命令的意思（whatis、info）" class="headerlink" title="解析命令的意思（whatis、info）"></a>解析命令的意思（whatis、info）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">whatis   解析命令的意思</div><div class="line">info     详细解析命令的意思</div></pre></td></tr></table></figure>
@@ -67,7 +67,21 @@
 <p>查看所有用户及权限:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">more /etc/passwd</div></pre></td></tr></table></figure></p>
 <p>查看所有的用户组及权限:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">more /etc/group</div></pre></td></tr></table></figure></p>
 <h3 id="用户权限"><a href="#用户权限" class="headerlink" title="用户权限"></a>用户权限</h3><p>chown 更改读写权限<br>chmod 更改用户的拥有者</p>
-<h2 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h2><h2 id="网络管理"><a href="#网络管理" class="headerlink" title="网络管理"></a>网络管理</h2><h2 id="系统管理"><a href="#系统管理" class="headerlink" title="系统管理"></a>系统管理</h2><h2 id="磁盘管理"><a href="#磁盘管理" class="headerlink" title="磁盘管理"></a>磁盘管理</h2>]]></content>
+<h2 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h2><p>杀死python相关的进程<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ps -ef | grep python | cut -d &apos; &apos; -f 2 | xargs kill</div><div class="line">或者</div><div class="line">pkill -9 python  #-9表示强制删除，pkill以进程名字匹配</div></pre></td></tr></table></figure></p>
+<p>查看进程<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ps -ef | less</div></pre></td></tr></table></figure></p>
+<p>查看端口占用的进程状态：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lsof -i:3306</div></pre></td></tr></table></figure></p>
+<h2 id="网络管理"><a href="#网络管理" class="headerlink" title="网络管理"></a>网络管理</h2><p>查看网络连接<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">netstat -an | less</div></pre></td></tr></table></figure></p>
+<p>查看网络路由<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">route -n</div></pre></td></tr></table></figure></p>
+<p>只查看ip信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ifconfig | grep inet</div></pre></td></tr></table></figure></p>
+<h2 id="系统管理"><a href="#系统管理" class="headerlink" title="系统管理"></a>系统管理</h2><p>查看系统位数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">getconf LONG_BIT</div></pre></td></tr></table></figure></p>
+<p>查看系统版本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lsb_release -a</div></pre></td></tr></table></figure></p>
+<p>查看hosts文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat /etc/hosts</div></pre></td></tr></table></figure></p>
+<p>查看CPU的核的个数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat /proc/cpuinfo | grep processor | wc -l</div></pre></td></tr></table></figure></p>
+<p>查看系统信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">uname -a</div><div class="line">uname -m 显示机器的处理器架构</div><div class="line">uname -r 显示正在使用的内核版本</div><div class="line">cat /proc/cpuinfo 显示CPUinfo的信息</div><div class="line">cat /proc/meminfo 校验内存使用</div><div class="line">cat /proc/version 显示内核的版本</div><div class="line">cat /proc/net/dev 显示网络适配器及统计</div><div class="line">cat /proc/mounts 显示已加载的文件系统</div></pre></td></tr></table></figure></p>
+<h2 id="磁盘管理"><a href="#磁盘管理" class="headerlink" title="磁盘管理"></a>磁盘管理</h2><p>查看磁盘空间利用大小<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df -h</div></pre></td></tr></table></figure></p>
+<p>挂载U盘<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">fdisk -l 查看U盘路径</div><div class="line">monut /dev/sdb4 /mnt  挂载U盘</div><div class="line">cd /mnt 进入U盘</div><div class="line">umount /mnt  退出U盘</div></pre></td></tr></table></figure></p>
+<h2 id="Linux学习网站"><a href="#Linux学习网站" class="headerlink" title="Linux学习网站"></a>Linux学习网站</h2><p><a href="http://linuxtools-rst.readthedocs.io/zh_CN/latest/" target="_blank" rel="external">http://linuxtools-rst.readthedocs.io/zh_CN/latest/</a><br><a href="http://man.linuxde.net/" target="_blank" rel="external">http://man.linuxde.net/</a></p>
+]]></content>
     
     <summary type="html">
     
@@ -415,9 +429,9 @@
       <category term="漏洞复现" scheme="http://y-hkl.top/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
     
     
-      <category term="s2-053" scheme="http://y-hkl.top/tags/s2-053/"/>
-    
       <category term="漏洞" scheme="http://y-hkl.top/tags/%E6%BC%8F%E6%B4%9E/"/>
+    
+      <category term="s2-053" scheme="http://y-hkl.top/tags/s2-053/"/>
     
   </entry>
   
@@ -454,9 +468,9 @@
       <category term="漏洞复现" scheme="http://y-hkl.top/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
     
     
-      <category term="漏洞" scheme="http://y-hkl.top/tags/%E6%BC%8F%E6%B4%9E/"/>
-    
       <category term="s2-052" scheme="http://y-hkl.top/tags/s2-052/"/>
+    
+      <category term="漏洞" scheme="http://y-hkl.top/tags/%E6%BC%8F%E6%B4%9E/"/>
     
   </entry>
   
