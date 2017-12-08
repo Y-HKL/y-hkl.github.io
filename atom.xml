@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://y-hkl.top/"/>
-  <updated>2017-12-07T06:00:54.777Z</updated>
+  <updated>2017-12-08T02:34:24.177Z</updated>
   <id>http://y-hkl.top/</id>
   
   <author>
@@ -16,13 +16,19 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>1</title>
-    <link href="http://y-hkl.top/2017/12/07/1/"/>
-    <id>http://y-hkl.top/2017/12/07/1/</id>
+    <title>vi/vim键盘图</title>
+    <link href="http://y-hkl.top/2017/12/07/vim%E9%94%AE%E7%9B%98%E5%9B%BE/"/>
+    <id>http://y-hkl.top/2017/12/07/vim键盘图/</id>
     <published>2017-12-07T06:00:24.000Z</published>
-    <updated>2017-12-07T06:00:54.777Z</updated>
+    <updated>2017-12-08T02:34:24.177Z</updated>
+    
+    <content type="html"><![CDATA[<p>在linux上有个强大的编译器，这个编译器就是vim，下面是一个vim的键盘图，有利于学习和复习。<br><img src="/upload_img/vim.png" alt=""></p>
+]]></content>
     
     <summary type="html">
+    
+      &lt;p&gt;在linux上有个强大的编译器，这个编译器就是vim，下面是一个vim的键盘图，有利于学习和复习。&lt;br&gt;&lt;img src=&quot;/upload_img/vim.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+
     
     </summary>
     
