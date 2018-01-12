@@ -1,0 +1,1132 @@
+﻿<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Linux," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Y-HKL's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+<script>
+    (function(){
+        if(''){
+            if (prompt('请输入文章密码') !== ''){
+                alert('密码错误！');
+                history.back();
+            }
+        }
+    })();
+</script>
+
+<meta name="description" content="在安全方面，掌握Linux系统对安全研究是非常重要的。首先我们就需要对一些常用的命令和参数熟连掌握，然后一步一步的进行深入的学习。这篇文章，主要分享一些我常用的Linux命令，也是做一个笔记，为以后复习做准备。">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux基础命令">
+<meta property="og:url" content="http://y-hkl.top/2017/12/06/Linux基础命令/index.html">
+<meta property="og:site_name" content="Y-HKL&#39;s Blog">
+<meta property="og:description" content="在安全方面，掌握Linux系统对安全研究是非常重要的。首先我们就需要对一些常用的命令和参数熟连掌握，然后一步一步的进行深入的学习。这篇文章，主要分享一些我常用的Linux命令，也是做一个笔记，为以后复习做准备。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-12-08T02:27:16.659Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux基础命令">
+<meta name="twitter:description" content="在安全方面，掌握Linux系统对安全研究是非常重要的。首先我们就需要对一些常用的命令和参数熟连掌握，然后一步一步的进行深入的学习。这篇文章，主要分享一些我常用的Linux命令，也是做一个笔记，为以后复习做准备。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://y-hkl.top/2017/12/06/Linux基础命令/"/>
+
+
+
+
+
+  <title> Linux基础命令 | Y-HKL's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Y-HKL's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocapitalize="off" autocomplete="off" autocorrect="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://y-hkl.top/2017/12/06/Linux基础命令/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Y-HKL">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/tt.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Y-HKL's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Linux基础命令
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-06T21:35:40-05:00">
+                2017-12-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/技术研究/" itemprop="url" rel="index">
+                    <span itemprop="name">技术研究</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/12/06/Linux基础命令/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/12/06/Linux基础命令/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在安全方面，掌握Linux系统对安全研究是非常重要的。首先我们就需要对一些常用的命令和参数熟连掌握，然后一步一步的进行深入的学习。这篇文章，主要分享一些我常用的Linux命令，也是做一个笔记，为以后复习做准备。<br><a id="more"></a></p>
+<h2 id="帮助命令"><a href="#帮助命令" class="headerlink" title="帮助命令"></a>帮助命令</h2><h3 id="解析命令的意思（whatis、info）"><a href="#解析命令的意思（whatis、info）" class="headerlink" title="解析命令的意思（whatis、info）"></a>解析命令的意思（whatis、info）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">whatis   解析命令的意思</div><div class="line">info     详细解析命令的意思</div></pre></td></tr></table></figure>
+<h3 id="寻找命令的安装路径（which、whereis）"><a href="#寻找命令的安装路径（which、whereis）" class="headerlink" title="寻找命令的安装路径（which、whereis）"></a>寻找命令的安装路径（which、whereis）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">which     寻找命令的位置</div><div class="line">whereis   寻找程序的位置</div></pre></td></tr></table></figure>
+<h2 id="目录管理"><a href="#目录管理" class="headerlink" title="目录管理"></a>目录管理</h2><p>文件管理不外乎文件或目录的创建、删除、查询、移动，有mkdir/rm/mv</p>
+<h3 id="创建和删除"><a href="#创建和删除" class="headerlink" title="创建和删除"></a>创建和删除</h3><p>创建：mkdir<br>删除：rm<br>删除非空目录：rm -rf file目录<br>移动：mv<br>复制：cp (复制目录：cp -r )</p>
+<p>查看当前目录下文件个数:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$find ./ | wc -l</div></pre></td></tr></table></figure></p>
+<p>复制目录:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$cp -r source_dir  dest_dir</div></pre></td></tr></table></figure></p>
+<h3 id="列出目录项（ls、tree）"><a href="#列出目录项（ls、tree）" class="headerlink" title="列出目录项（ls、tree）"></a>列出目录项（ls、tree）</h3><p>显示当前目录下的文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ls</div></pre></td></tr></table></figure></p>
+<p>查看目录结构<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tree</div></pre></td></tr></table></figure></p>
+<p>按时间排序，以列表的方式显示目录项<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ls -lrt</div></pre></td></tr></table></figure></p>
+<p>以上这个命令用到的频率如此之高，以至于我们需要为它建立一个快捷命令方式:<br>在.bashrc 中设置命令别名:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">alias lsl=&apos;ls -lrt&apos;</div><div class="line">alias lm=&apos;ls -al|more&apos;</div></pre></td></tr></table></figure></p>
+<p>给每项文件前面增加一个id编号<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ls | cat -n</div></pre></td></tr></table></figure></p>
+<p>显示可阅读的文件大小<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ll -h</div></pre></td></tr></table></figure></p>
+<h3 id="文件和目录权限（chmod、chown）"><a href="#文件和目录权限（chmod、chown）" class="headerlink" title="文件和目录权限（chmod、chown）"></a>文件和目录权限（chmod、chown）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">改变文件的拥有者 chown</div><div class="line">改变文件读、写、执行等属性 chmod</div><div class="line">递归子目录修改： chown -R tuxapp source/</div><div class="line">增加脚本可执行权限： chmod a+x myscript</div></pre></td></tr></table></figure>
+<h2 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h2><h3 id="文件创建删除-touch、echo、rm-f"><a href="#文件创建删除-touch、echo、rm-f" class="headerlink" title="文件创建删除(touch、echo、rm -f)"></a>文件创建删除(touch、echo、rm -f)</h3><p>删除日志文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">rm *log (等价: $find ./ -name “*log” -exec rm &#123;&#125; ;)</div></pre></td></tr></table></figure></p>
+<h3 id="文件查看-du-sh"><a href="#文件查看-du-sh" class="headerlink" title="文件查看(du -sh)"></a>文件查看(du -sh)</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">du -sh  文件名</div></pre></td></tr></table></figure>
+<p>统计文件行数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wc -l test.txt</div></pre></td></tr></table></figure></p>
+<h3 id="文件内容查看（cat-head-tail）"><a href="#文件内容查看（cat-head-tail）" class="headerlink" title="文件内容查看（cat,head,tail）"></a>文件内容查看（cat,head,tail）</h3><p>显示时同时显示行号<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat -n  （如：cat test.txt | cat -n）</div></pre></td></tr></table></figure></p>
+<p>动态查看文件内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tail -f filename #当有内容写入文件中再输出</div></pre></td></tr></table></figure></p>
+<p>正向逆向查看文件内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">head -1 filename # 第1行内容</div><div class="line">tail -5 filename # 倒数5行内容</div></pre></td></tr></table></figure></p>
+<h3 id="文件搜索（find）"><a href="#文件搜索（find）" class="headerlink" title="文件搜索（find）"></a>文件搜索（find）</h3><p>查找txt和pdf文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find . \( -name &quot;*.txt&quot; -o -name &quot;*.pdf&quot; \) -print</div></pre></td></tr></table></figure></p>
+<p>否定参数 ,查找所有非txt文本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find . ! -name &quot;*.txt&quot; -print</div></pre></td></tr></table></figure></p>
+<p>指定搜索深度,打印出当前目录的文件（深度为1）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find . -maxdepth 1 -type f</div></pre></td></tr></table></figure></p>
+<p>说明：-type  f为文件，d为目录</p>
+<h4 id="按时间搜索"><a href="#按时间搜索" class="headerlink" title="按时间搜索"></a>按时间搜索</h4><p>-atime 访问时间 (单位是天，分钟单位则是-amin，以下类似）<br>-mtime 修改时间 （内容被修改）<br>-ctime 变化时间 （元数据或权限变化）<br>最近第7天被访问过的所有文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find . -atime 7 -type f -print</div></pre></td></tr></table></figure></p>
+<p>最近7天内被访问过的所有文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find . -atime -7 -type f -print</div></pre></td></tr></table></figure></p>
+<p>查询7天前被访问过的所有文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find . -atime +7 type f -print</div></pre></td></tr></table></figure></p>
+<p>按权限查找<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find . -type f -perm 644 -print //找具有可执行权限的所有文件</div></pre></td></tr></table></figure></p>
+<p>按用户查找<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find . -type f -user weber -print// 找用户weber所拥有的文件</div></pre></td></tr></table></figure></p>
+<h3 id="找到后的后续动作（exec）"><a href="#找到后的后续动作（exec）" class="headerlink" title="找到后的后续动作（exec）"></a>找到后的后续动作（exec）</h3><p>执行动作（强大的exec）<br>将当前目录下的所有权变更为weber:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find . -type f -user root -exec chown weber &#123;&#125; \;</div></pre></td></tr></table></figure></p>
+<p>注：{}是一个特殊的字符串，对于每一个匹配的文件，{}会被替换成相应的文件名；<br>将找到的文件全都copy到另一个目录:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find . -type f -mtime +10 -name &quot;*.txt&quot; -exec cp &#123;&#125; OLD \;</div></pre></td></tr></table></figure></p>
+<h3 id="文件内容搜索-grep"><a href="#文件内容搜索-grep" class="headerlink" title="文件内容搜索(grep)"></a>文件内容搜索(grep)</h3><p>查看成功登陆ssh的IP地址：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">centos</div><div class="line">for i in `grep &apos;sshd&apos; /var/log/secure* | grep -oE  &apos;\&lt;([1-9]|[1-9][0-9]|1[0-9]&#123;2&#125;|2[01][0-9]|22[0-3])\&gt;(\.\&lt;([0-9]|[0-9][0-9]|1[0-9]&#123;2&#125;|2[0-4][0-9]|25[0-5])\&gt;)&#123;2&#125;\.\&lt;([1-9]|[0-9][0-9]|1[0-9]&#123;2&#125;|2[0-4][0-9]|25[0-4])\&gt;&apos; | sort  | uniq`; do curl  -s --header &quot;X-Forwarded-For: $i&quot; http://1212.ip138.com/ic.asp |iconv -c -f GB2312 -t utf-8 | grep -o -P &apos;(?&lt;=\&lt;center\&gt;您的IP是：).*(?=&lt;\/center)&apos; ; done</div><div class="line">ubuntu：</div><div class="line">for i in `grep &apos;sshd&apos; /var/log/auth.log* |grep &apos;Accepted&apos; |grep ftp| grep -oE  &apos;\&lt;([1-9]|[1-9][0-9]|1[0-9]&#123;2&#125;|2[01][0-9]|22[0-3])\&gt;(\.\&lt;([0-9]|[0-9][0-9]|1[0-9]&#123;2&#125;|2[0-4][0-9]|25[0-5])\&gt;)&#123;2&#125;\.\&lt;([1-9]|[0-9][0-9]|1[0-9]&#123;2&#125;|2[0-4][0-9]|25[0-4])\&gt;&apos; | sort  | uniq`; do curl  -s --header &quot;X-Forwarded-For: $i&quot; http://1212.ip138.com/ic.asp |iconv -c -f GB2312 -t utf-8 | grep -o -P &apos;(?&lt;=\&lt;center\&gt;您的IP是：).*(?=&lt;\/center)&apos; ; done</div></pre></td></tr></table></figure></p>
+<h3 id="文件内容排序-sort"><a href="#文件内容排序-sort" class="headerlink" title="文件内容排序(sort)"></a>文件内容排序(sort)</h3><p>-n 按数字进行排序 VS -d 按字典序进行排序<br>-r 逆序排序<br>-k N 指定按第N列排序<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sort -nrk 1 data.txt</div><div class="line">sort -bd data // 忽略像空格之类的前导空白字符</div></pre></td></tr></table></figure></p>
+<h2 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h2><h3 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">useradd -m username</div></pre></td></tr></table></figure>
+<p>该命令为用户创建相应的帐号和用户目录/home/username<br>设置密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">passwd username</div></pre></td></tr></table></figure></p>
+<p>删除用户<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">userdel -r username</div></pre></td></tr></table></figure></p>
+<p>注意：不带选项使用 userdel，只会删除用户。用户的家目录将仍会在/home目录下。要完全的删除用户信息，使用-r选项</p>
+<p>帐号切换 登录帐号为userA用户状态下，切换到userB用户帐号工作<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">su userB</div></pre></td></tr></table></figure></p>
+<h3 id="用户的组"><a href="#用户的组" class="headerlink" title="用户的组"></a>用户的组</h3><h4 id="将用户加入到组"><a href="#将用户加入到组" class="headerlink" title="将用户加入到组"></a>将用户加入到组</h4><p>默认情况下，添加用户操作也会相应的增加一个同名的组，用户属于同名组； 查看当前用户所属的组:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">groups</div></pre></td></tr></table></figure></p>
+<p>一个用户可以属于多个组，将用户加入到组:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">usermod -G groupNmame username</div></pre></td></tr></table></figure></p>
+<p>变更用户所属的根组(将用加入到新的组，并从原有的组中除去）:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">usermod -g groupName username</div></pre></td></tr></table></figure></p>
+<h4 id="查看系统所有组"><a href="#查看系统所有组" class="headerlink" title="查看系统所有组"></a>查看系统所有组</h4><p>系统的所有用户及所有组信息分别记录在两个文件中：/etc/passwd , /etc/group 默认情况下这两个文件对所有用户可读：</p>
+<p>查看所有用户及权限:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">more /etc/passwd</div></pre></td></tr></table></figure></p>
+<p>查看所有的用户组及权限:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">more /etc/group</div></pre></td></tr></table></figure></p>
+<h3 id="用户权限"><a href="#用户权限" class="headerlink" title="用户权限"></a>用户权限</h3><p>chown 更改读写权限<br>chmod 更改用户的拥有者</p>
+<h2 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h2><p>杀死python相关的进程<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ps -ef | grep python | cut -d &apos; &apos; -f 2 | xargs kill</div><div class="line">或者</div><div class="line">pkill -9 python  #-9表示强制删除，pkill以进程名字匹配</div></pre></td></tr></table></figure></p>
+<p>查看进程<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ps -ef | less</div></pre></td></tr></table></figure></p>
+<p>查看端口占用的进程状态：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lsof -i:3306</div></pre></td></tr></table></figure></p>
+<p>显示进程信息，并实时更新<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">top</div></pre></td></tr></table></figure></p>
+<p>杀死指定PID的进程 (PID为Process ID)<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">kill PID</div></pre></td></tr></table></figure></p>
+<p>查询7902端口现在运行什么程序:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">#分为两步</div><div class="line">#第一步，查询使用该端口的进程的PID；</div><div class="line">$lsof -i:7902</div><div class="line">COMMAND   PID   USER   FD   TYPE    DEVICE SIZE NODE NAME</div><div class="line">WSL     30294 tuapp    4u  IPv4 447684086       TCP 10.6.50.37:tnos-dp (LISTEN)</div><div class="line"></div><div class="line">#查到30294</div><div class="line">#使用ps工具查询进程详情：</div><div class="line">$ps -fe | grep 30294</div><div class="line">tdev5  30294 26160  0 Sep10 ?        01:10:50 tdesl -k 43476</div><div class="line">root     22781 22698  0 00:54 pts/20   00:00:00 grep 11554</div></pre></td></tr></table></figure></p>
+<h2 id="网络管理"><a href="#网络管理" class="headerlink" title="网络管理"></a>网络管理</h2><p>查看网络连接<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">netstat -an | less</div></pre></td></tr></table></figure></p>
+<p>查看网络路由<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">route -n</div></pre></td></tr></table></figure></p>
+<p>只查看ip信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ifconfig | grep inet</div></pre></td></tr></table></figure></p>
+<h3 id="ftp-sftp-ssh"><a href="#ftp-sftp-ssh" class="headerlink" title="ftp sftp ssh"></a>ftp sftp ssh</h3><p>SSH登陆:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh ID@host</div></pre></td></tr></table></figure></p>
+<p>ssh登陆远程服务器host，ID为用户名。<br>ftp/sftp文件传输:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sftp ID@host</div></pre></td></tr></table></figure></p>
+<p>登陆服务器host，ID为用户名。sftp登陆后，可以使用下面的命令进一步操作：<br>    get filename # 下载文件<br>    put filename # 上传文件<br>    ls # 列出host上当前路径的所有文件<br>    cd # 在host上更改当前路径<br>    lls # 列出本地主机上当前路径的所有文件<br>    lcd # 在本地主机更改当前路径</p>
+<h2 id="系统管理"><a href="#系统管理" class="headerlink" title="系统管理"></a>系统管理</h2><p>查看系统位数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">getconf LONG_BIT</div></pre></td></tr></table></figure></p>
+<p>查看系统版本<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">lsb_release -a</div></pre></td></tr></table></figure></p>
+<p>查看hosts文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat /etc/hosts</div></pre></td></tr></table></figure></p>
+<p>查看CPU的核的个数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat /proc/cpuinfo | grep processor | wc -l</div></pre></td></tr></table></figure></p>
+<p>查看系统信息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">uname -a</div><div class="line">uname -m 显示机器的处理器架构</div><div class="line">uname -r 显示正在使用的内核版本</div><div class="line">cat /proc/cpuinfo 显示CPUinfo的信息</div><div class="line">cat /proc/meminfo 校验内存使用</div><div class="line">cat /proc/version 显示内核的版本</div><div class="line">cat /proc/net/dev 显示网络适配器及统计</div><div class="line">cat /proc/mounts 显示已加载的文件系统</div></pre></td></tr></table></figure></p>
+<h2 id="磁盘管理"><a href="#磁盘管理" class="headerlink" title="磁盘管理"></a>磁盘管理</h2><p>查看磁盘空间利用大小<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">df -h</div></pre></td></tr></table></figure></p>
+<p>挂载U盘<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">fdisk -l 查看U盘路径</div><div class="line">monut /dev/sdb4 /mnt  挂载U盘</div><div class="line">cd /mnt 进入U盘</div><div class="line">umount /mnt  退出U盘</div></pre></td></tr></table></figure></p>
+<h2 id="Linux学习网站"><a href="#Linux学习网站" class="headerlink" title="Linux学习网站"></a>Linux学习网站</h2><p><a href="http://linuxtools-rst.readthedocs.io/zh_CN/latest/" target="_blank" rel="external">http://linuxtools-rst.readthedocs.io/zh_CN/latest/</a><br><a href="http://man.linuxde.net/" target="_blank" rel="external">http://man.linuxde.net/</a></p>
+
+      
+    </div>
+	
+	<div>
+	  
+		﻿<div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+	  
+	</div>
+	
+	<div>
+      
+        ﻿
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
+  <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
+  <p><span>本文标题:</span><a href="/2017/12/06/Linux基础命令/">Linux基础命令</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 Y-HKL 的个人博客">Y-HKL</a></p>
+  <p><span>发布时间:</span>2017年12月06日 - 21:12</p>
+  <p><span>最后更新:</span>2017年12月07日 - 21:12</p>
+  <p><span>原始链接:</span><a href="/2017/12/06/Linux基础命令/" title="Linux基础命令">http://y-hkl.top/2017/12/06/Linux基础命令/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://y-hkl.top/2017/12/06/Linux基础命令/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
+</div>
+<script> 
+    var clipboard = new Clipboard('.fa-clipboard');
+    clipboard.on('success', $(function(){
+      $(".fa-clipboard").click(function(){
+        swal({   
+          title: "",   
+          text: '复制成功',   
+          html: false,
+          timer: 500,   
+          showConfirmButton: false
+        });
+      });
+    }));  
+</script>
+
+      
+	</div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"><i class="fa fa-tag"></i> Linux</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/28/Web安全工具——w3af教程/" rel="next" title="Web安全工具——w3af教程">
+                <i class="fa fa-chevron-left"></i> Web安全工具——w3af教程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/07/vim键盘图/" rel="prev" title="vi/vim键盘图">
+                vi/vim键盘图 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <!-- JiaThis Button BEGIN -->
+<div class="jiathis_style">
+  <a class="jiathis_button_tsina"></a>
+  <a class="jiathis_button_tqq"></a>
+  <a class="jiathis_button_weixin"></a>
+  <a class="jiathis_button_cqq"></a>
+  <a class="jiathis_button_douban"></a>
+  <a class="jiathis_button_renren"></a>
+  <a class="jiathis_button_qzone"></a>
+  <a class="jiathis_button_kaixin001"></a>
+  <a class="jiathis_button_copy"></a>
+  <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank"></a>
+  <a class="jiathis_counter_style"></a>
+</div>
+<script type="text/javascript" >
+  var jiathis_config={
+    hideMore:false
+  }
+</script>
+<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/tt.png"
+               alt="Y-HKL" />
+          <p class="site-author-name" itemprop="name">Y-HKL</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">20</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">18</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-envira"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://htecne.top/" title="Htecne's Blog" target="_blank">Htecne's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://wyb0.com/" title="Reber's Blog" target="_blank">Reber's Blog</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://www.freebuf.com/" title="FreeBuf" target="_blank">FreeBuf</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.sec-wiki.com/" title="SecWiki" target="_blank">SecWiki</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.ichunqiu.com/" title="i春秋" target="_blank">i春秋</a>
+                </li>
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://www.t00ls.net/" title="Tools安全" target="_blank">Tools安全</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#帮助命令"><span class="nav-number">1.</span> <span class="nav-text">帮助命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解析命令的意思（whatis、info）"><span class="nav-number">1.1.</span> <span class="nav-text">解析命令的意思（whatis、info）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#寻找命令的安装路径（which、whereis）"><span class="nav-number">1.2.</span> <span class="nav-text">寻找命令的安装路径（which、whereis）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#目录管理"><span class="nav-number">2.</span> <span class="nav-text">目录管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建和删除"><span class="nav-number">2.1.</span> <span class="nav-text">创建和删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列出目录项（ls、tree）"><span class="nav-number">2.2.</span> <span class="nav-text">列出目录项（ls、tree）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件和目录权限（chmod、chown）"><span class="nav-number">2.3.</span> <span class="nav-text">文件和目录权限（chmod、chown）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件管理"><span class="nav-number">3.</span> <span class="nav-text">文件管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文件创建删除-touch、echo、rm-f"><span class="nav-number">3.1.</span> <span class="nav-text">文件创建删除(touch、echo、rm -f)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件查看-du-sh"><span class="nav-number">3.2.</span> <span class="nav-text">文件查看(du -sh)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件内容查看（cat-head-tail）"><span class="nav-number">3.3.</span> <span class="nav-text">文件内容查看（cat,head,tail）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件搜索（find）"><span class="nav-number">3.4.</span> <span class="nav-text">文件搜索（find）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#按时间搜索"><span class="nav-number">3.4.1.</span> <span class="nav-text">按时间搜索</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#找到后的后续动作（exec）"><span class="nav-number">3.5.</span> <span class="nav-text">找到后的后续动作（exec）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件内容搜索-grep"><span class="nav-number">3.6.</span> <span class="nav-text">文件内容搜索(grep)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文件内容排序-sort"><span class="nav-number">3.7.</span> <span class="nav-text">文件内容排序(sort)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户管理"><span class="nav-number">4.</span> <span class="nav-text">用户管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#添加用户"><span class="nav-number">4.1.</span> <span class="nav-text">添加用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户的组"><span class="nav-number">4.2.</span> <span class="nav-text">用户的组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#将用户加入到组"><span class="nav-number">4.2.1.</span> <span class="nav-text">将用户加入到组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查看系统所有组"><span class="nav-number">4.2.2.</span> <span class="nav-text">查看系统所有组</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户权限"><span class="nav-number">4.3.</span> <span class="nav-text">用户权限</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进程管理"><span class="nav-number">5.</span> <span class="nav-text">进程管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络管理"><span class="nav-number">6.</span> <span class="nav-text">网络管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ftp-sftp-ssh"><span class="nav-number">6.1.</span> <span class="nav-text">ftp sftp ssh</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#系统管理"><span class="nav-number">7.</span> <span class="nav-text">系统管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#磁盘管理"><span class="nav-number">8.</span> <span class="nav-text">磁盘管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux学习网站"><span class="nav-number">9.</span> <span class="nav-text">Linux学习网站</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        ﻿<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Y-HKL</span>
+</div>
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+<!--
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+-->
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共19.1k字</span>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://y-hkl.top/2017/12/06/Linux基础命令/';
+          this.page.identifier = '2017/12/06/Linux基础命令/';
+          this.page.title = 'Linux基础命令';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.popup').toggle();
+    }
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+      $.ajax({
+        url: path,
+        dataType: "xml",
+        async: true,
+        success: function( xmlResponse ) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = $( "entry", xmlResponse ).map(function() {
+            return {
+              title: $( "title", this ).text(),
+              content: $("content",this).text(),
+              url: $( "url" , this).text()
+            };
+          }).get();
+          var $input = document.getElementById(search_id);
+          var $resultContent = document.getElementById(content_id);
+          $input.addEventListener('input', function(){
+            var matchcounts = 0;
+            var str='<ul class=\"search-result-list\">';
+            var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+            $resultContent.innerHTML = "";
+            if (this.value.trim().length > 1) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var content_index = [];
+                var data_title = data.title.trim().toLowerCase();
+                var data_content = data.content.trim().replace(/<[^>]+>/g,"").toLowerCase();
+                var data_url = decodeURIComponent(data.url);
+                var index_title = -1;
+                var index_content = -1;
+                var first_occur = -1;
+                // only match artiles with not empty titles and contents
+                if(data_title != '') {
+                  keywords.forEach(function(keyword, i) {
+                    index_title = data_title.indexOf(keyword);
+                    index_content = data_content.indexOf(keyword);
+                    if( index_title >= 0 || index_content >= 0 ){
+                      isMatch = true;
+                      if (i == 0) {
+                        first_occur = index_content;
+                      }
+                    }
+
+                  });
+                }
+                // show search results
+                if (isMatch) {
+                  matchcounts += 1;
+                  str += "<li><a href='"+ data_url +"' class='search-result-title'>"+ data_title +"</a>";
+                  var content = data.content.trim().replace(/<[^>]+>/g,"");
+                  if (first_occur >= 0) {
+                    // cut out 100 characters
+                    var start = first_occur - 20;
+                    var end = first_occur + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if(start == 0){
+                      end = 50;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    var match_content = content.substring(start, end);
+                    // highlight all keywords
+                    keywords.forEach(function(keyword){
+                      var regS = new RegExp(keyword, "gi");
+                      match_content = match_content.replace(regS, "<b class=\"search-keyword\">"+keyword+"</b>");
+                    });
+
+                    str += "<p class=\"search-result\">" + match_content +"...</p>"
+                  }
+                  str += "</li>";
+                }
+              })};
+            str += "</ul>";
+            if (matchcounts == 0) { str = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>' }
+            if (keywords == "") { str = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>' }
+            $resultContent.innerHTML = str;
+          });
+          proceedsearch();
+        }
+      });}
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched == false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(function(e){
+      $('.popup').hide();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    });
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/love.js"></script>
