@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://y-hkl.top/"/>
-  <updated>2018-02-01T02:42:32.631Z</updated>
+  <updated>2018-02-01T02:45:18.553Z</updated>
   <id>http://y-hkl.top/</id>
   
   <author>
@@ -17,10 +17,10 @@
   
   <entry>
     <title>测试流程</title>
-    <link href="http://y-hkl.top/2018/01/11/%E6%B5%8B%E8%AF%95%E6%B5%81%E7%A8%8B/"/>
-    <id>http://y-hkl.top/2018/01/11/测试流程/</id>
-    <published>2018-01-12T03:23:45.000Z</published>
-    <updated>2018-02-01T02:42:32.631Z</updated>
+    <link href="http://y-hkl.top/2018/01/15/%E6%B5%8B%E8%AF%95%E6%B5%81%E7%A8%8B/"/>
+    <id>http://y-hkl.top/2018/01/15/测试流程/</id>
+    <published>2018-01-16T03:23:45.000Z</published>
+    <updated>2018-02-01T02:45:18.553Z</updated>
     
     <content type="html"><![CDATA[<p>在工作一段时间以后，对与渗透测试有了相对性的了解，下面就说一下实施一个从客户开始到渗透测试结束（简称安全测试流程），和对一个目标的渗透测试（简称渗透测试流程）的简单步骤。<br><a id="more"></a></p>
 <h2 id="安全测试流程"><a href="#安全测试流程" class="headerlink" title="安全测试流程"></a>安全测试流程</h2><p>安全测试流程包括测试前期准备，测试阶段实施，复测阶段实施，成果汇报阶段四大步骤，详情如下图：<br><img src="/upload_img/测试流程-1.png" alt=""></p>
@@ -665,9 +665,9 @@
       <category term="漏洞复现" scheme="http://y-hkl.top/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
     
     
-      <category term="s2-053" scheme="http://y-hkl.top/tags/s2-053/"/>
-    
       <category term="漏洞" scheme="http://y-hkl.top/tags/%E6%BC%8F%E6%B4%9E/"/>
+    
+      <category term="s2-053" scheme="http://y-hkl.top/tags/s2-053/"/>
     
   </entry>
   
@@ -704,9 +704,9 @@
       <category term="漏洞复现" scheme="http://y-hkl.top/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
     
     
-      <category term="漏洞" scheme="http://y-hkl.top/tags/%E6%BC%8F%E6%B4%9E/"/>
-    
       <category term="s2-052" scheme="http://y-hkl.top/tags/s2-052/"/>
+    
+      <category term="漏洞" scheme="http://y-hkl.top/tags/%E6%BC%8F%E6%B4%9E/"/>
     
   </entry>
   
