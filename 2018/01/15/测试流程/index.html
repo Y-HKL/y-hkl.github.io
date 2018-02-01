@@ -83,7 +83,7 @@
 <meta property="og:image" content="http://y-hkl.top/upload_img/测试流程-1.png">
 <meta property="og:image" content="http://y-hkl.top/upload_img/测试流程-2.png">
 <meta property="og:image" content="http://y-hkl.top/upload_img/测试流程-3.png">
-<meta property="og:updated_time" content="2018-02-01T02:45:18.553Z">
+<meta property="og:updated_time" content="2018-02-01T02:49:38.921Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="测试流程">
 <meta name="twitter:description" content="在工作一段时间以后，对与渗透测试有了相对性的了解，下面就说一下实施一个从客户开始到渗透测试结束（简称安全测试流程），和对一个目标的渗透测试（简称渗透测试流程）的简单步骤。">
@@ -383,22 +383,29 @@
 <li>在测试前期阶段要注意全面了解需要测试的目标，范围，测试方式时间，只有了解清楚这些才可以避免以后做测试造成麻烦。</li>
 <li>测试阶段实施需要注意测试的深度（测试需要做到什么地步），报告的书写等</li>
 <li>复测阶段实施需要注意查看是否漏洞全部修复，是否发现新漏洞。</li>
-<li>成果汇报阶段需要注意点明测试范围，成果等。<h2 id="渗透测试流程"><a href="#渗透测试流程" class="headerlink" title="渗透测试流程"></a>渗透测试流程</h2><h3 id="渗透测试与入侵的区别"><a href="#渗透测试与入侵的区别" class="headerlink" title="渗透测试与入侵的区别"></a>渗透测试与入侵的区别</h3></li>
+<li>成果汇报阶段需要注意点明测试范围，成果等。</li>
 </ol>
-<ul>
+<h2 id="渗透测试流程"><a href="#渗透测试流程" class="headerlink" title="渗透测试流程"></a>渗透测试流程</h2><h3 id="渗透测试与入侵的区别"><a href="#渗透测试与入侵的区别" class="headerlink" title="渗透测试与入侵的区别"></a>渗透测试与入侵的区别</h3><ul>
 <li>渗透测试：出于保护系统的目的，更全面地找出务器的安全隐患。</li>
-<li>入侵：不择手段地（甚至是具有破坏性的）拿到系统权限。<h3 id="测试流程"><a href="#测试流程" class="headerlink" title="测试流程"></a>测试流程</h3><img src="/upload_img/测试流程-2.png" alt=""><br>这些流程只是一般的测试流程，对于渗透测试，每个人都有自己独自的思路。<h4 id="明确目标"><a href="#明确目标" class="headerlink" title="明确目标"></a>明确目标</h4></li>
+<li>入侵：不择手段地（甚至是具有破坏性的）拿到系统权限。</li>
+</ul>
+<h3 id="测试流程"><a href="#测试流程" class="headerlink" title="测试流程"></a>测试流程</h3><p><img src="/upload_img/测试流程-2.png" alt=""><br>这些流程只是一般的测试流程，对于渗透测试，每个人都有自己独自的思路。</p>
+<h4 id="明确目标"><a href="#明确目标" class="headerlink" title="明确目标"></a>明确目标</h4><ul>
 <li>确定范围：测试目标的范围，ip，域名，内外网。</li>
 <li>确定规则：能渗透到什么程度，时间？能否修改上传？能否提权等。</li>
-<li>确定需求：web应用的漏洞(新上线程序)？业务逻辑漏洞（针对业务的）？人员权限管理漏洞（针对人员、权限）？等<h4 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h4>方式：主动扫描，开放搜索等<br>主动扫描：利用扫描工具（nmap，whatweb，站长工具等）<br>开放搜索：利用搜索引擎获得，后台，未授权页面，敏感url等。</li>
+<li>确定需求：web应用的漏洞(新上线程序)？业务逻辑漏洞（针对业务的）？人员权限管理漏洞（针对人员、权限）？等</li>
+</ul>
+<h4 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h4><p>方式：主动扫描，开放搜索等<br>主动扫描：利用扫描工具（nmap，whatweb，站长工具等）<br>开放搜索：利用搜索引擎获得，后台，未授权页面，敏感url等。</p>
+<ul>
 <li>基础信息：IP，网段，域名，端口</li>
 <li>系统信息：操作系统版本</li>
 <li>应用信息：各端口的应用，例如web应用，邮件应用等等</li>
 <li>版本信息：所有这些探测到的东西的版本。</li>
 <li>服务信息</li>
 <li>人员信息：域名注册人员信息，web应用中网站发帖人的id，管理员姓名等。</li>
-<li>防护信息：试着看能否探测到防护设备<h4 id="漏洞探索"><a href="#漏洞探索" class="headerlink" title="漏洞探索"></a>漏洞探索</h4>利用上一步中列出的各种系统，应用等使用相应的漏洞。<br>方法：</li>
+<li>防护信息：试着看能否探测到防护设备</li>
 </ul>
+<h4 id="漏洞探索"><a href="#漏洞探索" class="headerlink" title="漏洞探索"></a>漏洞探索</h4><p>利用上一步中列出的各种系统，应用等使用相应的漏洞。<br>方法：</p>
 <ol>
 <li>漏扫，awvs，IBM appscan等。</li>
 <li>结合漏洞去exploit-db等位置找利用。</li>
@@ -407,32 +414,43 @@
 <li>Websever漏洞：Websever配置问题</li>
 <li>Web应用漏洞：Web应用开发问题</li>
 <li>其它端口服务漏洞：各种21/8080(st2)/7001/22/3389</li>
-<li>通信安全：明文传输，token在cookie中传送等。<h4 id="漏洞验证"><a href="#漏洞验证" class="headerlink" title="漏洞验证"></a>漏洞验证</h4>将上一步中发现的有可能可以成功利用的全部漏洞都验证一遍。</li>
+<li>通信安全：明文传输，token在cookie中传送等。</li>
 </ol>
+<h4 id="漏洞验证"><a href="#漏洞验证" class="headerlink" title="漏洞验证"></a>漏洞验证</h4><p>将上一步中发现的有可能可以成功利用的全部漏洞都验证一遍。</p>
 <ul>
 <li>自动化验证：结合自动化扫描工具提供的结果</li>
 <li>手工验证，根据公开资源进行验证</li>
 <li>试验验证：自己搭建模拟环境进行验证</li>
 <li>登陆猜解：有时可以尝试猜解一下登陆口的账号密码等信息</li>
 <li>业务漏洞验证：如发现业务漏洞，要进行验证</li>
-<li>公开资源的利用<h4 id="信息分析"><a href="#信息分析" class="headerlink" title="信息分析"></a>信息分析</h4>为下一步实施渗透做准备。</li>
+<li>公开资源的利用</li>
+</ul>
+<h4 id="信息分析"><a href="#信息分析" class="headerlink" title="信息分析"></a>信息分析</h4><p>为下一步实施渗透做准备。</p>
+<ul>
 <li>精准打击：准备好上一步探测到的漏洞的exp，用来精准打击</li>
 <li>绕过防御机制：是否有防火墙等设备，如何绕过（一般在授权测试的时候是没有防火墙的）</li>
 <li>定制攻击路径：最佳工具路径，根据薄弱入口，高内网权限位置，最终目标</li>
 <li>绕过检测机制：是否有检测机制，流量监控，杀毒软件，恶意代码检测等（免杀）</li>
-<li>攻击代码：经过试验得来的代码，包括不限于xss代码，sql注入语句等<h4 id="获取所需"><a href="#获取所需" class="headerlink" title="获取所需"></a>获取所需</h4></li>
+<li>攻击代码：经过试验得来的代码，包括不限于xss代码，sql注入语句等</li>
+</ul>
+<h4 id="获取所需"><a href="#获取所需" class="headerlink" title="获取所需"></a>获取所需</h4><ul>
 <li>实施攻击：根据前几步的结果，进行攻击</li>
 <li>获取内部信息：基础设施（网络连接，vpn，路由，拓扑等）</li>
 <li>进一步渗透：内网入侵，敏感目标</li>
 <li>持续性存在：一般我们对客户做渗透不需要。rookit，后门，添加管理账号，驻扎手法等</li>
-<li>清理痕迹：清理相关日志（访问，操作），上传文件等<h4 id="信息整理"><a href="#信息整理" class="headerlink" title="信息整理"></a>信息整理</h4></li>
+<li>清理痕迹：清理相关日志（访问，操作），上传文件等</li>
+</ul>
+<h4 id="信息整理"><a href="#信息整理" class="headerlink" title="信息整理"></a>信息整理</h4><ul>
 <li>整理渗透工具：整理渗透过程中用到的代码，poc，exp等</li>
 <li>整理收集信息：整理渗透过程中收集到的一切信息</li>
-<li>整理漏洞信息：整理渗透过程中遇到的各种漏洞，各种脆弱位置信息<h4 id="形成报告"><a href="#形成报告" class="headerlink" title="形成报告"></a>形成报告</h4></li>
+<li>整理漏洞信息：整理渗透过程中遇到的各种漏洞，各种脆弱位置信息</li>
+</ul>
+<h4 id="形成报告"><a href="#形成报告" class="headerlink" title="形成报告"></a>形成报告</h4><ul>
 <li>按需整理：按照之前第一步跟客户确定好的范围，需求来整理资料，并将资料形成报告</li>
 <li>补充介绍：要对漏洞成因，验证过程和带来危害进行分析</li>
-<li>修补建议：当然要对所有产生的问题提出合理高效安全的解决办法<h3 id="流程总结"><a href="#流程总结" class="headerlink" title="流程总结"></a>流程总结</h3><img src="/upload_img/测试流程-3.png" alt=""></li>
+<li>修补建议：当然要对所有产生的问题提出合理高效安全的解决办法</li>
 </ul>
+<h3 id="流程总结"><a href="#流程总结" class="headerlink" title="流程总结"></a>流程总结</h3><p><img src="/upload_img/测试流程-3.png" alt=""></p>
 
       
     </div>
