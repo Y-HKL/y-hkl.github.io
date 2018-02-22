@@ -55,7 +55,7 @@
     <link href="http://y-hkl.top/2018/01/15/%E6%B5%8B%E8%AF%95%E6%B5%81%E7%A8%8B/"/>
     <id>http://y-hkl.top/2018/01/15/测试流程/</id>
     <published>2018-01-16T03:23:45.000Z</published>
-    <updated>2018-02-01T02:49:38.921Z</updated>
+    <updated>2018-02-22T08:59:51.439Z</updated>
     
     <content type="html"><![CDATA[<p>在工作一段时间以后，对与渗透测试有了相对性的了解，下面就说一下实施一个从客户开始到渗透测试结束（简称安全测试流程），和对一个目标的渗透测试（简称渗透测试流程）的简单步骤。<br><a id="more"></a></p>
 <h2 id="安全测试流程"><a href="#安全测试流程" class="headerlink" title="安全测试流程"></a>安全测试流程</h2><p>安全测试流程包括测试前期准备，测试阶段实施，复测阶段实施，成果汇报阶段四大步骤，详情如下图：<br><img src="/upload_img/测试流程-1.png" alt=""></p>
@@ -139,6 +139,10 @@
     
     </summary>
     
+      <category term="web安全" scheme="http://y-hkl.top/categories/web%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="测试流程" scheme="http://y-hkl.top/tags/%E6%B5%8B%E8%AF%95%E6%B5%81%E7%A8%8B/"/>
     
   </entry>
   
