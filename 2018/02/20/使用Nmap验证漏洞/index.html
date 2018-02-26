@@ -45,7 +45,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="测试流程," />
+  <meta name="keywords" content="工具," />
 
 
 
@@ -73,22 +73,18 @@
     })();
 </script>
 
-<meta name="description" content="在工作一段时间以后，对与渗透测试有了相对性的了解，下面就说一下实施一个从客户开始到渗透测试结束（简称安全测试流程），和对一个目标的渗透测试（简称渗透测试流程）的简单步骤。">
-<meta name="keywords" content="测试流程">
+<meta name="description" content="写这篇文章的原因有二：一是在渗透测试过程中，我们常常会用到综合扫描工具扫描目标网站，但是这种情况常常出现误报，这个时候就需要我们验证这些漏洞是否真的存在，这时候Nmap就可以使用Nmap来验证这些漏洞。二是我们使用Nmap常常只是使用它扫描端口、服务等信息这大大忽略了Nmap的强大功能。下面是我整理的一些使用Nmap扫描验证漏洞的命令，也是为了做个笔记防止忘记。">
+<meta name="keywords" content="工具">
 <meta property="og:type" content="article">
-<meta property="og:title" content="测试流程">
-<meta property="og:url" content="http://y-hkl.top/2018/01/15/测试流程/index.html">
+<meta property="og:title" content="使用Nmap验证漏洞">
+<meta property="og:url" content="http://y-hkl.top/2018/02/20/使用Nmap验证漏洞/index.html">
 <meta property="og:site_name" content="Y-HKL&#39;s Blog">
-<meta property="og:description" content="在工作一段时间以后，对与渗透测试有了相对性的了解，下面就说一下实施一个从客户开始到渗透测试结束（简称安全测试流程），和对一个目标的渗透测试（简称渗透测试流程）的简单步骤。">
+<meta property="og:description" content="写这篇文章的原因有二：一是在渗透测试过程中，我们常常会用到综合扫描工具扫描目标网站，但是这种情况常常出现误报，这个时候就需要我们验证这些漏洞是否真的存在，这时候Nmap就可以使用Nmap来验证这些漏洞。二是我们使用Nmap常常只是使用它扫描端口、服务等信息这大大忽略了Nmap的强大功能。下面是我整理的一些使用Nmap扫描验证漏洞的命令，也是为了做个笔记防止忘记。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://y-hkl.top/upload_img/测试流程-1.png">
-<meta property="og:image" content="http://y-hkl.top/upload_img/测试流程-2.png">
-<meta property="og:image" content="http://y-hkl.top/upload_img/测试流程-3.png">
-<meta property="og:updated_time" content="2018-02-22T08:59:51.439Z">
+<meta property="og:updated_time" content="2018-02-26T06:21:25.151Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="测试流程">
-<meta name="twitter:description" content="在工作一段时间以后，对与渗透测试有了相对性的了解，下面就说一下实施一个从客户开始到渗透测试结束（简称安全测试流程），和对一个目标的渗透测试（简称渗透测试流程）的简单步骤。">
-<meta name="twitter:image" content="http://y-hkl.top/upload_img/测试流程-1.png">
+<meta name="twitter:title" content="使用Nmap验证漏洞">
+<meta name="twitter:description" content="写这篇文章的原因有二：一是在渗透测试过程中，我们常常会用到综合扫描工具扫描目标网站，但是这种情况常常出现误报，这个时候就需要我们验证这些漏洞是否真的存在，这时候Nmap就可以使用Nmap来验证这些漏洞。二是我们使用Nmap常常只是使用它扫描端口、服务等信息这大大忽略了Nmap的强大功能。下面是我整理的一些使用Nmap扫描验证漏洞的命令，也是为了做个笔记防止忘记。">
 
 
 
@@ -116,13 +112,13 @@
 
 
 
-  <link rel="canonical" href="http://y-hkl.top/2018/01/15/测试流程/"/>
+  <link rel="canonical" href="http://y-hkl.top/2018/02/20/使用Nmap验证漏洞/"/>
 
 
 
 
 
-  <title> 测试流程 | Y-HKL's Blog </title>
+  <title> 使用Nmap验证漏洞 | Y-HKL's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -295,7 +291,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://y-hkl.top/2018/01/15/测试流程/">
+    <link itemprop="mainEntityOfPage" href="http://y-hkl.top/2018/02/20/使用Nmap验证漏洞/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Y-HKL">
@@ -316,7 +312,7 @@
             
             
               
-                测试流程
+                使用Nmap验证漏洞
               
             
           </h1>
@@ -324,10 +320,6 @@
 
         <div class="post-meta">
 		
-            <i class="fa fa-thumb-tack"></i>
-            <font color=7D26CD>置顶</font>
-            <span class="post-meta-divider">|</span>
-        
           <span class="post-time">
             
               <span class="post-meta-item-icon">
@@ -336,8 +328,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-15T22:23:45-05:00">
-                2018-01-15
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-20T09:12:12-05:00">
+                2018-02-20
               </time>
             
 
@@ -377,9 +369,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/01/15/测试流程/#comments" itemprop="discussionUrl">
+                <a href="/2018/02/20/使用Nmap验证漏洞/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/01/15/测试流程/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/02/20/使用Nmap验证漏洞/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -405,80 +397,20 @@
       
 
       
-        <p>在工作一段时间以后，对与渗透测试有了相对性的了解，下面就说一下实施一个从客户开始到渗透测试结束（简称安全测试流程），和对一个目标的渗透测试（简称渗透测试流程）的简单步骤。<br><a id="more"></a></p>
-<h2 id="安全测试流程"><a href="#安全测试流程" class="headerlink" title="安全测试流程"></a>安全测试流程</h2><p>安全测试流程包括测试前期准备，测试阶段实施，复测阶段实施，成果汇报阶段四大步骤，详情如下图：<br><img src="/upload_img/测试流程-1.png" alt=""></p>
-<ol>
-<li>在测试前期阶段要注意全面了解需要测试的目标，范围，测试方式时间，只有了解清楚这些才可以避免以后做测试造成麻烦。</li>
-<li>测试阶段实施需要注意测试的深度（测试需要做到什么地步），报告的书写等</li>
-<li>复测阶段实施需要注意查看是否漏洞全部修复，是否发现新漏洞。</li>
-<li>成果汇报阶段需要注意点明测试范围，成果等。</li>
-</ol>
-<h2 id="渗透测试流程"><a href="#渗透测试流程" class="headerlink" title="渗透测试流程"></a>渗透测试流程</h2><h3 id="渗透测试与入侵的区别"><a href="#渗透测试与入侵的区别" class="headerlink" title="渗透测试与入侵的区别"></a>渗透测试与入侵的区别</h3><ul>
-<li>渗透测试：出于保护系统的目的，更全面地找出务器的安全隐患。</li>
-<li>入侵：不择手段地（甚至是具有破坏性的）拿到系统权限。</li>
-</ul>
-<h3 id="测试流程"><a href="#测试流程" class="headerlink" title="测试流程"></a>测试流程</h3><p><img src="/upload_img/测试流程-2.png" alt=""><br>这些流程只是一般的测试流程，对于渗透测试，每个人都有自己独自的思路。</p>
-<h4 id="明确目标"><a href="#明确目标" class="headerlink" title="明确目标"></a>明确目标</h4><ul>
-<li>确定范围：测试目标的范围，ip，域名，内外网。</li>
-<li>确定规则：能渗透到什么程度，时间？能否修改上传？能否提权等。</li>
-<li>确定需求：web应用的漏洞(新上线程序)？业务逻辑漏洞（针对业务的）？人员权限管理漏洞（针对人员、权限）？等</li>
-</ul>
-<h4 id="信息收集"><a href="#信息收集" class="headerlink" title="信息收集"></a>信息收集</h4><p>方式：主动扫描，开放搜索等<br>主动扫描：利用扫描工具（nmap，whatweb，站长工具等）<br>开放搜索：利用搜索引擎获得，后台，未授权页面，敏感url等。</p>
-<ul>
-<li>基础信息：IP，网段，域名，端口</li>
-<li>系统信息：操作系统版本</li>
-<li>应用信息：各端口的应用，例如web应用，邮件应用等等</li>
-<li>版本信息：所有这些探测到的东西的版本。</li>
-<li>服务信息</li>
-<li>人员信息：域名注册人员信息，web应用中网站发帖人的id，管理员姓名等。</li>
-<li>防护信息：试着看能否探测到防护设备</li>
-</ul>
-<h4 id="漏洞探索"><a href="#漏洞探索" class="headerlink" title="漏洞探索"></a>漏洞探索</h4><p>利用上一步中列出的各种系统，应用等使用相应的漏洞。<br>方法：</p>
-<ol>
-<li>漏扫，awvs，IBM appscan等。</li>
-<li>结合漏洞去exploit-db等位置找利用。</li>
-<li>在网上寻找验证poc。<br>内容：</li>
-<li>系统漏洞：系统没有及时打补丁</li>
-<li>Websever漏洞：Websever配置问题</li>
-<li>Web应用漏洞：Web应用开发问题</li>
-<li>其它端口服务漏洞：各种21/8080(st2)/7001/22/3389</li>
-<li>通信安全：明文传输，token在cookie中传送等。</li>
-</ol>
-<h4 id="漏洞验证"><a href="#漏洞验证" class="headerlink" title="漏洞验证"></a>漏洞验证</h4><p>将上一步中发现的有可能可以成功利用的全部漏洞都验证一遍。</p>
-<ul>
-<li>自动化验证：结合自动化扫描工具提供的结果</li>
-<li>手工验证，根据公开资源进行验证</li>
-<li>试验验证：自己搭建模拟环境进行验证</li>
-<li>登陆猜解：有时可以尝试猜解一下登陆口的账号密码等信息</li>
-<li>业务漏洞验证：如发现业务漏洞，要进行验证</li>
-<li>公开资源的利用</li>
-</ul>
-<h4 id="信息分析"><a href="#信息分析" class="headerlink" title="信息分析"></a>信息分析</h4><p>为下一步实施渗透做准备。</p>
-<ul>
-<li>精准打击：准备好上一步探测到的漏洞的exp，用来精准打击</li>
-<li>绕过防御机制：是否有防火墙等设备，如何绕过（一般在授权测试的时候是没有防火墙的）</li>
-<li>定制攻击路径：最佳工具路径，根据薄弱入口，高内网权限位置，最终目标</li>
-<li>绕过检测机制：是否有检测机制，流量监控，杀毒软件，恶意代码检测等（免杀）</li>
-<li>攻击代码：经过试验得来的代码，包括不限于xss代码，sql注入语句等</li>
-</ul>
-<h4 id="获取所需"><a href="#获取所需" class="headerlink" title="获取所需"></a>获取所需</h4><ul>
-<li>实施攻击：根据前几步的结果，进行攻击</li>
-<li>获取内部信息：基础设施（网络连接，vpn，路由，拓扑等）</li>
-<li>进一步渗透：内网入侵，敏感目标</li>
-<li>持续性存在：一般我们对客户做渗透不需要。rookit，后门，添加管理账号，驻扎手法等</li>
-<li>清理痕迹：清理相关日志（访问，操作），上传文件等</li>
-</ul>
-<h4 id="信息整理"><a href="#信息整理" class="headerlink" title="信息整理"></a>信息整理</h4><ul>
-<li>整理渗透工具：整理渗透过程中用到的代码，poc，exp等</li>
-<li>整理收集信息：整理渗透过程中收集到的一切信息</li>
-<li>整理漏洞信息：整理渗透过程中遇到的各种漏洞，各种脆弱位置信息</li>
-</ul>
-<h4 id="形成报告"><a href="#形成报告" class="headerlink" title="形成报告"></a>形成报告</h4><ul>
-<li>按需整理：按照之前第一步跟客户确定好的范围，需求来整理资料，并将资料形成报告</li>
-<li>补充介绍：要对漏洞成因，验证过程和带来危害进行分析</li>
-<li>修补建议：当然要对所有产生的问题提出合理高效安全的解决办法</li>
-</ul>
-<h3 id="流程总结"><a href="#流程总结" class="headerlink" title="流程总结"></a>流程总结</h3><p><img src="/upload_img/测试流程-3.png" alt=""></p>
+        <p>写这篇文章的原因有二：一是在渗透测试过程中，我们常常会用到综合扫描工具扫描目标网站，但是这种情况常常出现误报，这个时候就需要我们验证这些漏洞是否真的存在，这时候Nmap就可以使用Nmap来验证这些漏洞。二是我们使用Nmap常常只是使用它扫描端口、服务等信息这大大忽略了Nmap的强大功能。下面是我整理的一些使用Nmap扫描验证漏洞的命令，也是为了做个笔记防止忘记。<br><a id="more"></a></p>
+<h2 id="Nmap的介绍"><a href="#Nmap的介绍" class="headerlink" title="Nmap的介绍"></a>Nmap的介绍</h2><p>在这里我还是啰嗦一下，介绍一下Nmap（来自百度百科）。<br>nmap是一个网络连接端扫描软件，用来扫描网上电脑开放的网络连接端。确定哪些服务运行在哪些连接端，并且推断计算机运行哪个操作系统（这是亦称 fingerprinting）。它是网络管理员必用的软件之一，以及用以评估网络系统安全。<br>正如大多数被用于网络安全的工具，nmap 也是不少黑客及骇客（又称脚本小子）爱用的工具 。系统管理员可以利用nmap来探测工作环境中未经批准使用的服务器，但是黑客会利用nmap来搜集目标电脑的网络设定，从而计划攻击的方法。<br>Nmap 常被跟评估系统漏洞软件Nessus 混为一谈。Nmap 以隐秘的手法，避开闯入检测系统的监视，并尽可能不影响目标系统的日常操作。</p>
+<h2 id="使用Nmap检测漏洞"><a href="#使用Nmap检测漏洞" class="headerlink" title="使用Nmap检测漏洞"></a>使用Nmap检测漏洞</h2><h3 id="http拒绝服务"><a href="#http拒绝服务" class="headerlink" title="http拒绝服务"></a>http拒绝服务</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nmap --max-parallelism 800--script http-slowloris &lt;target&gt;</div></pre></td></tr></table></figure>
+<h3 id="IIS-短文件泄露"><a href="#IIS-短文件泄露" class="headerlink" title="IIS 短文件泄露"></a>IIS 短文件泄露</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nmap -p 8080 --script http-iis-short-name-brute &lt;target&gt;</div></pre></td></tr></table></figure>
+<h3 id="验证http中开启的-methods-方法"><a href="#验证http中开启的-methods-方法" class="headerlink" title="验证http中开启的-methods 方法"></a>验证http中开启的-methods 方法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nmap -T3 --script http-methods --script-args http.test-all=true,http.url-path=/www.baidu.com</div></pre></td></tr></table></figure>
+<h3 id="验证HTTP-sys-远程代码执行"><a href="#验证HTTP-sys-远程代码执行" class="headerlink" title="验证HTTP.sys 远程代码执行"></a>验证HTTP.sys 远程代码执行</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nmap -sV --script http-vuln-cve2015-1635 &lt;target&gt;</div></pre></td></tr></table></figure>
+<h3 id="验证mysql-匿名访问"><a href="#验证mysql-匿名访问" class="headerlink" title="验证mysql 匿名访问"></a>验证mysql 匿名访问</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nmap --script mysql-empty-password &lt;target&gt;</div></pre></td></tr></table></figure>
+<h3 id="验证CVE-2014-0160-OpenSSL-Heartbleed-bug"><a href="#验证CVE-2014-0160-OpenSSL-Heartbleed-bug" class="headerlink" title="验证CVE-2014-0160 OpenSSL Heartbleed bug"></a>验证CVE-2014-0160 OpenSSL Heartbleed bug</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nmap -p 443 --script ssl-heartbleed,ssl-known-key &lt;target&gt;</div></pre></td></tr></table></figure>
+<h3 id="验证低安全的-SSHv1，sslv2协议"><a href="#验证低安全的-SSHv1，sslv2协议" class="headerlink" title="验证低安全的 SSHv1，sslv2协议"></a>验证低安全的 SSHv1，sslv2协议</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nmap --script sshv1,sslv2 &lt;target&gt;</div></pre></td></tr></table></figure>
+<h3 id="验证-SSL-POODLE-information-leak"><a href="#验证-SSL-POODLE-information-leak" class="headerlink" title="验证 SSL POODLE information leak"></a>验证 SSL POODLE information leak</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nmap -sV -p 443 --version-light --script ssl-poodle &lt;target&gt;</div></pre></td></tr></table></figure>
+<h3 id="验证弱加密SSL套件"><a href="#验证弱加密SSL套件" class="headerlink" title="验证弱加密SSL套件"></a>验证弱加密SSL套件</h3><p>nmap –script ssl-enum-ciphers <target></target></p>
+<h3 id="精准地确认端口上运行的服务"><a href="#精准地确认端口上运行的服务" class="headerlink" title="精准地确认端口上运行的服务"></a>精准地确认端口上运行的服务</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nmap -sV --script unusual-port &lt;target&gt;</div></pre></td></tr></table></figure>
+<h2 id="利用NSE检测CVE漏洞"><a href="#利用NSE检测CVE漏洞" class="headerlink" title="利用NSE检测CVE漏洞"></a>利用NSE检测CVE漏洞</h2><p><a href="http://www.freebuf.com/sectool/161664.html" target="_blank" rel="external">http://www.freebuf.com/sectool/161664.html</a></p>
+<h2 id="参考文件"><a href="#参考文件" class="headerlink" title="参考文件"></a>参考文件</h2><p><a href="http://www.nmap.com.cn/doc/manual.shtm" target="_blank" rel="external">http://www.nmap.com.cn/doc/manual.shtm</a><br><a href="https://thief.one/2017/05/02/1/" target="_blank" rel="external">https://thief.one/2017/05/02/1/</a><br><a href="http://blog.csdn.net/qq_29277155/article/details/50977143#t3" target="_blank" rel="external">http://blog.csdn.net/qq_29277155/article/details/50977143#t3</a></p>
 
       
     </div>
@@ -503,12 +435,12 @@
   <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
   <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
   <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
-  <p><span>本文标题:</span><a href="/2018/01/15/测试流程/">测试流程</a></p>
+  <p><span>本文标题:</span><a href="/2018/02/20/使用Nmap验证漏洞/">使用Nmap验证漏洞</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Y-HKL 的个人博客">Y-HKL</a></p>
-  <p><span>发布时间:</span>2018年01月15日 - 22:01</p>
-  <p><span>最后更新:</span>2018年02月22日 - 03:02</p>
-  <p><span>原始链接:</span><a href="/2018/01/15/测试流程/" title="测试流程">http://y-hkl.top/2018/01/15/测试流程/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://y-hkl.top/2018/01/15/测试流程/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2018年02月20日 - 09:02</p>
+  <p><span>最后更新:</span>2018年02月26日 - 01:02</p>
+  <p><span>原始链接:</span><a href="/2018/02/20/使用Nmap验证漏洞/" title="使用Nmap验证漏洞">http://y-hkl.top/2018/02/20/使用Nmap验证漏洞/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://y-hkl.top/2018/02/20/使用Nmap验证漏洞/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -555,7 +487,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/测试流程/" rel="tag"><i class="fa fa-tag"></i> 测试流程</a>
+            <a href="/tags/工具/" rel="tag"><i class="fa fa-tag"></i> 工具</a>
           
         </div>
       
@@ -568,8 +500,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/11/URL跳转漏洞/" rel="next" title="URL跳转漏洞">
-                <i class="fa fa-chevron-left"></i> URL跳转漏洞
+              <a href="/2018/01/15/测试流程/" rel="next" title="测试流程">
+                <i class="fa fa-chevron-left"></i> 测试流程
               </a>
             
           </div>
@@ -577,10 +509,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/02/20/使用Nmap验证漏洞/" rel="prev" title="使用Nmap验证漏洞">
-                使用Nmap验证漏洞 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -799,7 +727,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安全测试流程"><span class="nav-number">1.</span> <span class="nav-text">安全测试流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#渗透测试流程"><span class="nav-number">2.</span> <span class="nav-text">渗透测试流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#渗透测试与入侵的区别"><span class="nav-number">2.1.</span> <span class="nav-text">渗透测试与入侵的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试流程"><span class="nav-number">2.2.</span> <span class="nav-text">测试流程</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#明确目标"><span class="nav-number">2.2.1.</span> <span class="nav-text">明确目标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#信息收集"><span class="nav-number">2.2.2.</span> <span class="nav-text">信息收集</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#漏洞探索"><span class="nav-number">2.2.3.</span> <span class="nav-text">漏洞探索</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#漏洞验证"><span class="nav-number">2.2.4.</span> <span class="nav-text">漏洞验证</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#信息分析"><span class="nav-number">2.2.5.</span> <span class="nav-text">信息分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取所需"><span class="nav-number">2.2.6.</span> <span class="nav-text">获取所需</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#信息整理"><span class="nav-number">2.2.7.</span> <span class="nav-text">信息整理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#形成报告"><span class="nav-number">2.2.8.</span> <span class="nav-text">形成报告</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流程总结"><span class="nav-number">2.3.</span> <span class="nav-text">流程总结</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Nmap的介绍"><span class="nav-number">1.</span> <span class="nav-text">Nmap的介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Nmap检测漏洞"><span class="nav-number">2.</span> <span class="nav-text">使用Nmap检测漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#http拒绝服务"><span class="nav-number">2.1.</span> <span class="nav-text">http拒绝服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IIS-短文件泄露"><span class="nav-number">2.2.</span> <span class="nav-text">IIS 短文件泄露</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证http中开启的-methods-方法"><span class="nav-number">2.3.</span> <span class="nav-text">验证http中开启的-methods 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证HTTP-sys-远程代码执行"><span class="nav-number">2.4.</span> <span class="nav-text">验证HTTP.sys 远程代码执行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证mysql-匿名访问"><span class="nav-number">2.5.</span> <span class="nav-text">验证mysql 匿名访问</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证CVE-2014-0160-OpenSSL-Heartbleed-bug"><span class="nav-number">2.6.</span> <span class="nav-text">验证CVE-2014-0160 OpenSSL Heartbleed bug</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证低安全的-SSHv1，sslv2协议"><span class="nav-number">2.7.</span> <span class="nav-text">验证低安全的 SSHv1，sslv2协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证-SSL-POODLE-information-leak"><span class="nav-number">2.8.</span> <span class="nav-text">验证 SSL POODLE information leak</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#验证弱加密SSL套件"><span class="nav-number">2.9.</span> <span class="nav-text">验证弱加密SSL套件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#精准地确认端口上运行的服务"><span class="nav-number">2.10.</span> <span class="nav-text">精准地确认端口上运行的服务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用NSE检测CVE漏洞"><span class="nav-number">3.</span> <span class="nav-text">利用NSE检测CVE漏洞</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文件"><span class="nav-number">4.</span> <span class="nav-text">参考文件</span></a></li></ol></div>
             
 
           </div>
@@ -954,9 +882,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://y-hkl.top/2018/01/15/测试流程/';
-          this.page.identifier = '2018/01/15/测试流程/';
-          this.page.title = '测试流程';
+          this.page.url = 'http://y-hkl.top/2018/02/20/使用Nmap验证漏洞/';
+          this.page.identifier = '2018/02/20/使用Nmap验证漏洞/';
+          this.page.title = '使用Nmap验证漏洞';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://.disqus.com/embed.js';
