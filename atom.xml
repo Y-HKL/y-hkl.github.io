@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://y-hkl.top/"/>
-  <updated>2018-03-19T05:42:02.926Z</updated>
+  <updated>2018-03-19T06:18:53.799Z</updated>
   <id>http://y-hkl.top/</id>
   
   <author>
@@ -20,16 +20,22 @@
     <link href="http://y-hkl.top/2018/03/18/redis%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/"/>
     <id>http://y-hkl.top/2018/03/18/redis未授权访问/</id>
     <published>2018-03-19T03:38:37.000Z</published>
-    <updated>2018-03-19T05:42:02.926Z</updated>
+    <updated>2018-03-19T06:18:53.799Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="redis介绍"><a href="#redis介绍" class="headerlink" title="redis介绍"></a>redis介绍</h2><p>Redis是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、 Key-Value数据库。和Memcached类似，它支持存储的value 类型相对更多，包括 string(字符串)、list ( 链表)、 set(集合)、zset(sorted set – 有序集合)和 hash（哈希类型）。这些数据类型都支持push/pop 、 add/remove 及取交集并集和差集及更丰富的操作，而且这些操作都是原子性的。在此基础上， redis支持各种不同方式的排序。与 memcached 一样，为了保证效率，数据都是缓存在内存中。区别的是 redis 会周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件，并且在此基础上实现了 master-slave ( 主从)同步。<br><a id="more"></a></p>
+    <content type="html"><![CDATA[<h2 id="redis介绍（来自百度百科）"><a href="#redis介绍（来自百度百科）" class="headerlink" title="redis介绍（来自百度百科）"></a>redis介绍（来自百度百科）</h2><p>Redis是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、 Key-Value数据库。和Memcached类似，它支持存储的value 类型相对更多，包括 string(字符串)、list ( 链表)、 set(集合)、zset(sorted set – 有序集合)和 hash（哈希类型）。这些数据类型都支持push/pop 、 add/remove 及取交集并集和差集及更丰富的操作，而且这些操作都是原子性的。在此基础上， redis支持各种不同方式的排序。与 memcached 一样，为了保证效率，数据都是缓存在内存中。区别的是 redis 会周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件，并且在此基础上实现了 master-slave ( 主从)同步。<br><a id="more"></a></p>
 <h2 id="漏洞介绍"><a href="#漏洞介绍" class="headerlink" title="漏洞介绍"></a>漏洞介绍</h2><p>Redis因配置不当可以导致未授权访问，被攻击者恶意利用。当前流行的针对Redis未授权访问的一种新型攻击方式，在特定条件下，如果Redis以root身份运行，黑客可以给root账户写入SSH公钥文件，直接通过SSH登录受害服务器，可导致服务器权限被获取和数据删除、泄露或加密勒索事件发生，严重危害业务正常服务。</p>
 <p>目前比较主流的案例：yam2 minerd 挖矿程序</p>
 <h2 id="Redis安全漏洞影响"><a href="#Redis安全漏洞影响" class="headerlink" title="Redis安全漏洞影响"></a>Redis安全漏洞影响</h2><p>一旦入侵成功，Redis数据会丢失，攻击者可直接添加账号用于ssh远程登录控制服务器，会给用户的 Redis 运行环境以及 Linux 主机造成安全风险，引发重要数据删除、泄露或加密勒索事件发生。<br><img src="/upload_img/redis_1.png" alt=""></p>
-<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>下载redis<br>Wget <a href="http://download.redis.io/releases/redis-2.6.14.tar.gz" target="_blank" rel="external">http://download.redis.io/releases/redis-2.6.14.tar.gz</a><br>解压<br>tar zxvf redis-2.6.14.tar.gz<br>cd redis-2.6.14<br>编译<br>make<br><img src="/upload_img/redis_2.png" alt=""><br>cd src<br>安装<br>make install<br>启动<br>redis-server &amp;<br>连接测试<br>redis-cli<br><img src="/upload_img/redis_3.png" alt=""></p>
+<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>下载redis<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">wget http://download.redis.io/releases/redis-2.6.14.tar.gz</div></pre></td></tr></table></figure></p>
+<p>解压<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tar zxvf redis-2.6.14.tar.gz</div><div class="line">cd redis-2.6.14</div></pre></td></tr></table></figure></p>
+<p>编译<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">make</div></pre></td></tr></table></figure></p>
+<p><img src="/upload_img/redis_2.png" alt=""><br>cd src<br>安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">make install</div></pre></td></tr></table></figure></p>
+<p>启动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis-server &amp;</div></pre></td></tr></table></figure></p>
+<p>连接测试<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis-cli</div></pre></td></tr></table></figure></p>
+<p><img src="/upload_img/redis_3.png" alt=""></p>
 <h2 id="漏洞验证"><a href="#漏洞验证" class="headerlink" title="漏洞验证"></a>漏洞验证</h2><p>redis默认使用的是6379端口，可以使用nmap来验证这个漏洞<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Nmap -A -p 6379 –script redis-info 192.168.10.129</div></pre></td></tr></table></figure></p>
 <p><img src="/upload_img/redis_4.png" alt=""></p>
-<h2 id="漏洞验证-1"><a href="#漏洞验证-1" class="headerlink" title="漏洞验证"></a>漏洞验证</h2><h3 id="获取敏感信息"><a href="#获取敏感信息" class="headerlink" title="获取敏感信息"></a>获取敏感信息</h3><p>Nmap扫描后发现主机的6379端口对外开放，就可以用本地Redis远程连接服务器（redis在开放往外网的情况下(默认配置是bind 127.0.0.1，只允许本地访问，如果配置了其他网卡地址那么就可以网络访问)，默认配置下是空口令，端口为6379）连接后可以获取Redis敏感数据。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">redis-cli -h 漏洞服务器IP</div><div class="line">info</div></pre></td></tr></table></figure></p>
+<h2 id="漏洞利用"><a href="#漏洞利用" class="headerlink" title="漏洞利用"></a>漏洞利用</h2><h3 id="获取敏感信息"><a href="#获取敏感信息" class="headerlink" title="获取敏感信息"></a>获取敏感信息</h3><p>Nmap扫描后发现主机的6379端口对外开放，就可以用本地Redis远程连接服务器（redis在开放往外网的情况下(默认配置是bind 127.0.0.1，只允许本地访问，如果配置了其他网卡地址那么就可以网络访问)，默认配置下是空口令，端口为6379）连接后可以获取Redis敏感数据。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">redis-cli -h 漏洞服务器IP</div><div class="line">info</div></pre></td></tr></table></figure></p>
 <p><img src="/upload_img/redis_5.png" alt=""><br>可以看到Redis的版本和服务器上内核版本信息，如果是新版的Redis2.8以后的版本还可以看到Redis配置文件的绝对路径</p>
 <h3 id="写入SSH公钥，获取操作系统权限"><a href="#写入SSH公钥，获取操作系统权限" class="headerlink" title="写入SSH公钥，获取操作系统权限"></a>写入SSH公钥，获取操作系统权限</h3><h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>在数据库中插入一条数据，将本机的公钥作为value，key值随意，然后通过修改数据库的默认路径为/root/.ssh和默认的缓冲文件authorized.keys,把缓冲的数据保存在文件里，这样就可以再服务器端的/root/.ssh下生一个授权的key。</p>
 <h4 id="利用条件"><a href="#利用条件" class="headerlink" title="利用条件"></a>利用条件</h4><p>1.redis对外开放，且未授权访问（默认配置）<br>2.服务器的ssh对外开放，可通过key登录</p>
@@ -81,7 +87,7 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;redis介绍&quot;&gt;&lt;a href=&quot;#redis介绍&quot; class=&quot;headerlink&quot; title=&quot;redis介绍&quot;&gt;&lt;/a&gt;redis介绍&lt;/h2&gt;&lt;p&gt;Redis是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、 Key-Value数据库。和Memcached类似，它支持存储的value 类型相对更多，包括 string(字符串)、list ( 链表)、 set(集合)、zset(sorted set – 有序集合)和 hash（哈希类型）。这些数据类型都支持push/pop 、 add/remove 及取交集并集和差集及更丰富的操作，而且这些操作都是原子性的。在此基础上， redis支持各种不同方式的排序。与 memcached 一样，为了保证效率，数据都是缓存在内存中。区别的是 redis 会周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件，并且在此基础上实现了 master-slave ( 主从)同步。&lt;br&gt;
+      &lt;h2 id=&quot;redis介绍（来自百度百科）&quot;&gt;&lt;a href=&quot;#redis介绍（来自百度百科）&quot; class=&quot;headerlink&quot; title=&quot;redis介绍（来自百度百科）&quot;&gt;&lt;/a&gt;redis介绍（来自百度百科）&lt;/h2&gt;&lt;p&gt;Redis是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、 Key-Value数据库。和Memcached类似，它支持存储的value 类型相对更多，包括 string(字符串)、list ( 链表)、 set(集合)、zset(sorted set – 有序集合)和 hash（哈希类型）。这些数据类型都支持push/pop 、 add/remove 及取交集并集和差集及更丰富的操作，而且这些操作都是原子性的。在此基础上， redis支持各种不同方式的排序。与 memcached 一样，为了保证效率，数据都是缓存在内存中。区别的是 redis 会周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件，并且在此基础上实现了 master-slave ( 主从)同步。&lt;br&gt;
     
     </summary>
     
