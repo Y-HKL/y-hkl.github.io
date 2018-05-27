@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://y-hkl.top/"/>
-  <updated>2018-05-27T15:35:07.902Z</updated>
+  <updated>2018-05-27T15:38:31.316Z</updated>
   <id>http://y-hkl.top/</id>
   
   <author>
@@ -20,23 +20,20 @@
     <link href="http://y-hkl.top/2018/05/27/%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95%E4%B8%AD%E7%9A%84%E7%AB%AF%E5%8F%A3%E5%88%A9%E7%94%A8/"/>
     <id>http://y-hkl.top/2018/05/27/渗透测试中的端口利用/</id>
     <published>2018-05-27T15:23:49.000Z</published>
-    <updated>2018-05-27T15:35:07.902Z</updated>
+    <updated>2018-05-27T15:38:31.316Z</updated>
     
     <content type="html"><![CDATA[<p>我们在进行渗透测试中，一般情况下会对端口进行扫描，看看服务器中开启了哪些端口，对应的端口一般存在对应的服务，而这些服务可能存在相应的漏洞，下面就是简单结束一下端口对应服务，服务可能对应的漏洞。<br><a id="more"></a></p>
 <h2 id="端口渗透图解"><a href="#端口渗透图解" class="headerlink" title="端口渗透图解"></a>端口渗透图解</h2><p><img src="/upload_img/port.png" alt=""></p>
 <h2 id="详解端口渗透"><a href="#详解端口渗透" class="headerlink" title="详解端口渗透"></a>详解端口渗透</h2><h3 id="文件共享端口渗透"><a href="#文件共享端口渗透" class="headerlink" title="文件共享端口渗透"></a>文件共享端口渗透</h3><h4 id="FTP服务"><a href="#FTP服务" class="headerlink" title="FTP服务"></a>FTP服务</h4><p>FTP服务：ftp服务我分为两种情况，第一种是使用系统软件来配置，比如IIS中的FTP文件共享或Linux中的默认服务软件；第二种是通过第三方软件来配置，比如Serv-U还有一些网上写的简易ftp服务器等。</p>
 <h5 id="默认端口"><a href="#默认端口" class="headerlink" title="默认端口"></a>默认端口</h5><p>20（数据端口）；21（控制端口）；69（tftp小型文件传输协议）</p>
-<h5 id="攻击方式"><a href="#攻击方式" class="headerlink" title="攻击方式"></a>攻击方式</h5><pre><code>爆破：ftp的爆破工具有很多，这里我推荐owasp的Bruter 以及msf中ftp爆破模块；
-匿名访问：用户名：anonymous 密码：为空或任意邮箱
-</code></pre><h4 id="NFS服务"><a href="#NFS服务" class="headerlink" title="NFS服务"></a>NFS服务</h4><p>nfs：网络文件系统，允许网络中的计算机通过TCP/IP网络共享资源。基于Linux系统，配置方面很简单，详细配置请参考案例分享。在nfs配置中，有不做任何限制的，有限制用户，有限制IP，以及在版本2.x中我们还可以使用证书来验证用户。当然不同的限制可以采用的攻击方式也不一样；就目前而言网上关于nfs的攻击还是比较少的。</p>
+<h5 id="攻击方式"><a href="#攻击方式" class="headerlink" title="攻击方式"></a>攻击方式</h5><p>爆破：ftp的爆破工具有很多，这里我推荐owasp的Bruter 以及msf中ftp爆破模块；<br>匿名访问：用户名：anonymous 密码：为空或任意邮箱</p>
+<h4 id="NFS服务"><a href="#NFS服务" class="headerlink" title="NFS服务"></a>NFS服务</h4><p>nfs：网络文件系统，允许网络中的计算机通过TCP/IP网络共享资源。基于Linux系统，配置方面很简单，详细配置请参考案例分享。在nfs配置中，有不做任何限制的，有限制用户，有限制IP，以及在版本2.x中我们还可以使用证书来验证用户。当然不同的限制可以采用的攻击方式也不一样；就目前而言网上关于nfs的攻击还是比较少的。</p>
 <h5 id="默认端口-1"><a href="#默认端口-1" class="headerlink" title="默认端口"></a>默认端口</h5><p>2049</p>
-<h5 id="攻击方式-1"><a href="#攻击方式-1" class="headerlink" title="攻击方式"></a>攻击方式</h5><pre><code>未授权访问：未限制IP以及用户权限设置错误
-</code></pre><h4 id="Samba服务"><a href="#Samba服务" class="headerlink" title="Samba服务"></a>Samba服务</h4><p>Samba服务：对于这个可以在windows与Linux之间进行共享文件的服务同样是我们攻击的关注点；samba登录分为两种方式，一种是需要用户名口令；另一种是不需要用户名口令。在很多时候不光是pc机，还有一些服务器，网络设备都开放着此服务，方便进行文件共享，但是同时也给攻击者提供了便利。</p>
+<h5 id="攻击方式-1"><a href="#攻击方式-1" class="headerlink" title="攻击方式"></a>攻击方式</h5><p>未授权访问：未限制IP以及用户权限设置错误</p>
+<h4 id="Samba服务"><a href="#Samba服务" class="headerlink" title="Samba服务"></a>Samba服务</h4><p>Samba服务：对于这个可以在windows与Linux之间进行共享文件的服务同样是我们攻击的关注点；samba登录分为两种方式，一种是需要用户名口令；另一种是不需要用户名口令。在很多时候不光是pc机，还有一些服务器，网络设备都开放着此服务，方便进行文件共享，但是同时也给攻击者提供了便利。</p>
 <h5 id="默认端口-2"><a href="#默认端口-2" class="headerlink" title="默认端口"></a>默认端口</h5><p>137（主要用户NetBIOS Name Service；NetBIOS名称服务）、139（NetBIOS Session Service，主要提供samba服务）</p>
-<h5 id="攻击方式-2"><a href="#攻击方式-2" class="headerlink" title="攻击方式"></a>攻击方式</h5><pre><code>爆破：弱口令（爆破工具采用hydra）hydra -l username -P PassFile IP smb
-未授权访问：给予public用户高权限
-远程代码执行漏洞：CVE-2015-0240等等
-</code></pre>]]></content>
+<h5 id="攻击方式-2"><a href="#攻击方式-2" class="headerlink" title="攻击方式"></a>攻击方式</h5><p>爆破：弱口令（爆破工具采用hydra）hydra -l username -P PassFile IP smb<br>未授权访问：给予public用户高权限<br>远程代码执行漏洞：CVE-2015-0240等等</p>
+]]></content>
     
     <summary type="html">
     
