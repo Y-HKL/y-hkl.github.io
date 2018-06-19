@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://y-hkl.top/"/>
-  <updated>2018-05-27T16:22:19.495Z</updated>
+  <updated>2018-06-19T05:18:50.490Z</updated>
   <id>http://y-hkl.top/</id>
   
   <author>
@@ -14,6 +14,49 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ubuntu美化配置</title>
+    <link href="http://y-hkl.top/2018/06/18/ubuntu%E7%BE%8E%E5%8C%96%E9%85%8D%E7%BD%AE/"/>
+    <id>http://y-hkl.top/2018/06/18/ubuntu美化配置/</id>
+    <published>2018-06-19T02:54:45.000Z</published>
+    <updated>2018-06-19T05:18:50.490Z</updated>
+    
+    <content type="html"><![CDATA[<p>Ubuntu 18.04 LTS 正式发布有一段时间了，这几天下载安装尝试了一下，并通过对其进行了一些美化。下面是安装和美化过程：<br>最终效果如图：<br><img src="/upload_img/ubuntu_22.png" alt=""><br><a id="more"></a></p>
+<h2 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h2><p>下载不用多说了，直接在官网下载就可以，下面是下载地址链接：<br><a href="https://www.ubuntu.com/download/desktop" target="_blank" rel="external">https://www.ubuntu.com/download/desktop</a></p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>我是使用虚拟机安装的，简单的安装方式直接下一步下一步就可以。</p>
+<h2 id="配置和美化"><a href="#配置和美化" class="headerlink" title="配置和美化"></a>配置和美化</h2><h3 id="安装搜狗输入法"><a href="#安装搜狗输入法" class="headerlink" title="安装搜狗输入法"></a>安装搜狗输入法</h3><h4 id="安装fcitx"><a href="#安装fcitx" class="headerlink" title="安装fcitx"></a>安装fcitx</h4><p>安装搜狗输入法之前首先需要确认是否安装了fcitx<br><img src="/upload_img/ubuntu_1.png" alt=""><br>通过fcitx命令发现没有安装，所以要先安装fcitx<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt install fcitx-bin</div></pre></td></tr></table></figure></p>
+<p><img src="/upload_img/ubuntu_2.png" alt=""><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install fcitx-table</div></pre></td></tr></table></figure></p>
+<p>安装输入法<br><img src="/upload_img/ubuntu_3.png" alt=""></p>
+<h4 id="配置fcitx"><a href="#配置fcitx" class="headerlink" title="配置fcitx"></a>配置fcitx</h4><p>使用以下方法配置fcitx<br><img src="/upload_img/ubuntu_4.png" alt=""><br>配置之后需要重启系统</p>
+<h4 id="选择需要的输入法"><a href="#选择需要的输入法" class="headerlink" title="选择需要的输入法"></a>选择需要的输入法</h4><p>点击Ubuntu右上角顶栏的小键盘图标中打开，配置，如下图：<br><img src="/upload_img/ubuntu_5.png" alt=""></p>
+<h4 id="安装搜狗拼音"><a href="#安装搜狗拼音" class="headerlink" title="安装搜狗拼音"></a>安装搜狗拼音</h4><p>访问搜狗输入法For Linux   <a href="https://pinyin.sogou.com/linux/?r=pinyin" target="_blank" rel="external">https://pinyin.sogou.com/linux/?r=pinyin</a><br>点击立即下载64bit，下载安装文件。<br>下载后，双击下载的文件。安装后重启系统<br><img src="/upload_img/ubuntu_6.png" alt=""><br>重启后，点击右上角小键盘-设置，调整一下输入法顺序<br><img src="/upload_img/ubuntu_7.png" alt=""></p>
+<h3 id="汉化火狐浏览器"><a href="#汉化火狐浏览器" class="headerlink" title="汉化火狐浏览器"></a>汉化火狐浏览器</h3><p>简体中文语言包  <a href="https://addons.mozilla.org/zh-CN/firefox/addon/chinese-simplified-zh-cn-la/versions/" target="_blank" rel="external">https://addons.mozilla.org/zh-CN/firefox/addon/chinese-simplified-zh-cn-la/versions/</a><br>选择对应的版本语言包，添加重启浏览器就可以了<br><img src="/upload_img/ubuntu_8.png" alt=""></p>
+<h3 id="安装微信"><a href="#安装微信" class="headerlink" title="安装微信"></a>安装微信</h3><p>安装微信网上有许多方法，它是一种基于网页版微信的安装方式，可以参考 <a href="https://cloud.tencent.com/developer/news/231029" target="_blank" rel="external">https://cloud.tencent.com/developer/news/231029</a><br>我最开始使用的是”自带软件安装“，但是在安装了很多次都没有成功，最后使用“使用snap安装”，安装成功<br><img src="/upload_img/ubuntu_9.png" alt=""></p>
+<h3 id="安装mac-os主题"><a href="#安装mac-os主题" class="headerlink" title="安装mac os主题"></a>安装mac os主题</h3><p>由于已经安装成功，所以下面的截图有些是网上的找的</p>
+<h4 id="安装TweakTool"><a href="#安装TweakTool" class="headerlink" title="安装TweakTool"></a>安装TweakTool</h4><p>要安装主题，首先要先安装相应的工具：TweakTool<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install gnome-tweak-tool</div></pre></td></tr></table></figure></p>
+<p>安装完成后打开Tweaks<br><img src="/upload_img/ubuntu_10.png" alt=""><br>去掉shell上无法修改的叹号<br><img src="/upload_img/ubuntu_11.png" alt=""><br>执行命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install gnome-shell-extensions</div></pre></td></tr></table></figure></p>
+<p>再次打开后就没有了，可以修改了<br>安装完成后打开Tweaks，选择“Extensions”选项，将“User themes”设置为ON<br><img src="/upload_img/ubuntu_12.png" alt=""></p>
+<h4 id="装GTK主题"><a href="#装GTK主题" class="headerlink" title="装GTK主题"></a>装GTK主题</h4><p>链接：<a href="https://www.gnome-look.org/p/1241688/" target="_blank" rel="external">https://www.gnome-look.org/p/1241688/</a><br><img src="/upload_img/ubuntu_13.png" alt=""><br>可以看到里面一共有8个压缩文件，分别包装了各种主题，每一个文件名中有一个“2”，这个“2”的意思是该压缩包下有两个主题。<br>我选的是Gnome-OSC-HS–2themes.tar.xz （第一个压缩文件），进行下载<br>进行解压：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">xz -d Gnome-OSC-HS--2themes.tar.xz  </div><div class="line">tar xvf Gnome-OSC-HS--2themes.tar.xz</div></pre></td></tr></table></figure></p>
+<p>解压后得到的文件夹中有两个文件夹<br><img src="/upload_img/ubuntu_14.png" alt=""><br>这两个文件夹分别是两个主题，将其移动到/usr/share/themes/下就行了。<br>打开之前的工具Tweaks(中文名叫“优化”)，在“外观”选项下可以选择刚刚安装的主题，安装后的截图：<br><img src="/upload_img/ubuntu_15.png" alt=""><br>刚刚的两个文件夹就是两个主题，这两个主题从名字上看只有transparent前面是否有个not，意思就是没有透明效果。到现在已经修改了外观样式了。</p>
+<h4 id="修改图标"><a href="#修改图标" class="headerlink" title="修改图标"></a>修改图标</h4><p>链接：<a href="https://www.opendesktop.org/s/Gnome/p/1102582/" target="_blank" rel="external">https://www.opendesktop.org/s/Gnome/p/1102582/</a><br><img src="/upload_img/ubuntu_16.png" alt=""><br>我下载的时macOS11的，解压后把文件放到/usr/share/icons/下,然后去Tweaks中应用一下<br><img src="/upload_img/ubuntu_17.png" alt=""><br>效果如下<br><img src="/upload_img/ubuntu_18.png" alt=""></p>
+<h4 id="修改桌面Shell"><a href="#修改桌面Shell" class="headerlink" title="修改桌面Shell"></a>修改桌面Shell</h4><p>链接：<a href="https://www.opendesktop.org/s/Gnome/p/1013741/" target="_blank" rel="external">https://www.opendesktop.org/s/Gnome/p/1013741/</a><br><img src="/upload_img/ubuntu_19.png" alt=""><br>解压后将文件夹放到/usr/share/themes/目录下。<br>去Tweaks中进行应用：<br><img src="/upload_img/ubuntu_20.png" alt=""><br>效果如下：<br><img src="/upload_img/ubuntu_21.png" alt=""></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Ubuntu 18.04 LTS 正式发布有一段时间了，这几天下载安装尝试了一下，并通过对其进行了一些美化。下面是安装和美化过程：&lt;br&gt;最终效果如图：&lt;br&gt;&lt;img src=&quot;/upload_img/ubuntu_22.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;
+    
+    </summary>
+    
+      <category term="折腾不止" scheme="http://y-hkl.top/categories/%E6%8A%98%E8%85%BE%E4%B8%8D%E6%AD%A2/"/>
+    
+    
+      <category term="ubuntu" scheme="http://y-hkl.top/tags/ubuntu/"/>
+    
+      <category term="美化" scheme="http://y-hkl.top/tags/%E7%BE%8E%E5%8C%96/"/>
+    
+  </entry>
   
   <entry>
     <title>渗透测试中的端口利用</title>
@@ -400,7 +443,7 @@
     <link href="http://y-hkl.top/2017/12/15/%E4%B8%AD%E9%97%B4%E4%BB%B6%E6%BC%8F%E6%B4%9E%E4%B8%8E%E9%98%B2%E6%8A%A4/"/>
     <id>http://y-hkl.top/2017/12/15/中间件漏洞与防护/</id>
     <published>2017-12-15T05:57:05.000Z</published>
-    <updated>2017-12-19T09:31:16.662Z</updated>
+    <updated>2018-05-27T23:22:51.576Z</updated>
     
     <content type="html"><![CDATA[<p>中间件漏洞可以说是最容易被web管理员忽视的漏洞，原因很简单，因为这并不是应用程序代码上存在的漏洞，而是属于一种应用部署环境的配置不当或者使用不当造成的<br><a id="more"></a><br>我们在处理应急响应事件时经常遇到这么一种情况，客户网站代码是外包的，也就是第三方公司负责开发，而部署可能是由客户内部运维人员负责。暂不说他们对于中间件安全的重视程度与了解程度，只谈发现漏洞后如何处理，便是一团乱。开发商推卸说这并不是代码上的问题，他们完全是按照安全开发流程（SDL）走的，所以跟他无关；运维人员就一脸蒙蔽了，反驳道：你们当初没跟我说要配置什么啊，只是让我安装个程序就ok了，我怎么知道？</p>
 <h2 id="中间件、容器、服务器傻傻分不清？"><a href="#中间件、容器、服务器傻傻分不清？" class="headerlink" title="中间件、容器、服务器傻傻分不清？"></a>中间件、容器、服务器傻傻分不清？</h2><p>在谈中间件安全问题时，我觉得有必要先梳理下以上几种关系以及概念。当初我在接触这些概念时，脑子里就是一团浆糊，中间件、容器、服务器、webserver等等概念感觉彼此很相似，但又有所区别。因此在书写本篇时，我特意翻查了一些资料，试图梳理清这几者之间的关系，参考了文章：<a href="http://www.voidcn.com/blog/saoraozhe3hao/article/p-2428756.html" target="_blank" rel="external">http://www.voidcn.com/blog/saoraozhe3hao/article/p-2428756.html</a></p>
@@ -443,6 +486,7 @@
 <p>此时页面显示test，把前面参数的值给覆盖了，这就是http参数污染。</p>
 <h3 id="利用场景"><a href="#利用场景" class="headerlink" title="利用场景"></a>利用场景</h3><p>绕过WAF，如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">PHP:index.php?str=1&amp;str=select * from admin --</div></pre></td></tr></table></figure></p>
 <p>因为WAF可能会校验值的第一个单词，如果为select则触发，这样子可以避免被触发。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTYxNjQxOA==&amp;mid=2652844866&amp;idx=1&amp;sn=7c1d2879e7ad5ef662cccf8fb7663846" target="_blank" rel="external">https://mp.weixin.qq.com/s?__biz=MjM5MTYxNjQxOA==&amp;mid=2652844866&amp;idx=1&amp;sn=7c1d2879e7ad5ef662cccf8fb7663846</a><br><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTYxNjQxOA==&amp;mid=2652845014&amp;idx=1&amp;sn=c6221031b486bbe84de6986c67b76fbc" target="_blank" rel="external">https://mp.weixin.qq.com/s?__biz=MjM5MTYxNjQxOA==&amp;mid=2652845014&amp;idx=1&amp;sn=c6221031b486bbe84de6986c67b76fbc</a><br><a href="https://mp.weixin.qq.com/s/768Jx-lBShb-OsiMgg-48A" target="_blank" rel="external">https://mp.weixin.qq.com/s/768Jx-lBShb-OsiMgg-48A</a><br><a href="https://mp.weixin.qq.com/s/QhB-PYpOik_PVdm3F7LIJw" target="_blank" rel="external">https://mp.weixin.qq.com/s/QhB-PYpOik_PVdm3F7LIJw</a></p>
 ]]></content>
     
     <summary type="html">
@@ -977,48 +1021,6 @@
       <category term="s2-052" scheme="http://y-hkl.top/tags/s2-052/"/>
     
       <category term="漏洞" scheme="http://y-hkl.top/tags/%E6%BC%8F%E6%B4%9E/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>搭建shadowsocks服务</title>
-    <link href="http://y-hkl.top/2017/09/02/%E6%90%AD%E5%BB%BAshadowsocks%E6%9C%8D%E5%8A%A1/"/>
-    <id>http://y-hkl.top/2017/09/02/搭建shadowsocks服务/</id>
-    <published>2017-09-02T06:15:21.000Z</published>
-    <updated>2017-09-02T06:55:55.285Z</updated>
-    
-    <content type="html"><![CDATA[<p>搭建ss服务器可以登录外网查询资料，访问谷歌，方便自己的使用。在服务器上搭建shadowsocks服务端，本地服务器上搭建客户端用来连接使用。<br><a id="more"></a></p>
-<h2 id="安装前的准备"><a href="#安装前的准备" class="headerlink" title="安装前的准备"></a>安装前的准备</h2><h3 id="安装pip"><a href="#安装pip" class="headerlink" title="安装pip"></a>安装pip</h3><p>从pip官网 <a href="https://pypi.python.org/pypi/pip" target="_blank" rel="external">https://pypi.python.org/pypi/pip</a> 下载pip的源代码</p>
-<p>#解压<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">tar -zxvf pip-1.5.5.tar.gz</div></pre></td></tr></table></figure></p>
-<p>这个时候会报错说少了setuptools<br>从setuptools官网 <a href="https://pypi.python.org/pypi/setuptools" target="_blank" rel="external">https://pypi.python.org/pypi/setuptools</a> 下载setuptools原来</p>
-<p>#解压<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">tar -zxvf setuptools-3.6.tar.gz </div><div class="line">cd setuptools-3.6</div></pre></td></tr></table></figure></p>
-<p>#安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python setup.py install</div></pre></td></tr></table></figure></p>
-<p>再次安装pip就OK了</p>
-<h3 id="安装M2Crypto"><a href="#安装M2Crypto" class="headerlink" title="安装M2Crypto"></a>安装M2Crypto</h3><p>先安装依赖包：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">yum install -y openssl-devel gcc swig python-devel autoconf libtool</div></pre></td></tr></table></figure></p>
-<p>再通过pip安装M2Crypto：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install M2Crypto</div></pre></td></tr></table></figure></p>
-<h2 id="安装shadowsocks"><a href="#安装shadowsocks" class="headerlink" title="安装shadowsocks"></a>安装shadowsocks</h2><p>使用pip安装shadowsocks<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">pip install shadowsocks</div></pre></td></tr></table></figure></p>
-<h2 id="配置config文件"><a href="#配置config文件" class="headerlink" title="配置config文件"></a>配置config文件</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vim /etc/shadowsocks.json</div></pre></td></tr></table></figure>
-<p>单用户配置:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">&quot;server&quot;:&quot;&quot;,     ##服务器ip地址</div><div class="line">&quot;server_port&quot;:8000,  ##代理端口</div><div class="line">&quot;local_address&quot;:&quot;127.0.0.1&quot;,</div><div class="line">&quot;local_port&quot;:1080, ##本地监听端口</div><div class="line">&quot;password&quot;:&quot;&quot;,   ##连接密码</div><div class="line">&quot;timeout&quot;:300,</div><div class="line">&quot;method&quot;:&quot;aes-256-cfb&quot;, ##加密方式</div><div class="line">&quot;dast_open&quot;:false</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>多用户配置:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">&quot;server&quot;:&quot;&quot;,</div><div class="line">&quot;local_address&quot;:&quot;127.0.0.1&quot;,</div><div class="line">&quot;local_port&quot;:1080,</div><div class="line">&quot;port_password&quot;:&#123;</div><div class="line">&quot;8000&quot;:&quot;123456&quot;,</div><div class="line">&quot;8001&quot;:&quot;123456&quot;</div><div class="line">&#125;,</div><div class="line">&quot;timeout&quot;:300,</div><div class="line">&quot;method&quot;:&quot;aes-256-cfb&quot;,</div><div class="line">&quot;fast_open&quot;:false</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="命令行启动关闭"><a href="#命令行启动关闭" class="headerlink" title="命令行启动关闭"></a>命令行启动关闭</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ssserver -c /etc/shadowsocks/config.json -d start 后台启动</div><div class="line">ssserver -c /etc/shadowsocks/config.json -d stop 后台停止</div></pre></td></tr></table></figure>
-<h2 id="设置开机启动"><a href="#设置开机启动" class="headerlink" title="设置开机启动"></a>设置开机启动</h2><p>将启动的命令加入到/etc/rc.local文件的最后<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vi /etc/rc.local</div></pre></td></tr></table></figure></p>
-<h2 id="设置非root用户运行ss"><a href="#设置非root用户运行ss" class="headerlink" title="设置非root用户运行ss"></a>设置非root用户运行ss</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">useradd ssuser //添加一个ssuser用户</div><div class="line">ssserver [other options] --user ssuser //用ssuser这个用户来运行ss</div></pre></td></tr></table></figure>
-<p>将之前的ssserver -c /etc/shadowsocks.json -d start改为ssserver -c /etc/shadowsocks.json -d start –user ssuser</p>
-<h2 id="防火墙设置（如有）"><a href="#防火墙设置（如有）" class="headerlink" title="防火墙设置（如有）"></a>防火墙设置（如有）</h2><p>编辑防火墙配置文件/etc/sysconfig/iptables，将服务器端口（server_port）放行。新增一条防火墙规则：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-A INPUT -m state --state NEW -m tcp -p tcp --dport 8989 -j ACCEPT</div></pre></td></tr></table></figure></p>
-<p>重启防火墙iptables：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">service iptables restart</div></pre></td></tr></table></figure></p>
-<h2 id="安装客户端"><a href="#安装客户端" class="headerlink" title="安装客户端"></a>安装客户端</h2><p>windows安装shadowsocks客户端比较简单，直接下载安装程序。<br>启动以后，填入服务端相应的配置（ip，port，密码，加密方式）<br>设置模式：<br><img src="/upload_img/shadowsocks_1.png" alt=""><br><img src="/upload_img/shadowsocks_2.png" alt=""></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;搭建ss服务器可以登录外网查询资料，访问谷歌，方便自己的使用。在服务器上搭建shadowsocks服务端，本地服务器上搭建客户端用来连接使用。&lt;br&gt;
-    
-    </summary>
-    
-      <category term="技术研究" scheme="http://y-hkl.top/categories/%E6%8A%80%E6%9C%AF%E7%A0%94%E7%A9%B6/"/>
-    
-    
-      <category term="shadowsocks" scheme="http://y-hkl.top/tags/shadowsocks/"/>
     
   </entry>
   

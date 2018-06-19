@@ -84,7 +84,7 @@
 <meta property="og:image" content="http://y-hkl.top/upload_img/中间件_1.png">
 <meta property="og:image" content="http://y-hkl.top/upload_img/中间件_2.png">
 <meta property="og:image" content="http://y-hkl.top/upload_img/中间件_3.png">
-<meta property="og:updated_time" content="2017-12-19T09:31:16.662Z">
+<meta property="og:updated_time" content="2018-05-27T23:22:51.576Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="中间件漏洞与防护">
 <meta name="twitter:description" content="中间件漏洞可以说是最容易被web管理员忽视的漏洞，原因很简单，因为这并不是应用程序代码上存在的漏洞，而是属于一种应用部署环境的配置不当或者使用不当造成的">
@@ -442,6 +442,7 @@
 <p>此时页面显示test，把前面参数的值给覆盖了，这就是http参数污染。</p>
 <h3 id="利用场景"><a href="#利用场景" class="headerlink" title="利用场景"></a>利用场景</h3><p>绕过WAF，如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">PHP:index.php?str=1&amp;str=select * from admin --</div></pre></td></tr></table></figure></p>
 <p>因为WAF可能会校验值的第一个单词，如果为select则触发，这样子可以避免被触发。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTYxNjQxOA==&amp;mid=2652844866&amp;idx=1&amp;sn=7c1d2879e7ad5ef662cccf8fb7663846" target="_blank" rel="external">https://mp.weixin.qq.com/s?__biz=MjM5MTYxNjQxOA==&amp;mid=2652844866&amp;idx=1&amp;sn=7c1d2879e7ad5ef662cccf8fb7663846</a><br><a href="https://mp.weixin.qq.com/s?__biz=MjM5MTYxNjQxOA==&amp;mid=2652845014&amp;idx=1&amp;sn=c6221031b486bbe84de6986c67b76fbc" target="_blank" rel="external">https://mp.weixin.qq.com/s?__biz=MjM5MTYxNjQxOA==&amp;mid=2652845014&amp;idx=1&amp;sn=c6221031b486bbe84de6986c67b76fbc</a><br><a href="https://mp.weixin.qq.com/s/768Jx-lBShb-OsiMgg-48A" target="_blank" rel="external">https://mp.weixin.qq.com/s/768Jx-lBShb-OsiMgg-48A</a><br><a href="https://mp.weixin.qq.com/s/QhB-PYpOik_PVdm3F7LIJw" target="_blank" rel="external">https://mp.weixin.qq.com/s/QhB-PYpOik_PVdm3F7LIJw</a></p>
 
       
     </div>
@@ -469,7 +470,7 @@
   <p><span>本文标题:</span><a href="/2017/12/15/中间件漏洞与防护/">中间件漏洞与防护</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 Y-HKL 的个人博客">Y-HKL</a></p>
   <p><span>发布时间:</span>2017年12月15日 - 00:12</p>
-  <p><span>最后更新:</span>2017年12月19日 - 04:12</p>
+  <p><span>最后更新:</span>2018年05月27日 - 19:05</p>
   <p><span>原始链接:</span><a href="/2017/12/15/中间件漏洞与防护/" title="中间件漏洞与防护">http://y-hkl.top/2017/12/15/中间件漏洞与防护/</a>
     <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://y-hkl.top/2017/12/15/中间件漏洞与防护/"  aria-label="复制成功！"></i></span>
   </p>
@@ -644,7 +645,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -655,7 +656,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -666,7 +667,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-count">24</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -762,7 +763,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#中间件、容器、服务器傻傻分不清？"><span class="nav-number">1.</span> <span class="nav-text">中间件、容器、服务器傻傻分不清？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基础概念与作用"><span class="nav-number">1.1.</span> <span class="nav-text">基础概念与作用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#web服务器"><span class="nav-number">1.1.1.</span> <span class="nav-text">web服务器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#web中间件"><span class="nav-number">1.1.2.</span> <span class="nav-text">web中间件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#web容器"><span class="nav-number">1.1.3.</span> <span class="nav-text">web容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#所属的类别"><span class="nav-number">1.1.4.</span> <span class="nav-text">所属的类别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重点分析"><span class="nav-number">1.2.</span> <span class="nav-text">重点分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tomcat漏洞与防护"><span class="nav-number">2.</span> <span class="nav-text">Tomcat漏洞与防护</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#tomcat远程部署漏洞详情"><span class="nav-number">2.1.</span> <span class="nav-text">tomcat远程部署漏洞详情</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#tomcat口令爆破"><span class="nav-number">2.1.1.</span> <span class="nav-text">tomcat口令爆破</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#getshell过程"><span class="nav-number">2.1.2.</span> <span class="nav-text">getshell过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Session-Example样本页面"><span class="nav-number">2.2.</span> <span class="nav-text">Session Example样本页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tomcat漏洞防护"><span class="nav-number">2.3.</span> <span class="nav-text">tomcat漏洞防护</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JBoss漏洞与防护"><span class="nav-number">3.</span> <span class="nav-text">JBoss漏洞与防护</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JBoss远程部署漏洞详情"><span class="nav-number">3.1.</span> <span class="nav-text">JBoss远程部署漏洞详情</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getshell过程-1"><span class="nav-number">3.2.</span> <span class="nav-text">getshell过程　　</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JBoss漏洞防护"><span class="nav-number">3.3.</span> <span class="nav-text">JBoss漏洞防护</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WebLogic漏洞与防护"><span class="nav-number">4.</span> <span class="nav-text">WebLogic漏洞与防护</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Weblogic远程部署漏洞详情"><span class="nav-number">4.1.</span> <span class="nav-text">Weblogic远程部署漏洞详情</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getshell过程-2"><span class="nav-number">4.2.</span> <span class="nav-text">getshell过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Weblogic漏洞防护"><span class="nav-number">4.3.</span> <span class="nav-text">Weblogic漏洞防护</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#axis2漏洞与防护"><span class="nav-number">5.</span> <span class="nav-text">axis2漏洞与防护</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#axis2命令执行漏洞详情"><span class="nav-number">6.</span> <span class="nav-text">axis2命令执行漏洞详情</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IIS漏洞与防护"><span class="nav-number">7.</span> <span class="nav-text">IIS漏洞与防护</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IIS-Webdav漏洞详情"><span class="nav-number">7.1.</span> <span class="nav-text">IIS Webdav漏洞详情</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IIS漏洞防护"><span class="nav-number">7.2.</span> <span class="nav-text">IIS漏洞防护</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HPP漏洞"><span class="nav-number">8.</span> <span class="nav-text">HPP漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#利用场景"><span class="nav-number">8.1.</span> <span class="nav-text">利用场景</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#中间件、容器、服务器傻傻分不清？"><span class="nav-number">1.</span> <span class="nav-text">中间件、容器、服务器傻傻分不清？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基础概念与作用"><span class="nav-number">1.1.</span> <span class="nav-text">基础概念与作用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#web服务器"><span class="nav-number">1.1.1.</span> <span class="nav-text">web服务器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#web中间件"><span class="nav-number">1.1.2.</span> <span class="nav-text">web中间件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#web容器"><span class="nav-number">1.1.3.</span> <span class="nav-text">web容器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#所属的类别"><span class="nav-number">1.1.4.</span> <span class="nav-text">所属的类别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重点分析"><span class="nav-number">1.2.</span> <span class="nav-text">重点分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tomcat漏洞与防护"><span class="nav-number">2.</span> <span class="nav-text">Tomcat漏洞与防护</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#tomcat远程部署漏洞详情"><span class="nav-number">2.1.</span> <span class="nav-text">tomcat远程部署漏洞详情</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#tomcat口令爆破"><span class="nav-number">2.1.1.</span> <span class="nav-text">tomcat口令爆破</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#getshell过程"><span class="nav-number">2.1.2.</span> <span class="nav-text">getshell过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Session-Example样本页面"><span class="nav-number">2.2.</span> <span class="nav-text">Session Example样本页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tomcat漏洞防护"><span class="nav-number">2.3.</span> <span class="nav-text">tomcat漏洞防护</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JBoss漏洞与防护"><span class="nav-number">3.</span> <span class="nav-text">JBoss漏洞与防护</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JBoss远程部署漏洞详情"><span class="nav-number">3.1.</span> <span class="nav-text">JBoss远程部署漏洞详情</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getshell过程-1"><span class="nav-number">3.2.</span> <span class="nav-text">getshell过程　　</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JBoss漏洞防护"><span class="nav-number">3.3.</span> <span class="nav-text">JBoss漏洞防护</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#WebLogic漏洞与防护"><span class="nav-number">4.</span> <span class="nav-text">WebLogic漏洞与防护</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Weblogic远程部署漏洞详情"><span class="nav-number">4.1.</span> <span class="nav-text">Weblogic远程部署漏洞详情</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getshell过程-2"><span class="nav-number">4.2.</span> <span class="nav-text">getshell过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Weblogic漏洞防护"><span class="nav-number">4.3.</span> <span class="nav-text">Weblogic漏洞防护</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#axis2漏洞与防护"><span class="nav-number">5.</span> <span class="nav-text">axis2漏洞与防护</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#axis2命令执行漏洞详情"><span class="nav-number">6.</span> <span class="nav-text">axis2命令执行漏洞详情</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IIS漏洞与防护"><span class="nav-number">7.</span> <span class="nav-text">IIS漏洞与防护</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IIS-Webdav漏洞详情"><span class="nav-number">7.1.</span> <span class="nav-text">IIS Webdav漏洞详情</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#IIS漏洞防护"><span class="nav-number">7.2.</span> <span class="nav-text">IIS漏洞防护</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HPP漏洞"><span class="nav-number">8.</span> <span class="nav-text">HPP漏洞</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#利用场景"><span class="nav-number">8.1.</span> <span class="nav-text">利用场景</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">9.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
             
 
           </div>
@@ -814,7 +815,7 @@
 
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共26.0k字</span>
+  <span class="post-count">博客全站共26.9k字</span>
 </div>
 
 
